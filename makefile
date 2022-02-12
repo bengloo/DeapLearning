@@ -1,4 +1,4 @@
-#Makfile conçus le 29/6/2020 par benjamin engloo 
+#Makfile conçus le 29/6/2020 par bengloo
 #a pour bute de simplifier la gestion des library et la compilation."
 # all: mkpile par defaut
 # Debug: active les printf spécifique au mod debug

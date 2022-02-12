@@ -42,15 +42,41 @@ int productConstMat2d(mat2D_t * matDest,DATATYPEMAT2D val){
     return 1;
 };
 
+void addConstMat2d(mat2D_t *matEdit,DATATYPEMAT2D val){
+    for(int i = 0; i < matEdit->x; i++)
+    {
+        for(int j = 0; j < matEdit->y; j++)
+        {
+            matEdit->mat[i][j]+=val;
+        }
+    }
+};
+
+void sigmoidMat2d(mat2D_t *matDest,mat2D_t matVal){
+    if(matVal.x!=1){
+        DEBUG_S("La fonction sigmoid ne s'applique que sur les dimentsion 1xN\n");
+        return;
+    }
+    if(matDest->x!=matVal.x&&matDest->y!=matVal.y){
+        if(matDest->x!=0 &&matDest->y!=0){
+            free(matDest->mat);
+        }
+        matDest->x=matVal.x;
+        matDest->y=matVal.y;
+        matDest->mat=(DATATYPEMAT2D**) malloc( matDest->x * matDest->y * sizeof(DATATYPEMAT2D));
+        assert( matDest->mat != NULL );
+    }
+    for(int i=0;i<matDest->y;i++){
+        matDest->mat[1][i]=1/(1+exp(-matVal.mat[1][i]));
+    }
+}
 void initNullMat2d(mat2D_t* mat){
     //free(mat->mat);
     mat->mat=NULL;
     mat->x=0;
     mat->y=0;
 };
-/*void initCstMat2d(mat2D_t* mat){
 
-};*/
 void initRdmMat2d(mat2D_t* mat,int sizex,int sizey){
     //on definit les dimenssion de la matrice de destination.
     if(mat->x!=sizex && mat->y!=sizey){

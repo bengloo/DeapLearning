@@ -15,8 +15,8 @@ typedef struct
 
 int productMat2d(mat2D_t * matDest,mat2D_t matFrst,mat2D_t matScd);
 int productConstMat2d(mat2D_t * matDest,DATATYPEMAT2D val);
+void addConstMat2d(mat2D_t *matEdit,DATATYPEMAT2D val);
 void initNullMat2d(mat2D_t* mat);
-//void initCstMat2d(mat2D_t* mat);
 void initRdmMat2d(mat2D_t* mat,int sizex,int sizey);
 void libererMat2d(mat2D_t* mat);
 

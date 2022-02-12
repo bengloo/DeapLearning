@@ -15,3 +15,11 @@ void initialisation(mat2D_t *W, DATATYPEMAT2D *b,mat2D_t X){
     initRdmMat2d(W,1,X.x);
     *b=(float)rand();
 }
+void model(mat2D_t * A,mat2D_t*Z,mat2D_t X,mat2D_t W, DATATYPEMAT2D b){
+    //Z=X*W+b
+    productMat2d(Z,W,X);
+    addConstMat2d(Z,b);
+    //A=sigmoïde(Z)
+    
+
+}

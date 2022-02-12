@@ -7,7 +7,7 @@
 #////////recette par defaut//////////
 c=gcc #type de compilation
 op=-Wall -Wextra #opertion et retoure de la compilation
-EXEC=main #nom de l'executable final
+EXEC=main.out #nom de l'executable final
 MAINSOURCE=main.o#fichier source de l'executable
 LIBFIC=math.o #nom des library en .o
 HEADERFIC=math.h#nom des header

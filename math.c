@@ -31,6 +31,37 @@ int productMat2d(mat2D_t * matDest,mat2D_t matFrst,mat2D_t matScd){
 
     return 1;
 };
+int producTranspoMat2d(mat2D_t * matDest,mat2D_t matFrst,mat2D_t matScd){
+    //on verifi la validité des dimenssion utilisé
+    if(matFrst.x!=matScd.x){
+        DEBUG_S2("Dimmension %d %d incompatible pour un produit matriciel\n",matFrst.x,matScd.x);
+        return 0;
+    }
+    //on definit les dimenssion de la matrice de destination.
+    if(matDest->x!=matFrst.y&&matDest->y!=matScd.y){
+        if(matDest->x!=0 &&matDest->y!=0){
+            free(matDest->mat);
+        }
+        matDest->x=matFrst.y;
+        matDest->y=matScd.y;
+        matDest->mat=(DATATYPEMAT2D**) malloc( matDest->x * matDest->y * sizeof(DATATYPEMAT2D));
+        assert( matDest->mat != NULL );
+    }
+    //on remplis la matrice de destination
+    for(int i = 0; i < matDest->x; i++)
+    {
+        for(int j = 0; j < matDest->y; j++)
+        {
+            matDest->mat[i][j]=0;
+            for(int k = 0; k < matDest->y; k++)
+            {
+                matDest->mat[i][j] += matFrst.mat[k][i] * matScd.mat[k][j];
+            }
+        }
+    }
+
+    return 1;
+};
 int productConstMat2d(mat2D_t * matDest,DATATYPEMAT2D val){
     for(int i = 0; i < matDest->x; i++)
     {
@@ -42,12 +73,22 @@ int productConstMat2d(mat2D_t * matDest,DATATYPEMAT2D val){
     return 1;
 };
 
-void addConstMat2d(mat2D_t *matEdit,DATATYPEMAT2D val){
-    for(int i = 0; i < matEdit->x; i++)
+void addConstMat2d(mat2D_t *matDest, mat2D_t mat,DATATYPEMAT2D val){
+    //on definit les dimenssion de la matrice de destination.
+    if(matDest->x!=mat.x&&matDest->y!=mat.y){
+        if(matDest->x!=0 &&matDest->y!=0){
+            free(matDest->mat);
+        }
+        matDest->x=mat.x;
+        matDest->y=mat.y;
+        matDest->mat=(DATATYPEMAT2D**) malloc( matDest->x * matDest->y * sizeof(DATATYPEMAT2D));
+        assert( matDest->mat != NULL );
+    }
+    for(int i = 0; i < mat.x; i++)
     {
-        for(int j = 0; j < matEdit->y; j++)
+        for(int j = 0; j < mat.y; j++)
         {
-            matEdit->mat[i][j]+=val;
+            matDest->mat[i][j]= mat.mat[i][j]+val;
         }
     }
 };

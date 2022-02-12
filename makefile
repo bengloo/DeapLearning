@@ -13,7 +13,7 @@ LIBFIC=math.o #nom des library en .o
 HEADERFIC=math.h#nom des header
 #création de l'executable commenter le rm pour les compilation lourde 
 all : $(MAINSOURCE) $(LIBFIC)
-	$(c) $(MAINSOURCE) $(LIBFIC) -o $(EXEC)
+	$(c) $(MAINSOURCE) $(LIBFIC) -o $(EXEC) -lm
 	rm -rf *.o 
 #activer mode debug défini dans ma lib utile
 debug:DEBUG=-D'__DEBUG__'

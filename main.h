@@ -1,4 +1,5 @@
 #include "math.h"
+#include <math.h>
 #include <stdio.h>
 /**
  * @brief initialise les parametre w et b de manierre random celons les dimennsion de X
@@ -19,6 +20,14 @@ void initialisation(mat2D_t *W, DATATYPEMAT2D *b, mat2D_t X);
  * @param b perceptron offset
  */
 void model(mat2D_t * A,mat2D_t*Z,mat2D_t X,mat2D_t W, DATATYPEMAT2D b);
+/**
+ * @brief évalus la viabilité du modéle.
+ * 
+ * @param A 
+ * @param Y 
+ * @return DATATYPEMAT2D 
+ */
+DATATYPEMAT2D log_loss(mat2D_t A,mat2D_t Y);
 void cost(mat2D_t A,mat2D_t Y);
-void gradiant(mat2D_t A,mat2D_t X,mat2D_t Y);
+void gradiant(DATATYPEMAT2D*dW,DATATYPEMAT2D*db, mat2D_t A,mat2D_t X,mat2D_t Y);
 void update(mat2D_t *W,DATATYPEMAT2D *b,mat2D_t dW,DATATYPEMAT2D db); 

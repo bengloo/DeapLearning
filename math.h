@@ -4,6 +4,7 @@
 #include "debug.h"
 #include <math.h>
 #define DATATYPEMAT2D float
+#define BORNEMAX 1.0
 #define MAX_X_Print 100
 #define MAX_y_Print 1000
 typedef struct 

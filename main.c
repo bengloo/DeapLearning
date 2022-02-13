@@ -3,18 +3,30 @@
 
 mat2D_t X;//data utilisé
 mat2D_t Y;//état analysé
+mat2D_t Ypredict;//état analysé
 mat2D_t W;//parametre deaplearning
 mat2D_t Z;//modelle neurone
 mat2D_t A;//fonction d'activation
 DATATYPEMAT2D b;
 int main(/*int argc, char const *argv[]*/)
 {
+    DEBUG_S("début du programme\n");
+    initRdmMat2d(&X,NBPARAM,NBDATA);
+    DATATYPEMAT2D loss[NBDATA];
+    DEBUG_S("   début artificial neurone\n");
+    artificial_neurone(loss,&W,&b,X,Y,LEARNINGRATE,NBITER);
+    DEBUG_S("   fin artificial neurone\n");
+    DEBUG_S("   début prédiction\n");
+    predict(&A,&Z,&Ypredict,X,W,b);
+    DEBUG_S("   fin prédiction\n");
+    printf("%f\n",acurencyScore(Y,Ypredict));
+     DEBUG_S("fin du programme\n");
     return 0;
 }
 
 void initialisation(mat2D_t *W, DATATYPEMAT2D *b,mat2D_t X){
     initRdmMat2d(W,1,X.x);
-    *b=(float)rand();
+    *b=(DATATYPEMAT2D)rand()/((DATATYPEMAT2D)RAND_MAX/BORNEMAX);
 }
 void model(mat2D_t * A,mat2D_t*Z,mat2D_t X,mat2D_t W, DATATYPEMAT2D b){
     //Z=X*W+b
@@ -57,7 +69,9 @@ void update(mat2D_t *W,DATATYPEMAT2D *b,mat2D_t dW,DATATYPEMAT2D db,DATATYPEMAT2
 }
 
 void artificial_neurone(DATATYPEMAT2D *LossList,mat2D_t *W,DATATYPEMAT2D *b,mat2D_t X,mat2D_t Y,DATATYPEMAT2D learning_rate,int n_iter){
+    DEBUG_S("       début initialisation\n");
     initialisation(W,b,X);
+    DEBUG_S("       fin initialisation\n");
     mat2D_t A;
     initNullMat2d(&A);
     mat2D_t dW;
@@ -77,6 +91,7 @@ void artificial_neurone(DATATYPEMAT2D *LossList,mat2D_t *W,DATATYPEMAT2D *b,mat2
     libererMat2d(&Z);
 }
 void predict(mat2D_t *A,mat2D_t *Z,mat2D_t *Y,mat2D_t X,mat2D_t W,DATATYPEMAT2D b){
+    
     model(A,Z,X,W,b);
     for(int i=0;i<A->y;i++){
         Y->mat[0][i]=A->mat[0][i]>0.5;

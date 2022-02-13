@@ -1,3 +1,4 @@
+#define DEBUG
 #ifdef DEBUG
 #define DEBUG_I(i) printf("%d\n", i);
 #define DEBUG_S(s) printf("%s\n", s);

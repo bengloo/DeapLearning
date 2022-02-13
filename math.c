@@ -175,7 +175,7 @@ void initRdmMat2d(mat2D_t* mat,int sizex,int sizey){
     {
         for(int j = 0; j < mat->y; j++)
         {
-            mat->mat[i][j]=(float)rand();
+            mat->mat[i][j]=(DATATYPEMAT2D)rand()/((DATATYPEMAT2D)RAND_MAX/BORNEMAX);
         }
     }
 }

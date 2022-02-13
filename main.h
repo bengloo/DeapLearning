@@ -1,6 +1,11 @@
 #include "math.h"
 #include <math.h>
 #include <stdio.h>
+#define NBPARAM 2
+#define NBDATA 100
+#define LEARNINGRATE 0.01
+#define NBITER 100
+
 /**
  * @brief initialise les parametre w et b de manierre random celons les dimennsion de X
  * 
@@ -53,3 +58,5 @@ void gradiants(mat2D_t*dW,DATATYPEMAT2D*db, mat2D_t A,mat2D_t X,mat2D_t Y);
 void update(mat2D_t *W,DATATYPEMAT2D *b,mat2D_t dW,DATATYPEMAT2D db,DATATYPEMAT2D learning_rate); 
 
 void artificial_neurone(DATATYPEMAT2D *LossList,mat2D_t *W,DATATYPEMAT2D *b,mat2D_t X,mat2D_t Y,DATATYPEMAT2D learning_rate,int n_iter);
+void predict(mat2D_t *A,mat2D_t *Z,mat2D_t *Y,mat2D_t X,mat2D_t W,DATATYPEMAT2D b);
+DATATYPEMAT2D acurencyScore(mat2D_t Y,mat2D_t Ypredict);

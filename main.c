@@ -37,10 +37,58 @@ DATATYPEMAT2D log_loss(mat2D_t A,mat2D_t Y){
     return res*1/Y.y;
 }
 
-void gradiant(DATATYPEMAT2D*dW,DATATYPEMAT2D*db, mat2D_t A,mat2D_t X,mat2D_t Y){
+void gradiants(mat2D_t*dW,DATATYPEMAT2D*db, mat2D_t A,mat2D_t X,mat2D_t Y){
     mat2D_t aux1;
-    mat2D_t aux2;
     initNullMat2d(&aux1);
-    initNullMat2d(&aux2);
+    subMat2d(&aux1,A,Y);
+    producTranspoMat2d(dW,X,aux1);
+    *db=sommeMat2D(aux1)*1/Y.y;
+    productConstMat2d(dW,*dW,1/Y.y);
+    libererMat2d(&aux1);
     
 }
+
+void update(mat2D_t *W,DATATYPEMAT2D *b,mat2D_t dW,DATATYPEMAT2D db,DATATYPEMAT2D learning_rate){
+    mat2D_t aux1;
+    initNullMat2d(&aux1);
+    productConstMat2d(&aux1,dW,learning_rate);
+    subMat2d(W,*W,aux1);
+    *b=*b-learning_rate*db;
+}
+
+void artificial_neurone(DATATYPEMAT2D *LossList,mat2D_t *W,DATATYPEMAT2D *b,mat2D_t X,mat2D_t Y,DATATYPEMAT2D learning_rate,int n_iter){
+    initialisation(W,b,X);
+    mat2D_t A;
+    initNullMat2d(&A);
+    mat2D_t dW;
+    initNullMat2d(&dW);
+    mat2D_t Z;
+    initNullMat2d(&Z);
+    DATATYPEMAT2D db;
+
+    for(int i=0;i<n_iter;i++){
+        model(&A,&Z,X,*W,*b);
+        LossList[i]=log_loss(A,Y);
+        gradiants(&dW,&db,A,X,Y);
+        update(W,b,dW,db,learning_rate);
+    }
+    libererMat2d(&A);
+    libererMat2d(&dW);
+    libererMat2d(&Z);
+}
+void predict(mat2D_t *A,mat2D_t *Z,mat2D_t *Y,mat2D_t X,mat2D_t W,DATATYPEMAT2D b){
+    model(A,Z,X,W,b);
+    for(int i=0;i<A->y;i++){
+        Y->mat[0][i]=A->mat[0][i]>0.5;
+    }
+};
+
+DATATYPEMAT2D acurencyScore(mat2D_t Y,mat2D_t Ypredict){
+    DATATYPEMAT2D res=0;
+    for(int i=0;i<Y.x;i++){
+        for(int j=0;j<Y.y;j++){
+            res+=(Y.mat[i][j]==Ypredict.mat[i][j]);
+        }   
+    }
+    return res/(Y.x*Y.y);
+};

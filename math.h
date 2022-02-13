@@ -15,8 +15,10 @@ typedef struct
 
 int productMat2d(mat2D_t * matDest,mat2D_t matFrst,mat2D_t matScd);
 int producTranspoMat2d(mat2D_t * matDest,mat2D_t matFrst,mat2D_t matScd);
-int productConstMat2d(mat2D_t * matDest,DATATYPEMAT2D val);
+int productConstMat2d(mat2D_t * matDest,mat2D_t mat,DATATYPEMAT2D val);
 void addConstMat2d(mat2D_t *matDest, mat2D_t mat,DATATYPEMAT2D val);
+DATATYPEMAT2D sommeMat2D(mat2D_t mat);
+void subMat2d(mat2D_t *matDest, mat2D_t mat,mat2D_t mat2);
 void sigmoidMat2d(mat2D_t *matDest,mat2D_t matVal);
 void initNullMat2d(mat2D_t* mat);
 void initRdmMat2d(mat2D_t* mat,int sizex,int sizey);

@@ -62,12 +62,22 @@ int producTranspoMat2d(mat2D_t * matDest,mat2D_t matFrst,mat2D_t matScd){
 
     return 1;
 };
-int productConstMat2d(mat2D_t * matDest,DATATYPEMAT2D val){
+int productConstMat2d(mat2D_t * matDest,mat2D_t mat,DATATYPEMAT2D val){
+    if(matDest->x!=mat.x&&matDest->y!=mat.y){
+        if(matDest->x!=0 &&matDest->y!=0){
+            free(matDest->mat);
+        }
+        matDest->x=mat.x;
+        matDest->y=mat.y;
+        matDest->mat=(DATATYPEMAT2D**) malloc( matDest->x * matDest->y * sizeof(DATATYPEMAT2D));
+        assert( matDest->mat != NULL );
+    }
+    
     for(int i = 0; i < matDest->x; i++)
     {
         for(int j = 0; j < matDest->y; j++)
         {
-            matDest->mat[i][j]= matDest->mat[i][j]*val;
+            matDest->mat[i][j]= mat.mat[i][j]*val;
         }
     }
     return 1;
@@ -89,6 +99,37 @@ void addConstMat2d(mat2D_t *matDest, mat2D_t mat,DATATYPEMAT2D val){
         for(int j = 0; j < mat.y; j++)
         {
             matDest->mat[i][j]= mat.mat[i][j]+val;
+        }
+    }
+};
+DATATYPEMAT2D sommeMat2D(mat2D_t mat){
+    DATATYPEMAT2D res=0;
+    for(int i = 0; i < mat.x; i++)
+    {
+        for(int j = 0; j < mat.y; j++)
+        {
+            res+= mat.mat[i][j];
+        }
+    }
+    return res;
+};   
+
+void subMat2d(mat2D_t *matDest, mat2D_t mat,mat2D_t mat2){
+    //on definit les dimenssion de la matrice de destination.
+    if(matDest->x!=mat.x&&matDest->y!=mat.y){
+        if(matDest->x!=0 &&matDest->y!=0){
+            free(matDest->mat);
+        }
+        matDest->x=mat.x;
+        matDest->y=mat.y;
+        matDest->mat=(DATATYPEMAT2D**) malloc( matDest->x * matDest->y * sizeof(DATATYPEMAT2D));
+        assert( matDest->mat != NULL );
+    }
+    for(int i = 0; i < mat.x; i++)
+    {
+        for(int j = 0; j < mat.y; j++)
+        {
+            matDest->mat[i][j]= mat.mat[i][j]-mat2.mat[i][j];
         }
     }
 };

@@ -5,8 +5,8 @@
 #include <math.h>
 #define DATATYPEMAT2D float
 #define BORNEMAX 1.0
-#define MAX_X_Print 100
-#define MAX_y_Print 1000
+#define MAX_X_Print 10
+#define MAX_y_Print 5
 typedef struct 
 {
     int x;
@@ -23,5 +23,8 @@ void subMat2d(mat2D_t *matDest, mat2D_t mat,mat2D_t mat2);
 void sigmoidMat2d(mat2D_t *matDest,mat2D_t matVal);
 void initNullMat2d(mat2D_t* mat);
 void initRdmMat2d(mat2D_t* mat,int sizex,int sizey);
+void initBolMat2d(mat2D_t* mat,mat2D_t data,int sizex,int sizey);
+void afficherMat2d(mat2D_t mat,const char*nom);
 void libererMat2d(mat2D_t* mat);
+void alouerMemoire(mat2D_t *matDest);
 

@@ -6,6 +6,8 @@
 
 #IncludeRegexTransform: 
 
+/home/bengloo/Documents/DeepLearning/DeapLearning/debug.h
+
 /home/bengloo/Documents/DeepLearning/DeapLearning/main.c
 main.h
 /home/bengloo/Documents/DeepLearning/DeapLearning/main.h
@@ -19,4 +21,6 @@ math.h
 -
 stdio.h
 -
+debug.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/debug.h
 

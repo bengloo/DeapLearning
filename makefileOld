@@ -15,7 +15,7 @@ HEADERFIC=math.h#nom des header
 all : $(MAINSOURCE) $(LIBFIC)
 	$(c) $(MAINSOURCE) $(LIBFIC) -o $(EXEC) -lm
 	rm -rf *.o 
-#activer mode debug défini dans ma lib utile
+#activer mode debug
 debug:DEBUG=-D'__DEBUG__'
 debug:all
 

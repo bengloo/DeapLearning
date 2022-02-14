@@ -65,7 +65,7 @@ int producTranspoMat2d(mat2D_t * matDest,mat2D_t matFrst,mat2D_t matScd){
     return 1;
 };
 int productConstMat2d(mat2D_t * matDest,mat2D_t mat,DATATYPEMAT2D val){
-    if(matDest->x!=mat.x&&matDest->y!=mat.y){
+    if(matDest->x!=mat.x||matDest->y!=mat.y){
         if(matDest->x!=0 &&matDest->y!=0){
             libererMat2d(matDest);
         }

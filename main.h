@@ -4,9 +4,9 @@
 #include "debug.h"
 #include <time.h>
 #define NBPARAM 2
-#define NBDATA 100
-#define LEARNINGRATE 0.1
-#define NBITER 1500
+#define NBDATA 1000
+#define LEARNINGRATE 0.01
+#define NBITER 10000
 
 /**
  * @brief initialise les parametre w et b de manierre random celons les dimennsion de X
@@ -46,7 +46,7 @@ DATATYPEMAT2D log_loss(mat2D_t A,mat2D_t Y);
  * @param X 
  * @param Y 
  */
-void gradiants(mat2D_t*dW,DATATYPEMAT2D*db, mat2D_t A,mat2D_t X,mat2D_t Y);
+void gradiants(mat2D_t*aux1,mat2D_t*dW,DATATYPEMAT2D*db, mat2D_t A,mat2D_t X,mat2D_t Y);
 
 /**
  * @brief met à jour les parametre celons les écarts
@@ -57,8 +57,8 @@ void gradiants(mat2D_t*dW,DATATYPEMAT2D*db, mat2D_t A,mat2D_t X,mat2D_t Y);
  * @param db 
  * @param learning_rate pas d'aprentissage entre l'encien et le nouveaux parametre
  */
-void update(mat2D_t *W,DATATYPEMAT2D *b,mat2D_t dW,DATATYPEMAT2D db,DATATYPEMAT2D learning_rate); 
+void update(mat2D_t* aux2,mat2D_t *W,DATATYPEMAT2D *b,mat2D_t dW,DATATYPEMAT2D db,DATATYPEMAT2D learning_rate); 
 
-void artificial_neurone(DATATYPEMAT2D *LossList,mat2D_t *W,DATATYPEMAT2D *b,mat2D_t X,mat2D_t Y,DATATYPEMAT2D learning_rate,int n_iter);
+void artificial_neurone(mat2D_t* A,mat2D_t *Z,mat2D_t*dW ,DATATYPEMAT2D *LossList,mat2D_t *W,DATATYPEMAT2D *b,mat2D_t X,mat2D_t Y,DATATYPEMAT2D learning_rate,int n_iter);
 void predict(mat2D_t *A,mat2D_t *Z,mat2D_t *Y,mat2D_t X,mat2D_t W,DATATYPEMAT2D b);
 DATATYPEMAT2D acurencyScore(mat2D_t Y,mat2D_t Ypredict);

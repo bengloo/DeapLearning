@@ -9,13 +9,15 @@ int main(/*int argc, char const *argv[]*/)
     mat2D_t W;//parametre deaplearning
     mat2D_t Z;//modelle neurone
     mat2D_t A;//resulat fonction d'activation
-    DATATYPEMAT2D loss[NBDATA];
-    initNullMat2d(&X);
-    initNullMat2d(&Y);
-    initNullMat2d(&Ypredict);
-    initNullMat2d(&W);
-    initNullMat2d(&Z);
-    initNullMat2d(&A);
+    mat2D_t dW;//gardiant
+    DATATYPEMAT2D loss[NBITER];
+    initNullMat2d(&X,NBPARAM,NBDATA);
+    initNullMat2d(&Y,1,NBDATA);
+    initNullMat2d(&Ypredict,1,NBDATA);
+    initNullMat2d(&W,1,NBPARAM);
+    initNullMat2d(&Z,1,NBDATA);
+    initNullMat2d(&A,1,NBDATA);
+    initNullMat2d(&dW,1,NBPARAM);
 
     DATATYPEMAT2D b;
     DEBUG_S("début du programme\n");
@@ -40,7 +42,7 @@ int main(/*int argc, char const *argv[]*/)
     DEBUG_C(afficherMat2d(Y,"Y"););
     
     DEBUG_S("   début artificial neurone\n");
-    artificial_neurone(loss,&W,&b,X,Y,LEARNINGRATE,NBITER);
+    artificial_neurone(&A,&Z,&dW ,loss,&W,&b,X,Y,LEARNINGRATE,NBITER);
     DEBUG_S("   fin artificial neurone\n");
     DEBUG_S("   début prédiction\n");
     initBolMat2d(&Ypredict,X,1,NBDATA);
@@ -57,9 +59,11 @@ int main(/*int argc, char const *argv[]*/)
     libererMat2d(&Y);
     libererMat2d(&Z);
     libererMat2d(&A);
+    libererMat2d(&dW);
     libererMat2d(&Ypredict);
     DEBUG_S("   fin  liberation\n");
     DEBUG_S("fin du programme\n");
+    getchar();
     //system("echo ;ps -eo size,comm | grep -e 'DeepLearning$' -e 'COMMAND$'");
     return 1;
 }
@@ -92,71 +96,62 @@ DATATYPEMAT2D log_loss(mat2D_t A,mat2D_t Y){
     return res*1/(DATATYPEMAT2D)Y.y;
 }
 
-void gradiants(mat2D_t*dW,DATATYPEMAT2D*db, mat2D_t A,mat2D_t X,mat2D_t Y){
-    mat2D_t aux1;
-    initNullMat2d(&aux1);
-    subMat2d(&aux1,A,Y);
+void gradiants(mat2D_t*aux1,mat2D_t*dW,DATATYPEMAT2D*db, mat2D_t A,mat2D_t X,mat2D_t Y){
+    subMat2d(aux1,A,Y);
     //DEBUG_C(afficherMat2d(aux1,"aux1"););
-    producTranspoMat2d(dW,X,aux1);
+    //DEBUG_C(afficherMat2d(X,"X"););
+    //DEBUG_C(afficherMat2d(*dW,"dw"););
+    producTranspoMat2d(dW,X,*aux1);
     //DEBUG_C(afficherMat2d(*dW,"dW"););
-    *db=sommeMat2D(aux1)*(1/(DATATYPEMAT2D)Y.y);
+    *db=sommeMat2D(*aux1)*(1/(DATATYPEMAT2D)Y.y);
     //printf("db:%f\n",*db);
     //printf("1/%d=%f\n",Y.y,1/(DATATYPEMAT2D)Y.y);
     productConstMat2d(dW,*dW,1/(DATATYPEMAT2D)Y.y);
     //DEBUG_C(afficherMat2d(*dW,"dW"););
-    libererMat2d(&aux1);
-    
 }
 
-void update(mat2D_t *W,DATATYPEMAT2D *b,mat2D_t dW,DATATYPEMAT2D db,DATATYPEMAT2D learning_rate){
-    mat2D_t aux1;
-    initNullMat2d(&aux1);
-    productConstMat2d(&aux1,dW,learning_rate);
-    subMat2d(W,*W,aux1);
+void update(mat2D_t* aux2,mat2D_t *W,DATATYPEMAT2D *b,mat2D_t dW,DATATYPEMAT2D db,DATATYPEMAT2D learning_rate){
+    productConstMat2d(aux2,dW,learning_rate);
+    subMat2d(W,*W,*aux2);
     *b=*b-learning_rate*db;
 }
 
-void artificial_neurone(DATATYPEMAT2D *LossList,mat2D_t *W,DATATYPEMAT2D *b,mat2D_t X,mat2D_t Y,DATATYPEMAT2D learning_rate,int n_iter){
+void artificial_neurone(mat2D_t* A,mat2D_t *Z,mat2D_t*dW ,DATATYPEMAT2D *LossList,mat2D_t *W,DATATYPEMAT2D *b,mat2D_t X,mat2D_t Y,DATATYPEMAT2D learning_rate,int n_iter){
     DEBUG_S("       début initialisation\n");
     initialisation(W,b,X);
+    mat2D_t aux1;
+    mat2D_t aux2;
+    initNullMat2d(&aux1,1,NBDATA);
+    initNullMat2d(&aux2,1,NBPARAM);
     /**b=0.5;
     W->mat[0][0]=0.5;
     W->mat[0][1]=0.25;*/
     DEBUG_C(afficherMat2d(*W,"W"););
     DEBUG_C(printf("b:%f\n",*b););
     DEBUG_S("       fin initialisation\n");
-    mat2D_t A;
-    initNullMat2d(&A);
-    mat2D_t dW;
-    initNullMat2d(&dW);
-    mat2D_t Z;
-    initNullMat2d(&Z);
     DATATYPEMAT2D db;
 
     for(int i=0;i<n_iter;i++){
         //DEBUG_S1("           début modèle iteration:%d\n",i+1);
-        model(&A,&Z,X,*W,*b);
+        model(A,Z,X,*W,*b);
         //DEBUG_S1("           fin modèle iteration:%d\n",i+1);
         //DEBUG_S1("           début logloss iteration:%d\n",i+1);
-        LossList[i]=log_loss(A,Y);
-        if(i%20==0)printf("logloss[%d]=%f\n",i,LossList[i]);
+        LossList[i]=log_loss(*A,Y);
+        if(i%100==0)printf("logloss[%d]=%f\n",i,LossList[i]);
         //DEBUG_S1("           fin logloss iteration:%d\n",i+1);
         //DEBUG_S1("           début gradiant iteration:%d\n",i+1);
-        gradiants(&dW,&db,A,X,Y);
+        gradiants(&aux1,dW,&db,*A,X,Y);
         //DEBUG_S1("           fin gradiant iteration:%d\n",i+1);
         //DEBUG_S1("           début update iteration:%d\n",i+1);
-        update(W,b,dW,db,learning_rate);
+        update(&aux2,W,b,*dW,db,learning_rate);
         //DEBUG_C(afficherMat2d(*W,"W");)
         //DEBUG_C(printf("b:%f\n",*b);)
         //DEBUG_S1("           fin update iteration:%d\n",i+1);
     }
     afficherMat2d(*W,"W");
     printf("b:%f\n",*b);
-    DEBUG_S("         début libération matrice\n");
-    libererMat2d(&A);
-    libererMat2d(&dW);
-    libererMat2d(&Z);
-    DEBUG_S("         fin libération matrice\n");
+    libererMat2d(&aux1);
+    libererMat2d(&aux2);
 }
 void predict(mat2D_t *A,mat2D_t *Z,mat2D_t *Y,mat2D_t X,mat2D_t W,DATATYPEMAT2D b){
     //printf("test1");

@@ -1,18 +1,8 @@
 #include "math.h"
-int productMat2d(mat2D_t * matDest,mat2D_t matFrst,mat2D_t matScd){
+void productMat2d(mat2D_t * matDest,mat2D_t matFrst,mat2D_t matScd){
     //on verifi la validité des dimenssion utilisé
     if(matFrst.x!=matScd.y){
         DEBUG_S4("Dimmension %dx%d %dx%d incompatible pour un produit matriciel\n",matFrst.x,matFrst.y,matScd.x,matScd.y);
-        return 0;
-    }
-    //on definit les dimenssion de la matrice de destination.
-    if(matDest->x!=matFrst.x&&matDest->y!=matScd.y){
-        if(matDest->x!=0 &&matDest->y!=0){
-            libererMat2d(matDest);
-        }
-        matDest->x=matScd.x;
-        matDest->y=matFrst.y;
-        alouerMemoire(matDest);
     }
     //DEBUG_C(afficherMat2d(*matDest,"matDest"););
     //on remplis la matrice de destination
@@ -29,23 +19,11 @@ int productMat2d(mat2D_t * matDest,mat2D_t matFrst,mat2D_t matScd){
             }
         }
     }
-
-    return 1;
 };
-int producTranspoMat2d(mat2D_t * matDest,mat2D_t matFrst,mat2D_t matScd){
+void producTranspoMat2d(mat2D_t * matDest,mat2D_t matFrst,mat2D_t matScd){
     //on verifi la validité des dimenssion utilisé
     if(matFrst.y!=matScd.y){
         DEBUG_S4("Dimmension %dx%d %dx%d incompatible pour un produit matriciel\n",matFrst.x,matFrst.y,matScd.x,matScd.y);
-        return 0;
-    }
-    //on definit les dimenssion de la matrice de destination.
-    if(matDest->x!=matFrst.y&&matDest->y!=matScd.y){
-        if(matDest->x!=0 &&matDest->y!=0){
-            libererMat2d(matDest);
-        }
-        matDest->x=matScd.x;
-        matDest->y=matFrst.x;
-        alouerMemoire(matDest);
     }
     //DEBUG_C(afficherMat2d(*matDest,"matDest"););
     //on remplis la matrice de destination
@@ -62,18 +40,9 @@ int producTranspoMat2d(mat2D_t * matDest,mat2D_t matFrst,mat2D_t matScd){
             }
         }
     }
-    return 1;
 };
-int productConstMat2d(mat2D_t * matDest,mat2D_t mat,DATATYPEMAT2D val){
-    if(matDest->x!=mat.x||matDest->y!=mat.y){
-        if(matDest->x!=0 &&matDest->y!=0){
-            libererMat2d(matDest);
-        }
-        matDest->x=mat.x;
-        matDest->y=mat.y;
-        alouerMemoire(matDest);
-    }
-    
+void productConstMat2d(mat2D_t * matDest,mat2D_t mat,DATATYPEMAT2D val){
+    if(matDest->mat==NULL||mat.mat==NULL)DEBUG_S("Dimenssion matrice non definit prductConstMat2D");
     for(int i = 0; i < matDest->x; i++)
     {
         for(int j = 0; j < matDest->y; j++)
@@ -81,10 +50,10 @@ int productConstMat2d(mat2D_t * matDest,mat2D_t mat,DATATYPEMAT2D val){
             matDest->mat[i][j]= mat.mat[i][j]*val;
         }
     }
-    return 1;
 };
 
 void addConstMat2d(mat2D_t *matDest, mat2D_t mat,DATATYPEMAT2D val){
+    if(matDest->mat==NULL||mat.mat==NULL)DEBUG_S("Dimenssion matrice non definit addConstMat2d");
     //on definit les dimenssion de la matrice de destination.
     if(matDest->x!=mat.x&&matDest->y!=mat.y){
         if(matDest->x!=0 &&matDest->y!=0){
@@ -102,7 +71,9 @@ void addConstMat2d(mat2D_t *matDest, mat2D_t mat,DATATYPEMAT2D val){
         }
     }
 };
+
 DATATYPEMAT2D sommeMat2D(mat2D_t mat){
+    if(mat.mat==NULL)DEBUG_S("Dimenssion matrice non definit sommeMat2D");
     DATATYPEMAT2D res=0;
     for(int i = 0; i < mat.x; i++)
     {
@@ -115,15 +86,7 @@ DATATYPEMAT2D sommeMat2D(mat2D_t mat){
 };   
 
 void subMat2d(mat2D_t *matDest, mat2D_t mat,mat2D_t mat2){
-    //on definit les dimenssion de la matrice de destination.
-    if(matDest->x!=mat.x&&matDest->y!=mat.y){
-        if(matDest->x!=0 &&matDest->y!=0){
-            libererMat2d(matDest);
-        }
-        matDest->x=mat.x;
-        matDest->y=mat.y;
-        alouerMemoire(matDest);
-    }
+    if(mat.mat==NULL)DEBUG_S("Dimenssion matrice non definit subMat2D");
     for(int i = 0; i < mat.x; i++)
     {
         for(int j = 0; j < mat.y; j++)
@@ -136,44 +99,41 @@ void subMat2d(mat2D_t *matDest, mat2D_t mat,mat2D_t mat2){
 void sigmoidMat2d(mat2D_t *matDest,mat2D_t matVal){
     if(matVal.x!=1){
         DEBUG_S("La fonction sigmoid ne s'applique que sur les dimentsion 1xN\n");
-        return;
-    }
-    if(matDest->x!=matVal.x&&matDest->y!=matVal.y){
-        if(matDest->x!=0 &&matDest->y!=0){
-            libererMat2d(matDest);
-        }
-        matDest->x=matVal.x;
-        matDest->y=matVal.y;
-        alouerMemoire(matDest);
     }
     for(int i=0;i<matDest->y;i++){
         matDest->mat[0][i]=1/(1+exp(-matVal.mat[0][i]));
     }
 }
-void initNullMat2d(mat2D_t* mat){
-    //free(mat->mat);
-    mat->mat=NULL;
-    mat->x=0;
-    mat->y=0;
-};
 
 void initRdmMat2d(mat2D_t* mat,int sizex,int sizey){
-    srand(time(NULL));
     //on definit les dimenssion de la matrice de destination.
-    if(mat->x!=sizex && mat->y!=sizey){
-        if(mat->x!=0 && mat->y!=0){
-            libererMat2d(mat);
-        }
-        mat->x=sizex;
-        mat->y=sizey;
-        alouerMemoire(mat);
-    }
+    mat->x=sizex;
+    mat->y=sizey;
+    alouerMemoire(mat);
     //on remplis la matrice de destination
+    srand(time(NULL));
     for(int i = 0; i < mat->x; i++)
     {
         for(int j = 0; j < mat->y; j++)
         {
             mat->mat[i][j]=(DATATYPEMAT2D)rand()/((DATATYPEMAT2D)RAND_MAX/BORNEMAX);
+        }
+    }
+}
+void initNullMat2d(mat2D_t* mat,int sizex,int sizey){
+    /*if(mat->x!=0 && mat->y!=0&&mat->mat!=NULL){
+        libererMat2d(mat);
+    }*/
+    mat->x=sizex;
+    mat->y=sizey;
+    alouerMemoire(mat);
+    
+    //on remplis la matrice de destination
+    for(int i = 0; i < sizex; i++)
+    {
+        for(int j = 0; j < sizey; j++)
+        {
+            mat->mat[i][j]=0;
         }
     }
 }
@@ -202,8 +162,10 @@ void libererMat2d(mat2D_t* mat){
             free(mat->mat[i]);
         }
         free(mat->mat);
+        mat->x=0;
+        mat->y=0;
+        mat->mat=NULL;
     }
-    initNullMat2d(mat);
 };
 void afficherMat2d(mat2D_t mat,const char * nom){
     printf("MAT %s:%dx%d\n",nom,mat.x,mat.y);

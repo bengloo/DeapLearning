@@ -60,9 +60,8 @@ int main(/*int argc, char const *argv[]*/)
     libererMat2d(&Ypredict);
     DEBUG_S("   fin  liberation\n");
     DEBUG_S("fin du programme\n");
-    system("echo ;ps -eo size,comm | grep -e 'DeepLearning$' -e 'COMMAND$'");
-    sleep(1);
-    return EXIT_SUCCESS;
+    //system("echo ;ps -eo size,comm | grep -e 'DeepLearning$' -e 'COMMAND$'");
+    return 1;
 }
 
 void initialisation(mat2D_t *W, DATATYPEMAT2D *b,mat2D_t X){
@@ -120,9 +119,9 @@ void update(mat2D_t *W,DATATYPEMAT2D *b,mat2D_t dW,DATATYPEMAT2D db,DATATYPEMAT2
 void artificial_neurone(DATATYPEMAT2D *LossList,mat2D_t *W,DATATYPEMAT2D *b,mat2D_t X,mat2D_t Y,DATATYPEMAT2D learning_rate,int n_iter){
     DEBUG_S("       début initialisation\n");
     initialisation(W,b,X);
-    *b=0.5;
+    /**b=0.5;
     W->mat[0][0]=0.5;
-    W->mat[0][1]=0.25;
+    W->mat[0][1]=0.25;*/
     DEBUG_C(afficherMat2d(*W,"W"););
     DEBUG_C(printf("b:%f\n",*b););
     DEBUG_S("       fin initialisation\n");
@@ -140,7 +139,7 @@ void artificial_neurone(DATATYPEMAT2D *LossList,mat2D_t *W,DATATYPEMAT2D *b,mat2
         //DEBUG_S1("           fin modèle iteration:%d\n",i+1);
         //DEBUG_S1("           début logloss iteration:%d\n",i+1);
         LossList[i]=log_loss(A,Y);
-        //printf("logloss[%d]=%f\n",i,LossList[i]);
+        if(i%20==0)printf("logloss[%d]=%f\n",i,LossList[i]);
         //DEBUG_S1("           fin logloss iteration:%d\n",i+1);
         //DEBUG_S1("           début gradiant iteration:%d\n",i+1);
         gradiants(&dW,&db,A,X,Y);

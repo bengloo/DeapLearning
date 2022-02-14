@@ -3,10 +3,9 @@
 #include <assert.h>
 #include "debug.h"
 #include <math.h>
-#include <time.h>
 #define DATATYPEMAT2D float
 #define BORNEMAX 1
-#define MAX_X_Print 10
+#define MAX_X_Print 2
 #define MAX_y_Print 5
 typedef struct 
 {

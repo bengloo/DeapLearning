@@ -225,7 +225,7 @@ void afficherMat2d(mat2D_t mat,const char * nom){
             printf("|\n");
         }
         else{
-            if(i==MAX_y_Print-1)printf("|.. .   .|\n");
+            if(i==MAX_y_Print)printf("|.. .   .|\n");
         }
     }
 }

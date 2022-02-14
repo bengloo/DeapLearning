@@ -2,10 +2,11 @@
 #include <math.h>
 #include <stdio.h>
 #include "debug.h"
+#include <time.h>
 #define NBPARAM 2
 #define NBDATA 100
-#define LEARNINGRATE 0.01
-#define NBITER 2000
+#define LEARNINGRATE 0.1
+#define NBITER 1500
 
 /**
  * @brief initialise les parametre w et b de manierre random celons les dimennsion de X

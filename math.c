@@ -8,7 +8,7 @@ int productMat2d(mat2D_t * matDest,mat2D_t matFrst,mat2D_t matScd){
     //on definit les dimenssion de la matrice de destination.
     if(matDest->x!=matFrst.x&&matDest->y!=matScd.y){
         if(matDest->x!=0 &&matDest->y!=0){
-            free(matDest->mat);
+            libererMat2d(matDest);
         }
         matDest->x=matScd.x;
         matDest->y=matFrst.y;
@@ -35,13 +35,13 @@ int productMat2d(mat2D_t * matDest,mat2D_t matFrst,mat2D_t matScd){
 int producTranspoMat2d(mat2D_t * matDest,mat2D_t matFrst,mat2D_t matScd){
     //on verifi la validité des dimenssion utilisé
     if(matFrst.y!=matScd.y){
-        DEBUG_S4("Dimmension %dx%d %dx%d incompatible pour un produit matriciel\n",matFrst.y,matFrst.x,matScd.x,matScd.y);
+        DEBUG_S4("Dimmension %dx%d %dx%d incompatible pour un produit matriciel\n",matFrst.x,matFrst.y,matScd.x,matScd.y);
         return 0;
     }
     //on definit les dimenssion de la matrice de destination.
     if(matDest->x!=matFrst.y&&matDest->y!=matScd.y){
         if(matDest->x!=0 &&matDest->y!=0){
-            free(matDest->mat);
+            libererMat2d(matDest);
         }
         matDest->x=matScd.x;
         matDest->y=matFrst.x;
@@ -62,13 +62,12 @@ int producTranspoMat2d(mat2D_t * matDest,mat2D_t matFrst,mat2D_t matScd){
             }
         }
     }
-
     return 1;
 };
 int productConstMat2d(mat2D_t * matDest,mat2D_t mat,DATATYPEMAT2D val){
     if(matDest->x!=mat.x&&matDest->y!=mat.y){
         if(matDest->x!=0 &&matDest->y!=0){
-            free(matDest->mat);
+            libererMat2d(matDest);
         }
         matDest->x=mat.x;
         matDest->y=mat.y;
@@ -89,7 +88,7 @@ void addConstMat2d(mat2D_t *matDest, mat2D_t mat,DATATYPEMAT2D val){
     //on definit les dimenssion de la matrice de destination.
     if(matDest->x!=mat.x&&matDest->y!=mat.y){
         if(matDest->x!=0 &&matDest->y!=0){
-            free(matDest->mat);
+            libererMat2d(matDest);
         }
         matDest->x=mat.x;
         matDest->y=mat.y;
@@ -119,7 +118,7 @@ void subMat2d(mat2D_t *matDest, mat2D_t mat,mat2D_t mat2){
     //on definit les dimenssion de la matrice de destination.
     if(matDest->x!=mat.x&&matDest->y!=mat.y){
         if(matDest->x!=0 &&matDest->y!=0){
-            free(matDest->mat);
+            libererMat2d(matDest);
         }
         matDest->x=mat.x;
         matDest->y=mat.y;
@@ -141,7 +140,7 @@ void sigmoidMat2d(mat2D_t *matDest,mat2D_t matVal){
     }
     if(matDest->x!=matVal.x&&matDest->y!=matVal.y){
         if(matDest->x!=0 &&matDest->y!=0){
-            free(matDest->mat);
+            libererMat2d(matDest);
         }
         matDest->x=matVal.x;
         matDest->y=matVal.y;
@@ -159,10 +158,11 @@ void initNullMat2d(mat2D_t* mat){
 };
 
 void initRdmMat2d(mat2D_t* mat,int sizex,int sizey){
+    srand(time(NULL));
     //on definit les dimenssion de la matrice de destination.
     if(mat->x!=sizex && mat->y!=sizey){
         if(mat->x!=0 && mat->y!=0){
-            free(mat->mat);
+            libererMat2d(mat);
         }
         mat->x=sizex;
         mat->y=sizey;
@@ -179,10 +179,10 @@ void initRdmMat2d(mat2D_t* mat,int sizex,int sizey){
 }
 void initBolMat2d(mat2D_t *mat,mat2D_t data,int sizex,int sizey){
     //on definit les dimenssion de la matrice de destination.
-    if(mat->x!=sizex && mat->y!=sizey){
-        if(mat->x!=0 && mat->y!=0){
-            free(mat->mat);
-        }
+    if(mat->x!=sizex || mat->y!=sizey){
+        if(mat->mat!=NULL)
+            libererMat2d(mat);
+        
         mat->x=sizex;
         mat->y=sizey;
         alouerMemoire(mat);
@@ -197,12 +197,17 @@ void initBolMat2d(mat2D_t *mat,mat2D_t data,int sizex,int sizey){
     }
 }
 void libererMat2d(mat2D_t* mat){
-    free(mat->mat);
+    if((mat->x!=0||mat->y!=0)&&mat->mat!=NULL){
+        for(int i=0;i<mat->x;i++){
+            free(mat->mat[i]);
+        }
+        free(mat->mat);
+    }
     initNullMat2d(mat);
 };
 void afficherMat2d(mat2D_t mat,const char * nom){
     printf("MAT %s:%dx%d\n",nom,mat.x,mat.y);
-    for(int i = 0; i < mat.y; i++)
+    for(int i = 0;i<mat.y; i++)
     {
         if(i<MAX_y_Print){
             printf("|");
@@ -210,18 +215,17 @@ void afficherMat2d(mat2D_t mat,const char * nom){
             {
                 if(j!=0)printf(";");
                 if(j<MAX_X_Print){
-                    printf("%2f",mat.mat[j][i]);
+                    printf("%f",mat.mat[j][i]);
                 }
                 else{
-                    if(j==MAX_X_Print)
+                    if(j==MAX_X_Print-1)
                         printf(". .  .|");
                 }
             }
             printf("|\n");
         }
         else{
-            if(i==MAX_y_Print)
-                printf("|.. .   .|\n");
+            if(i==MAX_y_Print-1)printf("|.. .   .|\n");
         }
     }
 }

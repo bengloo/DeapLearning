@@ -3,23 +3,16 @@
 
 int main(/*int argc, char const *argv[]*/)
 {
-    mat2D_t X;//data utilisé
-    mat2D_t Y;//état analysé
-    mat2D_t Ypredict;//état analysé
-    mat2D_t W;//parametre deaplearning
-    mat2D_t Z;//modelle neurone
-    mat2D_t A;//resulat fonction d'activation
-    mat2D_t dW;//gardiant
+    DATATYPEMAT2D X[NBPARAM][NBDATA];//data utilisé compris entre 0 et 1
+    _Bool Y[NBDATA];//état binaire analysé
+    _Bool Ypredict[NBDATA];//état analysé
+    DATATYPEMAT2D W[NBPARAM];//parametre deaplearning
+    DATATYPEMAT2D Z[NBPARAM];//modelle neurone
+    DATATYPEMAT2D A[NBPARAM];//resulat fonction d'activation
+    DATATYPEMAT2D dW[NBPARAM];//gradiant
     DATATYPEMAT2D loss[NBITER];
-    initNullMat2d(&X,NBPARAM,NBDATA);
-    initNullMat2d(&Y,1,NBDATA);
-    initNullMat2d(&Ypredict,1,NBDATA);
-    initNullMat2d(&W,1,NBPARAM);
-    initNullMat2d(&Z,1,NBDATA);
-    initNullMat2d(&A,1,NBDATA);
-    initNullMat2d(&dW,1,NBPARAM);
-
     DATATYPEMAT2D b;
+
     DEBUG_S("début du programme\n");
     initRdmMat2d(&X,NBPARAM,NBDATA);
     /*X.mat[0][0]=1;
@@ -67,7 +60,22 @@ int main(/*int argc, char const *argv[]*/)
     //system("echo ;ps -eo size,comm | grep -e 'DeepLearning$' -e 'COMMAND$'");
     return 1;
 }
+void genererDataset(DATATYPEMAT2D** X,_Bool *Y,_Bool*fct(DATATYPEMAT2D**,int)){
+    srand((unsigned int)time(NULL));
+    for(int j = 0; j < NBDATA; j++)
+    {
+         for(int i = 0; i < NBPARAM; i++)
+        {
+            X[i][j]=(DATATYPEMAT2D)rand()/((DATATYPEMAT2D)RAND_MAX/BORNEMAX);
+        }
+        Y[j]=(*fct)(X,j);
+    }
+}
 
+_Bool modelReel(DATATYPEMAT2D** X,int i){
+    if(X[1][i]>X[0][i]*2-1)return 1;
+    return 0;
+}
 void initialisation(mat2D_t *W, DATATYPEMAT2D *b,mat2D_t X){
     initRdmMat2d(W,1,NBPARAM);
     *b=(DATATYPEMAT2D)rand()/((DATATYPEMAT2D)RAND_MAX/BORNEMAX);

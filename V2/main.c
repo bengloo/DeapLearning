@@ -1,4 +1,4 @@
-#include "neurone.h"
+#include "main.h"
 
 int main(/*int argc, char const *argv[]*/)
 {
@@ -22,3 +22,14 @@ int main(/*int argc, char const *argv[]*/)
     //system("echo ;ps -eo size,comm | grep -e 'DeepLearning$' -e 'COMMAND$'");
     return 1;
 }
+void genererDataset(X_t X,_Bool*Y){
+    for(int i=0;i<NBDATA;i++){
+        for(int j=0;j<NBPARAM;j++){
+            X[j][i]=(DATATYPE)rand()/((DATATYPE)RAND_MAX/BORNEMAX);
+        }
+        Y[i]=CRITERE;
+    }
+};
+void normaliserDataset(X_t X){
+
+};

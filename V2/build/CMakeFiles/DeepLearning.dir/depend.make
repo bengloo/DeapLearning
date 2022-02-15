@@ -3,6 +3,7 @@
 
 CMakeFiles/DeepLearning.dir/main.o: ../debug.h
 CMakeFiles/DeepLearning.dir/main.o: ../main.c
+CMakeFiles/DeepLearning.dir/main.o: ../main.h
 CMakeFiles/DeepLearning.dir/main.o: ../neurone.h
 CMakeFiles/DeepLearning.dir/main.o: ../setting.h
 

@@ -138,6 +138,21 @@ main.s:
 	$(MAKE) -f CMakeFiles/DeepLearning.dir/build.make CMakeFiles/DeepLearning.dir/main.s
 .PHONY : main.s
 
+# target to build an object file
+neurone.o:
+	$(MAKE) -f CMakeFiles/DeepLearning.dir/build.make CMakeFiles/DeepLearning.dir/neurone.o
+.PHONY : neurone.o
+
+# target to preprocess a source file
+neurone.i:
+	$(MAKE) -f CMakeFiles/DeepLearning.dir/build.make CMakeFiles/DeepLearning.dir/neurone.i
+.PHONY : neurone.i
+
+# target to generate assembly for a file
+neurone.s:
+	$(MAKE) -f CMakeFiles/DeepLearning.dir/build.make CMakeFiles/DeepLearning.dir/neurone.s
+.PHONY : neurone.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -150,6 +165,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... neurone.o"
+	@echo "... neurone.i"
+	@echo "... neurone.s"
 .PHONY : help
 
 

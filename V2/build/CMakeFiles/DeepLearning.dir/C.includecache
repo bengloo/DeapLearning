@@ -7,16 +7,32 @@
 #IncludeRegexTransform: 
 
 /home/bengloo/Documents/DeepLearning/DeapLearning/V2/debug.h
+setting.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V2/setting.h
 
 /home/bengloo/Documents/DeepLearning/DeapLearning/V2/main.c
-main.h
-/home/bengloo/Documents/DeepLearning/DeapLearning/V2/main.h
+neurone.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V2/neurone.h
+
+/home/bengloo/Documents/DeepLearning/DeapLearning/V2/neurone.c
+neurone.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V2/neurone.h
+
+/home/bengloo/Documents/DeepLearning/DeapLearning/V2/neurone.h
 math.h
 -
-
-/home/bengloo/Documents/DeepLearning/DeapLearning/V2/main.h
 stdio.h
 -
 debug.h
 /home/bengloo/Documents/DeepLearning/DeapLearning/V2/debug.h
+time.h
+-
+stdlib.h
+-
+float.h
+-
+setting.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V2/setting.h
+
+/home/bengloo/Documents/DeepLearning/DeapLearning/V2/setting.h
 

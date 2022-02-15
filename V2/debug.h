@@ -1,4 +1,4 @@
-#define DEBUG
+#include "setting.h"
 #ifdef DEBUG
 #define DEBUG_C(s)  s
 #define DEBUG_I(i) printf("%d\n", i);

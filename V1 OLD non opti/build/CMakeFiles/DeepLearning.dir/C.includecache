@@ -26,3 +26,21 @@ debug.h
 time.h
 -
 
+/home/bengloo/Documents/DeepLearning/DeapLearning/math.c
+math.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/math.h
+
+/home/bengloo/Documents/DeepLearning/DeapLearning/math.h
+stdlib.h
+-
+stdio.h
+-
+assert.h
+-
+debug.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/debug.h
+math.h
+-
+float.h
+-
+

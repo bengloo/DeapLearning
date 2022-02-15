@@ -3,8 +3,10 @@
 #include <assert.h>
 #include "debug.h"
 #include <math.h>
+#include <float.h>
 #define DATATYPEMAT2D float
-#define BORNEMAX 1
+#define EPSILLONE FLT_MIN
+#define BORNEMAX 10
 #define MAX_X_Print 2
 #define MAX_y_Print 5
 typedef struct 

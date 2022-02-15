@@ -152,7 +152,7 @@ void initBolMat2d(mat2D_t *mat,mat2D_t data,int sizex,int sizey){
     {
         for(int j = 0; j < mat->y; j++)
         {
-            mat->mat[i][j]=data.mat[0][j]>data.mat[1][j];
+            mat->mat[i][j]=data.mat[0][j]>data.mat[1][j]*2-0.2;
         }
     }
 }

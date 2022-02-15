@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/bengloo/Documents/DeepLearning/DeapLearning/V2/debug.h
+
+/home/bengloo/Documents/DeepLearning/DeapLearning/V2/math.c
+math.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V2/math.h
+
+/home/bengloo/Documents/DeepLearning/DeapLearning/V2/math.h
+stdlib.h
+-
+stdio.h
+-
+assert.h
+-
+debug.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V2/debug.h
+math.h
+-
+float.h
+-
+

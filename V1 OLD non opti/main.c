@@ -91,7 +91,7 @@ DATATYPEMAT2D log_loss(mat2D_t A,mat2D_t Y){
 
     DATATYPEMAT2D res=0;
     for(int i=0;i<Y.y;i++){
-        res+= -Y.mat[0][i]*log(A.mat[0][i])-(1-Y.mat[0][i])*log(1-A.mat[0][i]);
+        res+= -Y.mat[0][i]*log(A.mat[0][i]+EPSILLONE)-(1-Y.mat[0][i])*log(1-A.mat[0][i]+EPSILLONE);
     }
     return res*1/(DATATYPEMAT2D)Y.y;
 }

@@ -8,21 +8,15 @@
 
 /home/bengloo/Documents/DeepLearning/DeapLearning/V2/debug.h
 
-/home/bengloo/Documents/DeepLearning/DeapLearning/V2/math.c
+/home/bengloo/Documents/DeepLearning/DeapLearning/V2/main.c
+main.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V2/main.h
 math.h
-/home/bengloo/Documents/DeepLearning/DeapLearning/V2/math.h
+-
 
-/home/bengloo/Documents/DeepLearning/DeapLearning/V2/math.h
-stdlib.h
--
+/home/bengloo/Documents/DeepLearning/DeapLearning/V2/main.h
 stdio.h
--
-assert.h
 -
 debug.h
 /home/bengloo/Documents/DeepLearning/DeapLearning/V2/debug.h
-math.h
--
-float.h
--
 

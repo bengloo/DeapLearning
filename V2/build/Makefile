@@ -138,21 +138,6 @@ main.s:
 	$(MAKE) -f CMakeFiles/DeepLearning.dir/build.make CMakeFiles/DeepLearning.dir/main.s
 .PHONY : main.s
 
-# target to build an object file
-math.o:
-	$(MAKE) -f CMakeFiles/DeepLearning.dir/build.make CMakeFiles/DeepLearning.dir/math.o
-.PHONY : math.o
-
-# target to preprocess a source file
-math.i:
-	$(MAKE) -f CMakeFiles/DeepLearning.dir/build.make CMakeFiles/DeepLearning.dir/math.i
-.PHONY : math.i
-
-# target to generate assembly for a file
-math.s:
-	$(MAKE) -f CMakeFiles/DeepLearning.dir/build.make CMakeFiles/DeepLearning.dir/math.s
-.PHONY : math.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -165,9 +150,6 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... math.o"
-	@echo "... math.i"
-	@echo "... math.s"
 .PHONY : help
 
 

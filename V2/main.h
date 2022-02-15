@@ -1,12 +1,18 @@
-#include "math.h"
 #include <math.h>
 #include <stdio.h>
 #include "debug.h"
 #include <time.h>
+#include <stdlib.h>
+#include <float.h>
 #define NBPARAM 2
 #define NBDATA 1000
 #define LEARNINGRATE 0.01
 #define NBITER 10000
+#define DATATYPE float
+#define EPSILLONE FLT_MIN
+#define BORNEMAX 10
+
+typedef DATATYPE X_t[NBPARAM][NBDATA];
 
 /**
  * @brief initialise les parametre w et b de manierre random celons les dimennsion de X
@@ -62,3 +68,5 @@ void update(mat2D_t* aux2,mat2D_t *W,DATATYPEMAT2D *b,mat2D_t dW,DATATYPEMAT2D d
 void artificial_neurone(mat2D_t* A,mat2D_t *Z,mat2D_t*dW ,DATATYPEMAT2D *LossList,mat2D_t *W,DATATYPEMAT2D *b,mat2D_t X,mat2D_t Y,DATATYPEMAT2D learning_rate,int n_iter);
 void predict(mat2D_t *A,mat2D_t *Z,mat2D_t *Y,mat2D_t X,mat2D_t W,DATATYPEMAT2D b);
 DATATYPEMAT2D acurencyScore(mat2D_t Y,mat2D_t Ypredict);
+void alouerMat(mat_t *matDest,const int x,const int y);
+void libererMat(mat_t* mat);

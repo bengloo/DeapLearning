@@ -1,6 +1,5 @@
 file(REMOVE_RECURSE
   "CMakeFiles/DeepLearning.dir/main.o"
-  "CMakeFiles/DeepLearning.dir/math.o"
   "DeepLearning"
   "DeepLearning.pdb"
 )

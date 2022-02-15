@@ -111,7 +111,7 @@ void initRdmMat2d(mat2D_t* mat,int sizex,int sizey){
     mat->y=sizey;
     alouerMemoire(mat);
     //on remplis la matrice de destination
-    srand((unsigned int)time(NULL));
+    srand(time(NULL));
     for(int i = 0; i < mat->x; i++)
     {
         for(int j = 0; j < mat->y; j++)

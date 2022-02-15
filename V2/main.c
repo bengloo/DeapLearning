@@ -12,10 +12,10 @@ int main(/*int argc, char const *argv[]*/)
     DEBUG_S("début du programme\n");
         genererDataset(X,Y);
         DEBUG_S("   début artificial neurone\n");
-            artificial_neurone(loss,W,b,X,Y,LEARNINGRATE,NBITER);
+            artificial_neurone(loss,W,&b,X,Y,LEARNINGRATE,NBITER);
         DEBUG_S("   fin artificial neurone\n");
         DEBUG_S("   début prédiction\n");
-            predict(&A,&Z,&Ypredict,X,W,b);
+            predict(Ypredict,X,W,b);
         DEBUG_S("   fin prédiction\n");
         printf("score:%f\n",acurencyScore(Y,Ypredict));
     DEBUG_S("fin du programme\n");
@@ -66,9 +66,10 @@ void gradiants(DATATYPE*dW,DATATYPE*db, DATATYPE* A,X_t X,_Bool* Y){
     *db=*db/(DATATYPE)NBDATA;
 }
 
-void update(mat2D_t* aux2,mat2D_t *W,DATATYPEMAT2D *b,mat2D_t dW,DATATYPEMAT2D db,DATATYPEMAT2D learning_rate){
-    productConstMat2d(aux2,dW,learning_rate);
-    subMat2d(W,*W,*aux2);
+void update(DATATYPE *W,DATATYPE *b,DATATYPE* dW,DATATYPE db,DATATYPE learning_rate){
+    for(int i=0;i<NBPARAM;i++){
+        W[i]=W[i]-dW[i]*learning_rate;
+    }
     *b=*b-learning_rate*db;
 }
 
@@ -90,35 +91,30 @@ void artificial_neurone(DATATYPE *LossList,DATATYPE*W,DATATYPE *b,X_t X,_Bool* Y
         if(i%100==0)printf("logloss[%d]=%f\n",i,LossList[i]);
         //DEBUG_S1("           fin logloss iteration:%d\n",i+1);
         //DEBUG_S1("           début gradiant iteration:%d\n",i+1);
-        gradiants(&aux1,dW,&db,*A,X,Y);
+        gradiants(dW,&db,A,X,Y);
         //DEBUG_S1("           fin gradiant iteration:%d\n",i+1);
         //DEBUG_S1("           début update iteration:%d\n",i+1);
-        update(&aux2,W,b,*dW,db,learning_rate);
+        update(W,b,dW,db,learning_rate);
         //DEBUG_C(afficherMat2d(*W,"W");)
         //DEBUG_C(printf("b:%f\n",*b);)
         //DEBUG_S1("           fin update iteration:%d\n",i+1);
     }
-    afficherMat2d(*W,"W");
-    printf("b:%f\n",*b);
-    libererMat2d(&aux1);
-    libererMat2d(&aux2);
 }
-void predict(mat2D_t *A,mat2D_t *Z,mat2D_t *Y,mat2D_t X,mat2D_t W,DATATYPEMAT2D b){
+void predict(_Bool *Y,X_t X,DATATYPE* W,DATATYPE b){
+    DATATYPE A[NBDATA];//resulat fonction d'activation
     //printf("test1");
-    model(A,Z,X,W,b);
+    model(A,X,W,b);
     //printf("test2");
-    for(int i=0;i<A->y;i++){
+    for(int i=0;i<NBDATA;i++){
         //printf("test3");
-        Y->mat[0][i]=A->mat[0][i]>0.5;
+        Y[i]=A[i]>0.5;
     }
 };
 
-DATATYPEMAT2D acurencyScore(mat2D_t Y,mat2D_t Ypredict){
-    DATATYPEMAT2D res=0;
-    for(int i=0;i<Y.x;i++){
-        for(int j=0;j<Y.y;j++){
-            res+=(Y.mat[i][j]==Ypredict.mat[i][j]);
-        }   
-    }
-    return res/(Y.x*Y.y);
+DATATYPE acurencyScore(_Bool* Y,_Bool* Ypredict){
+    DATATYPE res=0;
+    for(int j=0;j<NBDATA;j++){
+        res+=(Y[j]==Ypredict[j]);
+    }   
+    return res/(DATATYPE)NBDATA;
 };

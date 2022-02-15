@@ -14,59 +14,20 @@
 
 typedef DATATYPE X_t[NBPARAM][NBDATA];
 
-/**
- * @brief initialise les parametre w et b de manierre random celons les dimennsion de X
- * 
- * @param W //perceptron coef
- * @param b //perceptron offset
- * @param X data
- */
-void initialisation(mat2D_t *W, DATATYPEMAT2D *b, mat2D_t X);
+void genererDataset(X_t X,DATATYPE*Y);
 
-/**
- * @brief Z=X*W+b A=1/(1+e^-z) aplique le modéle sur les data et desuit un etat de sortie
- * 
- * @param A % de sortie estimé par sigmoïde
- * @param Z reponse au stimulis cumulé
- * @param X data
- * @param W perceptron coef
- * @param b perceptron offset
- */
-void model(mat2D_t * A,mat2D_t*Z,mat2D_t X,mat2D_t W, DATATYPEMAT2D b);
+void initialisation(DATATYPE *W, DATATYPE *b);
 
-/**
- * @brief évalus la viabilité du modéle.
- * 
- * @param A 
- * @param Y 
- * @return DATATYPEMAT2D 
- */
-DATATYPEMAT2D log_loss(mat2D_t A,mat2D_t Y);
+void model(DATATYPE * A,X_t X,DATATYPE* W, DATATYPE b);
 
-/**
- * @brief calcule les ecarts sur chaque parametre
- * 
- * @param dW 
- * @param db 
- * @param A 
- * @param X 
- * @param Y 
- */
-void gradiants(mat2D_t*aux1,mat2D_t*dW,DATATYPEMAT2D*db, mat2D_t A,mat2D_t X,mat2D_t Y);
+DATATYPE log_loss(DATATYPE* A,DATATYPE* Y);
 
-/**
- * @brief met à jour les parametre celons les écarts
- * 
- * @param W 
- * @param b 
- * @param dW 
- * @param db 
- * @param learning_rate pas d'aprentissage entre l'encien et le nouveaux parametre
- */
-void update(mat2D_t* aux2,mat2D_t *W,DATATYPEMAT2D *b,mat2D_t dW,DATATYPEMAT2D db,DATATYPEMAT2D learning_rate); 
+void gradiants(DATATYPE*dW,DATATYPE*db, DATATYPE* A,X_t X,_Bool* Y);
 
-void artificial_neurone(mat2D_t* A,mat2D_t *Z,mat2D_t*dW ,DATATYPEMAT2D *LossList,mat2D_t *W,DATATYPEMAT2D *b,mat2D_t X,mat2D_t Y,DATATYPEMAT2D learning_rate,int n_iter);
-void predict(mat2D_t *A,mat2D_t *Z,mat2D_t *Y,mat2D_t X,mat2D_t W,DATATYPEMAT2D b);
-DATATYPEMAT2D acurencyScore(mat2D_t Y,mat2D_t Ypredict);
-void alouerMat(mat_t *matDest,const int x,const int y);
-void libererMat(mat_t* mat);
+void update(DATATYPE *W,DATATYPE *b,DATATYPE* dW,DATATYPE db,DATATYPE learning_rate);
+
+void artificial_neurone(DATATYPE *LossList,DATATYPE*W,DATATYPE *b,X_t X,_Bool* Y,DATATYPE learning_rate,int n_iter);
+
+void predict(_Bool *Y,X_t X,DATATYPE* W,DATATYPE b);
+
+DATATYPE acurencyScore(_Bool* Y,_Bool* Ypredict);

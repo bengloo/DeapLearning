@@ -1,2 +1,22 @@
 # DeepLearning
-Projet autodidacte etudiant sur le machine-learning et le deap-learning
+Projet autodidacte etudiant sur le machine-learning et le deep-learning
+
+# diferent parametre sont réglable et son défint dans le fichier setting
+
+# compilation en mode debug
+-définir debug dans setting
+-instalé les paquet cmake et valgrind si besoin
+-dans le ficher build:
+    vidé le dossier build si besoin
+    cmake -DTYPE=Debug ..
+    make
+    valgrind ./Deeplearning
+
+# compilation normal
+-commenté le deffine debug dans setting
+-instalé le paquet cmake
+-dans le ficher build:
+    vidé le dossier build si besoin
+    cmake
+    make
+    ./Deeplearning

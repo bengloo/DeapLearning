@@ -1,7 +1,7 @@
 //#define DEBUG //à definir si on veux printf les message de debug attention à la saturation du shell
 #define NBPARAM 2 //nombre de parametre ici x et y
 #define NBDATA 1000 //nombre de donné traité 
-#define LEARNINGRATE 0.001 //pas d'aprentissage
+#define LEARNINGRATE 0.01 //pas d'aprentissage
 #define NBITER 1000000 //nombre d'iteration
 #define DATATYPE double //type de donné traité
 #define EPSILLONE DBL_MIN //Borne min du type de donée trété

@@ -1,5 +1,5 @@
 #include "neurone.h"
-
+//int i;int j;
 void initialisation(DATATYPE *W, DATATYPE *b){
     for(int j = 0; j < NBPARAM; j++) W[j]=(DATATYPE)rand()/((DATATYPE)RAND_MAX/BORNEMAX);
     *b=(DATATYPE)rand()/((DATATYPE)RAND_MAX/BORNEMAX);

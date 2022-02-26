@@ -7,10 +7,16 @@
 #include "setting.h"
 
 /**
- * @brief matrice contenant le dataset  
+ * @brief matrice contenant le data  normalisé  
  * 
  */
 typedef DATATYPE X_t[NBPARAM][NBDATA];
+
+/**
+ * @brief matrice contenant le data  originel  
+ * 
+ */
+typedef DATASETTYPE dataSet_t[NBPARAM][NBDATA];
 
 /**
  * @brief initialise de manierre aleatoire les parametre du modéle W et b

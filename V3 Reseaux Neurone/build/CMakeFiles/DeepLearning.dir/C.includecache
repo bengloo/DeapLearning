@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/bengloo/Documents/DeepLearning/DeapLearning/V2/debug.h
+setting.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V2/setting.h
+
+/home/bengloo/Documents/DeepLearning/DeapLearning/V2/main.c
+main.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V2/main.h
+
+/home/bengloo/Documents/DeepLearning/DeapLearning/V2/main.h
+setting.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V2/setting.h
+neurone.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V2/neurone.h
+
+/home/bengloo/Documents/DeepLearning/DeapLearning/V2/neurone.c
+neurone.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V2/neurone.h
+
+/home/bengloo/Documents/DeepLearning/DeapLearning/V2/neurone.h
+math.h
+-
+stdio.h
+-
+debug.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V2/debug.h
+time.h
+-
+stdlib.h
+-
+float.h
+-
+setting.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V2/setting.h
+
+/home/bengloo/Documents/DeepLearning/DeapLearning/V2/setting.h
+

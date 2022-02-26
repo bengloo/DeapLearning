@@ -7,11 +7,11 @@
  * @param X 
  * @param Y 
  */
-void genererDataset(X_t X,_Bool*Y);
+void genererDataset(dataSet_t D,_Bool*Y);
 
 /**
  * @brief ramene le dataset entre 0 et 1 pour minimisé les efect de bord en +inf -inf 0
  * 
  * @param X 
  */
-void normaliserDataset(X_t X);
+void normaliserDataset(X_t X,dataSet_t D);

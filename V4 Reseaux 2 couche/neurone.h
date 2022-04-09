@@ -37,32 +37,44 @@ typedef struct
     Neurone_T * Neurones;
 } Couche_T;
 
-void alouerNeurone(Neurone_T *ptrN,int nbE){
-    ptrN->W = malloc(sizeof(DATATYPE)*nbE);
-}
-void alouerCouche(Couche_T *ptrC,int couche){
-    for (int i = 0; i < nbEntree[couche+1]; i++)
-    {
-        alouerNeurone(&(ptrC->Neurones[i]),nbEntree[couche]); 
-    }
-}
-void libererNeurone(Neurone_T *ptrN){
-        free(ptrN);
-}
-void libererCouche(Couche_T *ptrC,int nbN){
-    for (int i = 0; i < nbN; i++)
-    {   
-        libererNeurone(&(ptrC[i]));
-        free(&(ptrC[i]));
-    }
-}
+/**
+ * @brief 
+ * 
+ * @param ptrN 
+ * @param nbE 
+ */
+void alouerNeurone(Neurone_T *ptrN,int nbE);
+
+/**
+ * @brief 
+ * 
+ * @param ptrC 
+ * @param couche 
+ */
+void alouerCouche(Couche_T *ptrC,int couche);
+
+/**
+ * @brief 
+ * 
+ * @param ptrN 
+ */
+void libererNeurone(Neurone_T *ptrN);
+
+/**
+ * @brief 
+ * 
+ * @param ptrC 
+ * @param nbN 
+ */
+void libererCouche(Couche_T *ptrC,int nbN);
+
 /**
  * @brief initialise de manierre aleatoire les parametre du modéle W et b
  * 
  * @param W 
  * @param b 
  */
-void initialisation(DATATYPE *W, DATATYPE *b);
+void initialisation(Couche_T*couche);
 
 /**
  * @brief calcule la réponse A au modéle(W b) à partire du dataset X
@@ -115,7 +127,7 @@ void update(DATATYPE *W,DATATYPE *b,const DATATYPE* dW,const DATATYPE db,const D
  * @param learning_rate 
  * @param n_iter 
  */
-void artificial_neurone(DATATYPE *LossList,DATATYPE*W,DATATYPE *b,const X_t X,const _Bool* Y,const DATATYPE learning_rate,const int n_iter);
+void artificial_neurone(DATATYPE *LossList,Couche_T*couche,const X_t X,const _Bool* Y,const DATATYPE learning_rate,const int n_iter);
 
 /**
  * @brief prédit l'etat en reponse à un modéle pour un data set inconus

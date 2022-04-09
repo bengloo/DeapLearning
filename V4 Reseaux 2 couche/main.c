@@ -1,5 +1,4 @@
 #include "main.h"
-
 int main(/*int argc, char const *argv[]*/)
 {
     dataSet_t dataSet;//data set originel
@@ -8,12 +7,11 @@ int main(/*int argc, char const *argv[]*/)
     _Bool Ypredict[NBDATA];//état analysé
     DATATYPE loss[NBITER];
     Couche_T couche[NBCOUCHE];
-
     DEBUG_S("début du programme\n");
         genererDataset(dataSet,Y);
         normaliserDataset(X,dataSet);
         DEBUG_S("   début artificial neurone\n");
-            //artificial_neurone(loss,W,&b,X,Y,LEARNINGRATE,NBITER);
+            artificial_neurone(loss,couche,X,Y,LEARNINGRATE,NBITER);
         DEBUG_S("   fin artificial neurone\n");
         /*DEBUG_S("   début prédiction\n");
             predict(Ypredict,X,W,b);

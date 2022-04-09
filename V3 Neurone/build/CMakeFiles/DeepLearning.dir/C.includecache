@@ -6,31 +6,31 @@
 
 #IncludeRegexTransform: 
 
-/home/bengloo/Documents/DeepLearning/DeapLearning/V3 reseaux/debug.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V3 Neurone/debug.h
 setting.h
-/home/bengloo/Documents/DeepLearning/DeapLearning/V3 reseaux/setting.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V3 Neurone/setting.h
 
-/home/bengloo/Documents/DeepLearning/DeapLearning/V3 reseaux/main.c
+/home/bengloo/Documents/DeepLearning/DeapLearning/V3 Neurone/main.c
 main.h
-/home/bengloo/Documents/DeepLearning/DeapLearning/V3 reseaux/main.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V3 Neurone/main.h
 
-/home/bengloo/Documents/DeepLearning/DeapLearning/V3 reseaux/main.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V3 Neurone/main.h
 setting.h
-/home/bengloo/Documents/DeepLearning/DeapLearning/V3 reseaux/setting.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V3 Neurone/setting.h
 neurone.h
-/home/bengloo/Documents/DeepLearning/DeapLearning/V3 reseaux/neurone.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V3 Neurone/neurone.h
 
-/home/bengloo/Documents/DeepLearning/DeapLearning/V3 reseaux/neurone.c
+/home/bengloo/Documents/DeepLearning/DeapLearning/V3 Neurone/neurone.c
 neurone.h
-/home/bengloo/Documents/DeepLearning/DeapLearning/V3 reseaux/neurone.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V3 Neurone/neurone.h
 
-/home/bengloo/Documents/DeepLearning/DeapLearning/V3 reseaux/neurone.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V3 Neurone/neurone.h
 math.h
 -
 stdio.h
 -
 debug.h
-/home/bengloo/Documents/DeepLearning/DeapLearning/V3 reseaux/debug.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V3 Neurone/debug.h
 time.h
 -
 stdlib.h
@@ -38,7 +38,7 @@ stdlib.h
 float.h
 -
 setting.h
-/home/bengloo/Documents/DeepLearning/DeapLearning/V3 reseaux/setting.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V3 Neurone/setting.h
 
-/home/bengloo/Documents/DeepLearning/DeapLearning/V3 reseaux/setting.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V3 Neurone/setting.h
 

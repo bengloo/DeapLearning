@@ -1,8 +1,54 @@
 #include "neurone.h"
 //int i;int j;
-void initialisation(DATATYPE *W, DATATYPE *b){
-    for(int j = 0; j < NBPARAM; j++) W[j]=(DATATYPE)rand()/((DATATYPE)RAND_MAX/BORNEMAX);
-    *b=(DATATYPE)rand()/((DATATYPE)RAND_MAX/BORNEMAX);
+
+void alouerNeurone(Neurone_T *ptrN,int nbE){
+    ptrN->W = malloc(sizeof(DATATYPE)*nbE);
+    if(ptrN->W==NULL)exit(0);
+    for(int j = 0; j < nbE; j++)
+        ptrN->W[j]=(DATATYPE)rand()/((DATATYPE)RAND_MAX/BORNEMAX);
+    ptrN->b=(DATATYPE)rand()/((DATATYPE)RAND_MAX/BORNEMAX);
+}
+void alouerCouche(Couche_T *ptrC,int couche){
+    ptrC[couche].Neurones= malloc(sizeof(DATATYPE)*nbEntree[couche]);
+    if(ptrC[couche].Neurones==NULL)exit(0);
+    for (int i = 0; i < nbEntree[couche+1]; i++)
+    {
+        alouerNeurone(&(ptrC->Neurones[i]),nbEntree[couche]); 
+    }
+}
+
+
+void libererNeurone(Neurone_T *ptrN){
+        free(ptrN);
+}
+void libererCouche(Couche_T *ptrC,int nbN){
+    for (int i = 0; i < nbN; i++)
+    {   
+        libererNeurone(&(ptrC->Neurones[i]));
+        free(&(ptrC[i]));
+    }
+}
+
+void printParam(Couche_T *couche){
+    for (size_t i = 0; i < NBCOUCHE; i++)//on parcour les couches du modéle
+    {
+        printf("couche:%ld ",i);
+        for (size_t j = 0; j < nbEntree[i+1]; j++)//on parcour les neurone de chaque couche
+        {
+            printf("neurone:%ld b:%f w:{",j,couche[i].Neurones[j].b);
+            for (size_t k = 0; i < nbEntree[i]; i++)//on parcour les parametre d'entré de chque neurone
+            {
+                printf("%f,",couche[i].Neurones[j].W[k]);
+            }
+            printf("}\n");
+        }
+    }
+}
+void initialisation(Couche_T *couche){
+    for (int i = 0; i < NBCOUCHE; i++)
+    {
+       alouerCouche(&(couche[i]),i);
+    }
 }
 void model(DATATYPE * A,const X_t X,const DATATYPE* W,const DATATYPE b){
     //Z=X*W+b
@@ -42,14 +88,15 @@ void update(DATATYPE *W,DATATYPE *b,const DATATYPE* dW,const DATATYPE db,const D
     *b=*b-learning_rate*db;
 }
 
-void artificial_neurone(DATATYPE *LossList,DATATYPE*W,DATATYPE *b,const X_t X,const _Bool* Y,const DATATYPE learning_rate,const int n_iter){
+void artificial_neurone(DATATYPE *LossList,Couche_T*couche,const X_t X,const _Bool* Y,const DATATYPE learning_rate,const int n_iter){
     DATATYPE Z[NBDATA];//modelle neurone
     DATATYPE A[NBDATA];//resulat fonction d'activation
     DATATYPE dW[NBPARAM];//gardiant
     DATATYPE db;
 
     DEBUG_S("       début initialisation\n");
-    initialisation(W,b);
+    initialisation(couche);
+    printParam(couche);
     DEBUG_S("       fin initialisation\n");
     /*for(int i=0;i<n_iter;i++){
         //DEBUG_S1("           début modèle iteration:%d\n",i+1);

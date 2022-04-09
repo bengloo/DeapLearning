@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/bengloo/Documents/DeepLearning/DeapLearning/V3 reseaux/debug.h
+setting.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V3 reseaux/setting.h
+
+/home/bengloo/Documents/DeepLearning/DeapLearning/V3 reseaux/main.c
+main.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V3 reseaux/main.h
+
+/home/bengloo/Documents/DeepLearning/DeapLearning/V3 reseaux/main.h
+setting.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V3 reseaux/setting.h
+neurone.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V3 reseaux/neurone.h
+
+/home/bengloo/Documents/DeepLearning/DeapLearning/V3 reseaux/neurone.c
+neurone.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V3 reseaux/neurone.h
+
+/home/bengloo/Documents/DeepLearning/DeapLearning/V3 reseaux/neurone.h
+math.h
+-
+stdio.h
+-
+debug.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V3 reseaux/debug.h
+time.h
+-
+stdlib.h
+-
+float.h
+-
+setting.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V3 reseaux/setting.h
+
+/home/bengloo/Documents/DeepLearning/DeapLearning/V3 reseaux/setting.h
+

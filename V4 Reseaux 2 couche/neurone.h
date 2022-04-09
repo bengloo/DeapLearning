@@ -22,7 +22,7 @@ typedef DATASETTYPE dataSet_t[NBPARAM][NBDATA];
  * @brief 
  * 
  */
-typedef struct
+typedef struct 
 {
     DATATYPE *W;
     DATATYPE b;
@@ -37,7 +37,25 @@ typedef struct
     Neurone_T * Neurones;
 } Couche_T;
 
-
+void alouerNeurone(Neurone_T *ptrN,int nbE){
+    ptrN->W = malloc(sizeof(DATATYPE)*nbE);
+}
+void alouerCouche(Couche_T *ptrC,int couche){
+    for (int i = 0; i < nbEntree[couche+1]; i++)
+    {
+        alouerNeurone(&(ptrC->Neurones[i]),nbEntree[couche]); 
+    }
+}
+void libererNeurone(Neurone_T *ptrN){
+        free(ptrN);
+}
+void libererCouche(Couche_T *ptrC,int nbN){
+    for (int i = 0; i < nbN; i++)
+    {   
+        libererNeurone(&(ptrC[i]));
+        free(&(ptrC[i]));
+    }
+}
 /**
  * @brief initialise de manierre aleatoire les parametre du modéle W et b
  * 

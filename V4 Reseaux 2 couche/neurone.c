@@ -51,7 +51,7 @@ void artificial_neurone(DATATYPE *LossList,DATATYPE*W,DATATYPE *b,const X_t X,co
     DEBUG_S("       début initialisation\n");
     initialisation(W,b);
     DEBUG_S("       fin initialisation\n");
-    for(int i=0;i<n_iter;i++){
+    /*for(int i=0;i<n_iter;i++){
         //DEBUG_S1("           début modèle iteration:%d\n",i+1);
         model(A,X,W,*b);
         //DEBUG_S1("           fin modèle iteration:%d\n",i+1);
@@ -67,7 +67,7 @@ void artificial_neurone(DATATYPE *LossList,DATATYPE*W,DATATYPE *b,const X_t X,co
         //DEBUG_C(afficherMat2d(*W,"W");)
         //DEBUG_C(printf("b:%f\n",*b);)
         //DEBUG_S1("           fin update iteration:%d\n",i+1);
-    }
+    }*/
 }
 void predict(_Bool *Y,const X_t X,const DATATYPE* W,const DATATYPE b){
     DATATYPE A[NBDATA];//resulat fonction d'activation

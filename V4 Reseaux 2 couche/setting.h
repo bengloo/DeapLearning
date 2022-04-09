@@ -1,4 +1,6 @@
 //#define DEBUG //à definir si on veux printf les message de debug attention à la saturation du shell
+
+
 #define NBPARAM 2 //nombre de parametre ici x et y
 #define NBDATA 5000 //nombre de donné traité 
 #define LEARNINGRATE 2 //pas d'aprentissage
@@ -9,4 +11,6 @@
 #define DATATYPE double //type de donné traité aprés normalisation float ou double
 #define EPSILLONE DBL_MIN //Borne min du type de donée traité
 #define FONCTION(x) (2*x+10) //équoition du modéle suposé inconus
-#define CRITERE(x,y) (y>FONCTION(x)) //critére de teste 
+#define CRITERE(x,y) (y>FONCTION(x)) //critére de teste
+#define NBCOUCHE 2 //nombre de couche du reseaux
+extern const int nbEntree[NBCOUCHE]={NBDATA,3}; //nombre d'entré par couche et donc nombre de neurone de la couche précedente

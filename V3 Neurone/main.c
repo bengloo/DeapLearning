@@ -24,7 +24,7 @@ int main(/*int argc, char const *argv[]*/)
             printf("%f  ",W[i]);
         }
         printf("]\nb=%f\n",b);
-        if(NBPARAM==2)printf("Modéle aproché:\ny=-(W[0]*x+b)/W[1]=%fx+%f\n",-W[0]/W[1],-(b/W[1])*(BORNEMAX+BORNEMIN)-BORNEMIN);
+        if(NBPARAM==2)printf("Modéle aproché:\ny=%fx+%f\n",-W[0]/W[1],-(b/W[1])*(BORNEMAX+BORNEMIN)-BORNEMIN*(1+W[0]/W[1]));
         printf("score:%f %% des predition valide \n",acurencyScore(Y,Ypredict)*100);
 
     DEBUG_S("fin du programme\n");

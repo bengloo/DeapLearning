@@ -1,4 +1,4 @@
-//#define DEBUG //à definir si on veux printf les message de debug attention à la saturation du shell
+#define DEBUG //à definir si on veux printf les message de debug attention à la saturation du shell
 
 
 #define NBPARAM 2 //nombre de parametre ici x et y
@@ -13,7 +13,4 @@
 #define FONCTION(x) (2*x+10) //équoition du modéle suposé inconus
 #define CRITERE(x,y) (y>FONCTION(x)) //critére de teste
 #define NBCOUCHE 2 //nombre de couche du reseaux
-#ifndef NBENTREE
-    #define NBENTREE
-    extern int nbEntree[NBCOUCHE+1]={NBPARAM,3,1}; //nombre d'entré par couche et donc nombre de neurone de la couche précedente
-#endif
+# define NBENTREE {NBPARAM,3,1} //nombre de neurone par couche / nombre d'entré par neurone

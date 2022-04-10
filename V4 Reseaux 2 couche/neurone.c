@@ -1,22 +1,33 @@
 #include "neurone.h"
 //int i;int j;
+int nbEntree[NBCOUCHE+1]=NBENTREE; //nombre d'entré par couche et donc nombre de neurone de la couche précedente
 
 void alouerNeurone(Neurone_T *ptrN,int nbE){
-    ptrN->W = malloc(sizeof(DATATYPE)*nbE);
+    ptrN->W = (DATATYPE *)malloc(sizeof(DATATYPE)*nbE);
     if(ptrN->W==NULL)exit(0);
-    for(int j = 0; j < nbE; j++)
-        ptrN->W[j]=(DATATYPE)rand()/((DATATYPE)RAND_MAX/BORNEMAX);
+    for(int j = 0; j < nbE; j++)ptrN->W[j]=(DATATYPE)rand()/((DATATYPE)RAND_MAX/BORNEMAX);
     ptrN->b=(DATATYPE)rand()/((DATATYPE)RAND_MAX/BORNEMAX);
 }
 void alouerCouche(Couche_T *ptrC,int couche){
-    ptrC[couche].Neurones= malloc(sizeof(DATATYPE)*nbEntree[couche]);
+    ptrC[couche].Neurones= (Neurone_T *) malloc(sizeof(Neurone_T)*nbEntree[couche+1]);
     if(ptrC[couche].Neurones==NULL)exit(0);
-    for (int i = 0; i < nbEntree[couche+1]; i++)
-    {
-        alouerNeurone(&(ptrC->Neurones[i]),nbEntree[couche]); 
-    }
+    for (int i = 0; i < nbEntree[couche+1]; i++)alouerNeurone(&(ptrC[couche].Neurones[i]),nbEntree[couche]); 
 }
-
+void initialisation(Couche_T *couche){
+    for (int i = 0; i < NBCOUCHE; i++)alouerCouche(&(couche[i]),i);
+}
+void printParam(Couche_T *couche){
+    for (size_t i = 0; i < NBCOUCHE; i++)//on parcour les couches du modéle
+    {
+        printf("couche:%ld avec %d neurones\n",i+1,nbEntree[i+1]);
+        for (size_t j = 0; j < nbEntree[i+1]; j++)//on parcour les neurone de chaque couche
+        {
+            printf("\tneurone:%ld avec %d entrees \n",j+1,nbEntree[i]);
+            printf("\t\tb:%f w:{",couche[i].Neurones[j].b);
+            for (size_t k = 0; k < nbEntree[i]; k++)//on parcour les parametre d'entrée de chaque neurone
+                printf("%f,",couche[i].Neurones[j].W[k]);
+            printf("}\n");
+}   }   }  
 
 void libererNeurone(Neurone_T *ptrN){
         free(ptrN);
@@ -26,28 +37,6 @@ void libererCouche(Couche_T *ptrC,int nbN){
     {   
         libererNeurone(&(ptrC->Neurones[i]));
         free(&(ptrC[i]));
-    }
-}
-
-void printParam(Couche_T *couche){
-    for (size_t i = 0; i < NBCOUCHE; i++)//on parcour les couches du modéle
-    {
-        printf("couche:%ld ",i);
-        for (size_t j = 0; j < nbEntree[i+1]; j++)//on parcour les neurone de chaque couche
-        {
-            printf("neurone:%ld b:%f w:{",j,couche[i].Neurones[j].b);
-            for (size_t k = 0; i < nbEntree[i]; i++)//on parcour les parametre d'entré de chque neurone
-            {
-                printf("%f,",couche[i].Neurones[j].W[k]);
-            }
-            printf("}\n");
-        }
-    }
-}
-void initialisation(Couche_T *couche){
-    for (int i = 0; i < NBCOUCHE; i++)
-    {
-       alouerCouche(&(couche[i]),i);
     }
 }
 void model(DATATYPE * A,const X_t X,const DATATYPE* W,const DATATYPE b){

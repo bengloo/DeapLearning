@@ -6,6 +6,8 @@ void alouerNeurone(Neurone_T *ptrN,int nbE){
     printf("on aloue une neurone (%p)de %d entree\n",ptrN,nbE);
     ptrN->W = (DATATYPE *)malloc(sizeof(DATATYPE)*nbE);
     if(ptrN->W==NULL)exit(0);
+    ptrN->dW = (DATATYPE *)malloc(sizeof(DATATYPE)*nbE);
+    if(ptrN->dW==NULL)exit(0);
     for(int j = 0; j < nbE; j++)ptrN->W[j]=(DATATYPE)rand()/((DATATYPE)RAND_MAX/BORNEMAX);
     ptrN->b=(DATATYPE)rand()/((DATATYPE)RAND_MAX/BORNEMAX);
 }
@@ -33,20 +35,37 @@ void printParam(Couche_T *couche){
 void libererNeurone(Neurone_T *ptrN){
         //printf("neurone %p liberer\n",ptrN);
         free(ptrN->W);
+        free(ptrN->dW);
 }
 void libererCouche(Couche_T *ptrC,int nbN){
     for (int i = 0; i < nbN; i++)
         libererNeurone(&(ptrC->Neurones[i]));
     free(ptrC->Neurones);
 }
-void model(DATATYPE * A,const X_t X,const DATATYPE* W,const DATATYPE b){
+void forward_propagation(const X_t X,Couche_T*couche){
     //Z=X*W+b
     //A=sigmoid(Z);
-    for(int j = 0; j < NBDATA; j++)
-    {
-        A[j]=b;
-        for(int k = 0; k < NBPARAM; k++) A[j] += X[k][j] * W[k];
-        A[j]=1/(1+exp(-A[j]));
+    //pour la couche 0 on prend le dataset en entrée
+    for (size_t l = 0; l < nbEntree[1]; l++)
+    {    
+        for(size_t j = 0; j < NBDATA; j++)
+        {
+            couche[0].Neurones[l].A[j]=couche[0].Neurones[l].b;
+            for(size_t k = 0; k < NBPARAM; k++) couche[0].Neurones[l].A[j] += X[k][j] * couche[0].Neurones[l].W[k];
+            couche[0].Neurones[l].A[j]=1/(1+exp(-couche[0].Neurones[l].A[j]));
+        }
+    }    
+    for (size_t i = 1; i < NBCOUCHE; i++)//on vas de la cauche la plus basse vers la couche la plus haute
+    {    
+        for (size_t l = 0; l < nbEntree[i+1]; l++)
+        {    
+            for(size_t j = 0; j < NBDATA; j++)
+            {
+                couche[i].Neurones[l].A[j]=couche[i].Neurones[l].b;
+                for(size_t k = 0; k < nbEntree[i]; k++) couche[i].Neurones[l].A[j] += couche[i-1].Neurones[k].A[j] * couche[i].Neurones[l].W[k];
+                couche[i].Neurones[l].A[j]=1/(1+exp(-couche[i].Neurones[l].A[j]));
+            }
+        }
     }
 }
 
@@ -58,16 +77,38 @@ DATATYPE log_loss(const DATATYPE* A,const _Bool* Y){
     return res/(DATATYPE)NBDATA;
 }
 
-void gradiants(DATATYPE*dW,DATATYPE*db,const DATATYPE* A,const X_t X,const _Bool* Y){
-    for(int j = 0; j < NBPARAM; j++)
+void back_propagation(Couche_T* couche,const X_t X,const _Bool* Y){
+    for (size_t i = NBCOUCHE-1; i > 0; i--)
     {
-        dW[j]=0;
-        for(int k = 0; k < NBDATA; k++) dW[j] += X[j][k]*(A[k]-Y[k]);
-        dW[j]=dW[j]/(DATATYPE)NBDATA;
+        for (size_t l = 0; l < nbEntree[i+1]; l++)
+        { 
+            for(size_t j = 0; j < nbEntree[i]; j++)
+            {
+                couche[i].Neurones[l].dW[j]=0;
+                for(int k = 0; k < NBDATA; k++) 
+                    couche[i].Neurones[l].dW[j] += X[j][k]*(couche[i].Neurones[l].A[k]-Y[k]);
+                couche[i].Neurones[l].dW[j]=couche[i].Neurones[l].dW[j]/(DATATYPE)NBDATA;
+            }
+            couche[i].Neurones[l].db=0;
+            for(int k = 0; k < NBDATA; k++) 
+                couche[i].Neurones[l].db+=couche[i].Neurones[l].A[k]-Y[k];
+            couche[i].Neurones[l].db=couche[i].Neurones[l].db/(DATATYPE)NBDATA;
+        }  
     }
-    *db=0;
-    for(int k = 0; k < NBDATA; k++) *db+=A[k]-Y[k];
-    *db=*db/(DATATYPE)NBDATA;
+    for (size_t l = 0; l < nbEntree[1]; l++)
+    { 
+        for(size_t j = 0; j < nbEntree[0]; j++)
+        {
+            couche[0].Neurones[l].dW[j]=0;
+            for(int k = 0; k < NBDATA; k++) 
+                couche[0].Neurones[l].dW[j] += X[j][k]*(couche[0].Neurones[l].A[k]-Y[k]);
+            couche[0].Neurones[l].dW[j]=couche[0].Neurones[l].dW[j]/(DATATYPE)NBDATA;
+        }
+        couche[0].Neurones[l].db=0;
+        for(int k = 0; k < NBDATA; k++) 
+            couche[0].Neurones[l].db+=couche[0].Neurones[l].A[k]-Y[k];
+        couche[0].Neurones[l].db=couche[0].Neurones[l].db/(DATATYPE)NBDATA;
+    }
 }
 
 void update(DATATYPE *W,DATATYPE *b,const DATATYPE* dW,const DATATYPE db,const DATATYPE learning_rate){
@@ -78,25 +119,20 @@ void update(DATATYPE *W,DATATYPE *b,const DATATYPE* dW,const DATATYPE db,const D
 }
 
 void artificial_neurone(DATATYPE *LossList,Couche_T*couche,const X_t X,const _Bool* Y,const DATATYPE learning_rate,const int n_iter){
-    DATATYPE Z[NBDATA];//modelle neurone
-    DATATYPE A[NBDATA];//resulat fonction d'activation
-    DATATYPE dW[NBPARAM];//gardiant
-    DATATYPE db;
-
     DEBUG_S("       début initialisation");
     initialisation(couche);
      DEBUG_S("       fin initialisation");
     printParam(couche);
-    /*for(int i=0;i<n_iter;i++){
+    for(int i=0;i<n_iter;i++){
         //DEBUG_S1("           début modèle iteration:%d\n",i+1);
-        model(A,X,W,*b);
+        forward_propagation(X,couche);
         //DEBUG_S1("           fin modèle iteration:%d\n",i+1);
         //DEBUG_S1("           début logloss iteration:%d\n",i+1);
         //LossList[i]=log_loss(A,Y);
-        if(i%(n_iter/100)==0)printf("logloss[%d]=%f\n",i,log_loss(A,Y));
+        //if(i%(n_iter/100)==0)printf("logloss[%d]=%f\n",i,log_loss(A,Y));
         //DEBUG_S1("           fin logloss iteration:%d\n",i+1);
         //DEBUG_S1("           début gradiant iteration:%d\n",i+1);
-        gradiants(dW,&db,A,X,Y);
+        back_propagation(couche,X,Y);
         //DEBUG_S1("           fin gradiant iteration:%d\n",i+1);
         //DEBUG_S1("           début update iteration:%d\n",i+1);
         update(W,b,dW,db,learning_rate);

@@ -1,4 +1,5 @@
 #include "main.h"
+int nbEntree[NBCOUCHE+1]=NBENTREE; //nombre d'entré par couche et donc nombre de neurone de la couche précedente
 int main(/*int argc, char const *argv[]*/)
 {
     dataSet_t dataSet;//data set originel
@@ -25,8 +26,8 @@ int main(/*int argc, char const *argv[]*/)
         printf("score:%f %% des predition valide \n",acurencyScore(Y,Ypredict)*100);
         */
         DEBUG_S("\tDebut liberation memoire\n");
-        libererCouche(&couche[0],3);
-        libererCouche(&couche[1],1);
+        for (size_t i = 0; i < NBCOUCHE; i++)
+            libererCouche(&couche[i],nbEntree[i]);
         DEBUG_S("\tfin liberation memoire\n");
     DEBUG_S("fin du programme\n");
     return 1;

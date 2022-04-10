@@ -25,7 +25,10 @@ typedef DATASETTYPE dataSet_t[NBPARAM][NBDATA];
 typedef struct 
 {
     DATATYPE *W;
+    DATATYPE *dW;
     DATATYPE b;
+    DATATYPE db;
+    DATATYPE A[NBDATA];
 } Neurone_T;
 
 /**
@@ -76,15 +79,8 @@ void libererCouche(Couche_T *ptrC,int nbN);
  */
 void initialisation(Couche_T*couche);
 
-/**
- * @brief calcule la réponse A au modéle(W b) à partire du dataset X
- * 
- * @param A 
- * @param X 
- * @param W 
- * @param b 
- */
-void model(DATATYPE * A,const X_t X,const DATATYPE* W,const DATATYPE b);
+
+void forward_propagation(const X_t X,Couche_T*couche);
 
 /**
  * @brief calcule le cout du modéle en comparent A et Y telque: somme(A>0.5==Y)/NBDATA
@@ -103,7 +99,7 @@ DATATYPE log_loss(const DATATYPE* A,const _Bool* Y);
  * @param X 
  * @param Y 
  */
-void gradiants(DATATYPE*dW,DATATYPE*db,const DATATYPE* A,const X_t X,const _Bool* Y);
+void back_propagation(Couche_T* couche,const X_t X,const _Bool* Y);
 
 /**
  * @brief mets à jour les parametre en les incrementant par leur gardiant*pas d'aprentissage

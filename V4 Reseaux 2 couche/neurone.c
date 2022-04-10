@@ -3,15 +3,16 @@
 int nbEntree[NBCOUCHE+1]=NBENTREE; //nombre d'entré par couche et donc nombre de neurone de la couche précedente
 
 void alouerNeurone(Neurone_T *ptrN,int nbE){
+    printf("on aloue une neurone (%p)de %d entree\n",ptrN,nbE);
     ptrN->W = (DATATYPE *)malloc(sizeof(DATATYPE)*nbE);
     if(ptrN->W==NULL)exit(0);
     for(int j = 0; j < nbE; j++)ptrN->W[j]=(DATATYPE)rand()/((DATATYPE)RAND_MAX/BORNEMAX);
     ptrN->b=(DATATYPE)rand()/((DATATYPE)RAND_MAX/BORNEMAX);
 }
 void alouerCouche(Couche_T *ptrC,int couche){
-    ptrC[couche].Neurones= (Neurone_T *) malloc(sizeof(Neurone_T)*nbEntree[couche+1]);
-    if(ptrC[couche].Neurones==NULL)exit(0);
-    for (int i = 0; i < nbEntree[couche+1]; i++)alouerNeurone(&(ptrC[couche].Neurones[i]),nbEntree[couche]); 
+    ptrC->Neurones= (Neurone_T *) malloc(sizeof(Neurone_T)*nbEntree[couche+1]);
+    if(ptrC->Neurones==NULL)exit(0);
+    for (int i = 0; i < nbEntree[couche+1]; i++)alouerNeurone(&(ptrC->Neurones[i]),nbEntree[couche]); 
 }
 void initialisation(Couche_T *couche){
     for (int i = 0; i < NBCOUCHE; i++)alouerCouche(&(couche[i]),i);
@@ -30,14 +31,13 @@ void printParam(Couche_T *couche){
 }   }   }  
 
 void libererNeurone(Neurone_T *ptrN){
-        free(ptrN);
+        //printf("neurone %p liberer\n",ptrN);
+        free(ptrN->W);
 }
 void libererCouche(Couche_T *ptrC,int nbN){
     for (int i = 0; i < nbN; i++)
-    {   
         libererNeurone(&(ptrC->Neurones[i]));
-        free(&(ptrC[i]));
-    }
+    free(ptrC->Neurones);
 }
 void model(DATATYPE * A,const X_t X,const DATATYPE* W,const DATATYPE b){
     //Z=X*W+b
@@ -83,10 +83,10 @@ void artificial_neurone(DATATYPE *LossList,Couche_T*couche,const X_t X,const _Bo
     DATATYPE dW[NBPARAM];//gardiant
     DATATYPE db;
 
-    DEBUG_S("       début initialisation\n");
+    DEBUG_S("       début initialisation");
     initialisation(couche);
+     DEBUG_S("       fin initialisation");
     printParam(couche);
-    DEBUG_S("       fin initialisation\n");
     /*for(int i=0;i<n_iter;i++){
         //DEBUG_S1("           début modèle iteration:%d\n",i+1);
         model(A,X,W,*b);

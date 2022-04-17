@@ -13,4 +13,5 @@
 #define FONCTION(x) (2*x+10) //équoition du modéle suposé inconus
 #define CRITERE(x,y) (y>FONCTION(x)) //critére de teste
 #define NBCOUCHE 2 //nombre de couche du reseaux
-# define NBENTREE {NBPARAM,3,1} //nombre de neurone par couche / nombre d'entré par neurone
+#define NBENTREE {NBPARAM,3,1} //nombre de neurone par couche / nombre d'entré par neurone
+#define FCTACTIVATION sigmoide

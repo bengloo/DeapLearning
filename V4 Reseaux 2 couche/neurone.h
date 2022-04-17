@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <float.h>
 #include "setting.h"
+#include "activation.h"
 
 /**
  * @brief matrice contenant le data  normalisé  
@@ -22,14 +23,23 @@ typedef DATASETTYPE dataSet_t[NBPARAM][NBDATA];
  * @brief 
  * 
  */
+
+/**
+ * @brief 
+ * 
+ */
 typedef struct 
 {
     DATATYPE *W;
     DATATYPE *dW;
-    DATATYPE b;
+    DATATYPE b;//biase
     DATATYPE db;
+} W_T;
+
+typedef struct 
+{
     DATATYPE A[NBDATA];
-} Neurone_T;
+} A_T;
 
 /**
  * @brief 
@@ -37,8 +47,19 @@ typedef struct
  */
 typedef struct
 {
-    Neurone_T * Neurones;
-} Couche_T;
+    W_T * W;
+} layerW_T;
+
+/**
+ * @brief 
+ * 
+ */
+typedef struct
+{
+    A_T *A;
+    DATATYPE (*pfActivation)(DATATYPE);
+
+} layerA_T;
 
 /**
  * @brief 
@@ -46,7 +67,7 @@ typedef struct
  * @param ptrN 
  * @param nbE 
  */
-void alouerNeurone(Neurone_T *ptrN,int nbE);
+void alouerNeurone(W_T *ptrN,int nbE);
 
 /**
  * @brief 
@@ -54,14 +75,14 @@ void alouerNeurone(Neurone_T *ptrN,int nbE);
  * @param ptrC 
  * @param couche 
  */
-void alouerCouche(Couche_T *ptrC,int couche);
+void alouerCouche(layerW_T *ptrC,int couche);
 
 /**
  * @brief 
  * 
  * @param ptrN 
  */
-void libererNeurone(Neurone_T *ptrN);
+void libererNeurone(W_T *ptrN);
 
 /**
  * @brief 
@@ -69,7 +90,7 @@ void libererNeurone(Neurone_T *ptrN);
  * @param ptrC 
  * @param nbN 
  */
-void libererCouche(Couche_T *ptrC,int nbN);
+void libererCouche(layerW_T *ptrC,int nbN);
 
 /**
  * @brief initialise de manierre aleatoire les parametre du modéle W et b
@@ -77,10 +98,10 @@ void libererCouche(Couche_T *ptrC,int nbN);
  * @param W 
  * @param b 
  */
-void initialisation(Couche_T*couche);
+void initialisation(layerW_T*Wcouche,layerA_T*Acouche);
 
 
-void forward_propagation(const X_t X,Couche_T*couche);
+void forward_propagation(const X_t X,layerW_T*couche,layerA_T *Acouche);
 
 /**
  * @brief calcule le cout du modéle en comparent A et Y telque: somme(A>0.5==Y)/NBDATA
@@ -99,7 +120,7 @@ DATATYPE log_loss(const DATATYPE* A,const _Bool* Y);
  * @param X 
  * @param Y 
  */
-void back_propagation(Couche_T* couche,const X_t X,const _Bool* Y);
+void back_propagation(layerW_T* couche,const X_t X,const _Bool* Y);
 
 /**
  * @brief mets à jour les parametre en les incrementant par leur gardiant*pas d'aprentissage
@@ -123,7 +144,7 @@ void update(DATATYPE *W,DATATYPE *b,const DATATYPE* dW,const DATATYPE db,const D
  * @param learning_rate 
  * @param n_iter 
  */
-void artificial_neurone(DATATYPE *LossList,Couche_T*couche,const X_t X,const _Bool* Y,const DATATYPE learning_rate,const int n_iter);
+void artificial_neurone(DATATYPE *LossList,layerW_T*couche,const X_t X,const _Bool* Y,const DATATYPE learning_rate,const int n_iter);
 
 /**
  * @brief prédit l'etat en reponse à un modéle pour un data set inconus

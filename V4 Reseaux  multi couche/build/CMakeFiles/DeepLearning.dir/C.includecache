@@ -1,0 +1,56 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/bengloo/Documents/DeepLearning/DeapLearning/V4 Reseaux  multi couche/activation.c
+activation.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V4 Reseaux  multi couche/activation.h
+math.h
+-
+
+/home/bengloo/Documents/DeepLearning/DeapLearning/V4 Reseaux  multi couche/activation.h
+setting.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V4 Reseaux  multi couche/setting.h
+
+/home/bengloo/Documents/DeepLearning/DeapLearning/V4 Reseaux  multi couche/debug.h
+setting.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V4 Reseaux  multi couche/setting.h
+
+/home/bengloo/Documents/DeepLearning/DeapLearning/V4 Reseaux  multi couche/main.c
+main.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V4 Reseaux  multi couche/main.h
+
+/home/bengloo/Documents/DeepLearning/DeapLearning/V4 Reseaux  multi couche/main.h
+setting.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V4 Reseaux  multi couche/setting.h
+neurone.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V4 Reseaux  multi couche/neurone.h
+
+/home/bengloo/Documents/DeepLearning/DeapLearning/V4 Reseaux  multi couche/neurone.c
+neurone.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V4 Reseaux  multi couche/neurone.h
+
+/home/bengloo/Documents/DeepLearning/DeapLearning/V4 Reseaux  multi couche/neurone.h
+math.h
+-
+stdio.h
+-
+debug.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V4 Reseaux  multi couche/debug.h
+time.h
+-
+stdlib.h
+-
+float.h
+-
+setting.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V4 Reseaux  multi couche/setting.h
+activation.h
+/home/bengloo/Documents/DeepLearning/DeapLearning/V4 Reseaux  multi couche/activation.h
+
+/home/bengloo/Documents/DeepLearning/DeapLearning/V4 Reseaux  multi couche/setting.h
+

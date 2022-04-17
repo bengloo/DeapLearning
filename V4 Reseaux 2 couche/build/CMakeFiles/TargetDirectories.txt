@@ -1,3 +1,0 @@
-/home/bengloo/Documents/DeepLearning/DeapLearning/V4 Reseaux 2 couche/build/CMakeFiles/rebuild_cache.dir
-/home/bengloo/Documents/DeepLearning/DeapLearning/V4 Reseaux 2 couche/build/CMakeFiles/edit_cache.dir
-/home/bengloo/Documents/DeepLearning/DeapLearning/V4 Reseaux 2 couche/build/CMakeFiles/DeepLearning.dir

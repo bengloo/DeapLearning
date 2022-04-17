@@ -1,0 +1,1 @@
+/usr/bin/cc   -rdynamic CMakeFiles/DeepLearning.dir/activation.o CMakeFiles/DeepLearning.dir/main.o CMakeFiles/DeepLearning.dir/neurone.o  -o DeepLearning  -lm 

@@ -1,4 +1,4 @@
-# Install script for directory: /home/bengloo/Documents/DeepLearning/DeapLearning/V4 Reseaux 2 couche
+# Install script for directory: /home/bengloo/Documents/DeepLearning/DeapLearning/V4 Reseaux  multi couche
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/bengloo/Documents/DeepLearning/DeapLearning/V4 Reseaux 2 couche/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/bengloo/Documents/DeepLearning/DeapLearning/V4 Reseaux  multi couche/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

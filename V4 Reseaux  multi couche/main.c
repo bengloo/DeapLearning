@@ -1,5 +1,4 @@
 #include "main.h"
-int nbEntree[NBCOUCHE+1]=NBENTREE; //nombre d'entré par couche et donc nombre de neurone de la couche précedente
 int main(/*int argc, char const *argv[]*/)
 {
     dataSet_t dataSet;//data set originel
@@ -7,12 +6,13 @@ int main(/*int argc, char const *argv[]*/)
     _Bool Y[NBDATA];//état analysé
     _Bool Ypredict[NBDATA];//état analysé
     DATATYPE loss[NBITER];
-    Couche_T couche[NBCOUCHE];
+    layerW_T Wcouche[NBCOUCHE];
+    layerA_T Acouche[NBCOUCHE];
     DEBUG_S("début du programme\n");
         genererDataset(dataSet,Y);
         normaliserDataset(X,dataSet);
         DEBUG_S("   début artificial neurone\n");
-            artificial_neurone(loss,couche,X,Y,LEARNINGRATE,NBITER);
+            artificial_neurone(loss,Wcouche,Acouche,X,Y,LEARNINGRATE,NBITER);
         DEBUG_S("   fin artificial neurone\n");
         /*DEBUG_S("   début prédiction\n");
             predict(Ypredict,X,W,b);
@@ -26,8 +26,7 @@ int main(/*int argc, char const *argv[]*/)
         printf("score:%f %% des predition valide \n",acurencyScore(Y,Ypredict)*100);
         */
         DEBUG_S("\tDebut liberation memoire\n");
-        for (size_t i = 0; i < NBCOUCHE; i++)
-            libererCouche(&couche[i],nbEntree[i]);
+            libererCouche(Wcouche);
         DEBUG_S("\tfin liberation memoire\n");
     DEBUG_S("fin du programme\n");
     return 1;

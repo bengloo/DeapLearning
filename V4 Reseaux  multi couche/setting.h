@@ -14,4 +14,4 @@
 #define CRITERE(x,y) (y>FONCTION(x)) //critére de teste
 #define NBCOUCHE 2 //nombre de couche du reseaux
 #define NBENTREE {NBPARAM,3,1} //nombre de neurone par couche / nombre d'entré par neurone
-#define FCTACTIVATION sigmoide
+#define FCTACTIVATION {sigmoide,sigmoide}

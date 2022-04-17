@@ -1,4 +1,5 @@
-#include "neurone.h"
+#include "activation.h"
+#include <math.h>
 DATATYPE sigmoide(DATATYPE x){
     return 1/(1+exp(-x));
 }

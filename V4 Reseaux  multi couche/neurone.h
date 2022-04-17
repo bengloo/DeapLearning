@@ -47,7 +47,7 @@ typedef struct
  */
 typedef struct
 {
-    W_T * W;
+    W_T * NW;
 } layerW_T;
 
 /**
@@ -56,7 +56,7 @@ typedef struct
  */
 typedef struct
 {
-    A_T *A;
+    A_T *NA;
     DATATYPE (*pfActivation)(DATATYPE);
 
 } layerA_T;
@@ -67,7 +67,7 @@ typedef struct
  * @param ptrN 
  * @param nbE 
  */
-void alouerNeurone(W_T *ptrN,int nbE);
+void alouerNeuroneW(W_T *ptrN,int nbE);
 
 /**
  * @brief 
@@ -75,7 +75,17 @@ void alouerNeurone(W_T *ptrN,int nbE);
  * @param ptrC 
  * @param couche 
  */
-void alouerCouche(layerW_T *ptrC,int couche);
+void alouerCoucheA(layerA_T *ptrC,int couche);
+
+/**
+ * @brief 
+ * 
+ * @param ptrC 
+ * @param couche 
+ */
+void alouerCoucheW(layerW_T *ptrC,int couche);
+
+
 
 /**
  * @brief 
@@ -90,7 +100,8 @@ void libererNeurone(W_T *ptrN);
  * @param ptrC 
  * @param nbN 
  */
-void libererCouche(layerW_T *ptrC,int nbN);
+void libererCouche(layerW_T *ptrC);
+
 
 /**
  * @brief initialise de manierre aleatoire les parametre du modéle W et b
@@ -120,7 +131,7 @@ DATATYPE log_loss(const DATATYPE* A,const _Bool* Y);
  * @param X 
  * @param Y 
  */
-void back_propagation(layerW_T* couche,const X_t X,const _Bool* Y);
+void back_propagation(layerW_T* Wcouche,layerA_T* Acouche,const X_t X,const _Bool* Y);
 
 /**
  * @brief mets à jour les parametre en les incrementant par leur gardiant*pas d'aprentissage
@@ -144,7 +155,7 @@ void update(DATATYPE *W,DATATYPE *b,const DATATYPE* dW,const DATATYPE db,const D
  * @param learning_rate 
  * @param n_iter 
  */
-void artificial_neurone(DATATYPE *LossList,layerW_T*couche,const X_t X,const _Bool* Y,const DATATYPE learning_rate,const int n_iter);
+void artificial_neurone(DATATYPE *LossList,layerW_T*Wcouche,layerA_T*Acouche,const X_t X,const _Bool* Y,const DATATYPE learning_rate,const int n_iter);
 
 /**
  * @brief prédit l'etat en reponse à un modéle pour un data set inconus
@@ -164,3 +175,4 @@ void predict(_Bool *Y,const X_t X,const DATATYPE* W,const DATATYPE b);
  * @return DATATYPE 
  */
 DATATYPE acurencyScore(const _Bool* Y,const _Bool* Ypredict);
+

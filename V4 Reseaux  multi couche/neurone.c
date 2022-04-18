@@ -44,18 +44,40 @@ void printParam(layerW_T *couche){
             printf("}\n");
 }   }   }  
 
-void libererNeurone(W_T *ptrN){
+void libererNeuroneW(W_T *ptrN){
         //printf("neurone %p liberer\n",ptrN);
         free(ptrN->W);
         free(ptrN->dW);
 }
-void libererCouche(layerW_T *ptrC){
+void libererCoucheW(layerW_T *ptrC){
     for (size_t j = 0; j < NBCOUCHE; j++){
         for (int i = 0; i < nbEntree[i+1]; i++)
             libererNeurone(&(ptrC[j].NW[i]));
         free(ptrC[j].NW);
     }
 }
+
+void libererNeuroneA(A_T *ptrN){
+        //printf("neurone %p liberer\n",ptrN);
+        free(ptrN->A);
+}
+
+void liberarCoucheA(layerA_T *ptrC){
+    for (size_t j = 0; j < NBCOUCHE; j++){
+        for (int i = 0; i < nbEntree[i+1]; i++)
+            libererNeurone(&(ptrC[j].NA[i]));
+        free(ptrC[j].NA);
+    }
+}
+
+//liberer l'ensemble du modéle sur toute ces couches
+void libererModele(layerW_T *Wcouche,layerA_T*Acouche){
+    for (size_t i = 0; i < NBCOUCHE; i++){
+        libererCoucheW(&(Wcouche[i]));
+        libererCoucheA(&(Acouche[i]));
+    }
+}
+
 void forward_propagation(const X_t X,layerW_T *Wcouche,layerA_T *Acouche){
     
     //pour la couche 0 on prend le dataset en entrée

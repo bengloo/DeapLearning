@@ -26,7 +26,7 @@ int main(/*int argc, char const *argv[]*/)
         printf("score:%f %% des predition valide \n",acurencyScore(Y,Ypredict)*100);
         */
         DEBUG_S("\tDebut liberation memoire\n");
-            libererCouche(Wcouche);
+            libererModele(Wcouche,Acouche);
         DEBUG_S("\tfin liberation memoire\n");
     DEBUG_S("fin du programme\n");
     return 1;
@@ -61,3 +61,4 @@ void normaliserDataset(X_t X,dataSet_t D){
         printf("max %f,min %f\n",bornMax,bornMin);*/
     }
 };
+

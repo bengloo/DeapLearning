@@ -92,7 +92,22 @@ void alouerCoucheW(layerW_T *ptrC,int couche);
  * 
  * @param ptrN 
  */
-void libererNeurone(W_T *ptrN);
+void libererNeuroneW(W_T *ptrN);
+
+/**
+ * @brief 
+ * 
+ * @param ptrC 
+ */
+void libererCoucheA(layerA_T *ptrC);
+
+/**
+ * @brief 
+ * 
+ * @param ptrC 
+ */
+void libererNeuroneA(layerA_T *ptrC);
+
 
 /**
  * @brief 
@@ -100,7 +115,7 @@ void libererNeurone(W_T *ptrN);
  * @param ptrC 
  * @param nbN 
  */
-void libererCouche(layerW_T *ptrC);
+void libererCoucheW(layerW_T *ptrC);
 
 
 /**

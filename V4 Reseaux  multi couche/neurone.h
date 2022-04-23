@@ -20,29 +20,35 @@ typedef DATATYPE X_t[NBPARAM][NBDATA];
 typedef DATASETTYPE dataSet_t[NBPARAM][NBDATA];
 
 /**
- * @brief 
+ * @brief  matrice contenant les poids de chaque entrée pour une neurone W[nbentree] est biase
  * 
  */
 
-/**
- * @brief 
- * 
- */
 typedef struct 
 {
     DATATYPE *W;
-    DATATYPE *dW;
-    DATATYPE b;//biase
-    DATATYPE db;
 } W_T;
 
+/**
+ * @brief matice contenant l'activation calculé pour chaque data pour une neurone
+ * 
+ */
 typedef struct 
 {
     DATATYPE A[NBDATA];
 } A_T;
 
 /**
- * @brief 
+ * @brief matice contenant les gradient d'une neurone
+ */
+typedef struct 
+{
+    DATATYPE dz[NBDATA];
+    DATATYPE *dW;
+} G_T;
+
+/**
+ * @brief parametre des neurones d'une couche
  * 
  */
 typedef struct
@@ -51,7 +57,7 @@ typedef struct
 } layerW_T;
 
 /**
- * @brief 
+ * @brief activations des neurones d'une couche et fonction d'activation associé
  * 
  */
 typedef struct
@@ -62,7 +68,16 @@ typedef struct
 } layerA_T;
 
 /**
- * @brief 
+ * @brief gradiants des neurones d'une couche
+ * 
+ */
+typedef struct
+{
+    G_T *NG;
+} layerG_T;
+
+/**
+ * @brief  alocation dynamique des parametres  d'une neurone
  * 
  * @param ptrN 
  * @param nbE 
@@ -70,7 +85,7 @@ typedef struct
 void alouerNeuroneW(W_T *ptrN,int nbE);
 
 /**
- * @brief 
+ * @brief alocation dynamique des activations  d'une couche
  * 
  * @param ptrC 
  * @param couche 
@@ -78,53 +93,74 @@ void alouerNeuroneW(W_T *ptrN,int nbE);
 void alouerCoucheA(layerA_T *ptrC,int couche);
 
 /**
- * @brief 
+ * @brief alocation dynamique des parametres  d'une couche
  * 
  * @param ptrC 
  * @param couche 
  */
 void alouerCoucheW(layerW_T *ptrC,int couche);
 
-
+/**
+ * @brief alocation dynamique des gradiants  d'une couche
+ * 
+ * @param ptrC 
+ * @param couche 
+ */
+void alouerCoucheG(layerG_T *ptrC,int couche);
 
 /**
- * @brief 
+ * @brief libération dynamique des parametres  d'une neurone
  * 
  * @param ptrN 
  */
 void libererNeuroneW(W_T *ptrN);
 
 /**
- * @brief 
+ * @brief libération dynamique des activations  d'une couche
  * 
  * @param ptrC 
  */
 void libererCoucheA(layerA_T *ptrC);
 
 /**
- * @brief 
+ * @brief libération dynamique des activations d'une couche
  * 
  * @param ptrC 
  */
 void libererNeuroneA(layerA_T *ptrC);
 
+/**
+ * @brief libération dynamique des gradiants  d'une neurone
+ * 
+ * @param ptrN 
+ */
+void libererNeuroneG(G_T *ptrN);
+
 
 /**
- * @brief 
+ * @brief libération dynamique des parametres  d'une couche
  * 
  * @param ptrC 
  * @param nbN 
  */
 void libererCoucheW(layerW_T *ptrC);
 
+/**
+ * @brief libération dynamique des parametres  d'une couche
+ * 
+ * @param ptrC 
+ * @param nbN 
+ */
+void libererCoucheG(layerG_T *ptrC);
+
 
 /**
  * @brief initialise de manierre aleatoire les parametre du modéle W et b
  * 
  * @param W 
- * @param b 
+ * @param A
  */
-void initialisation(layerW_T*Wcouche,layerA_T*Acouche);
+void initialisation(layerW_T*Wcouche,layerA_T*Acouche,layerG_T*Gcouche);
 
 
 void forward_propagation(const X_t X,layerW_T*couche,layerA_T *Acouche);
@@ -146,7 +182,7 @@ DATATYPE log_loss(const DATATYPE* A,const _Bool* Y);
  * @param X 
  * @param Y 
  */
-void back_propagation(layerW_T* Wcouche,layerA_T* Acouche,const X_t X,const _Bool* Y);
+void back_propagation(layerW_T* Wcouche,layerA_T* Acouche,layerG_T* Gcouche,const X_t X,const _Bool* Y);
 
 /**
  * @brief mets à jour les parametre en les incrementant par leur gardiant*pas d'aprentissage
@@ -157,7 +193,7 @@ void back_propagation(layerW_T* Wcouche,layerA_T* Acouche,const X_t X,const _Boo
  * @param db 
  * @param learning_rate 
  */
-void update(DATATYPE *W,DATATYPE *b,const DATATYPE* dW,const DATATYPE db,const DATATYPE learning_rate);
+void update(layerW_T*Wcouche,layerG_T*Gcouche,const DATATYPE learning_rate);
 
 /**
  * @brief détermine le modéle d'une neuone(W b) via les data X et etat y retourne  l'evolution du cout dans LoosList
@@ -170,7 +206,7 @@ void update(DATATYPE *W,DATATYPE *b,const DATATYPE* dW,const DATATYPE db,const D
  * @param learning_rate 
  * @param n_iter 
  */
-void artificial_neurone(DATATYPE *LossList,layerW_T*Wcouche,layerA_T*Acouche,const X_t X,const _Bool* Y,const DATATYPE learning_rate,const int n_iter);
+void artificial_neurone(DATATYPE *LossList,layerW_T*Wcouche,layerA_T*Acouche,layerG_T*Gcouche,const X_t X,const _Bool* Y,const DATATYPE learning_rate,const int n_iter);
 
 /**
  * @brief prédit l'etat en reponse à un modéle pour un data set inconus

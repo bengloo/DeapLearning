@@ -8,11 +8,12 @@ int main(/*int argc, char const *argv[]*/)
     DATATYPE loss[NBITER];
     layerW_T Wcouche[NBCOUCHE];
     layerA_T Acouche[NBCOUCHE];
+    layerG_T Gcouche[NBCOUCHE];
     DEBUG_S("début du programme\n");
         genererDataset(dataSet,Y);
         normaliserDataset(X,dataSet);
         DEBUG_S("   début artificial neurone\n");
-            artificial_neurone(loss,Wcouche,Acouche,X,Y,LEARNINGRATE,NBITER);
+            artificial_neurone(loss,Wcouche,Acouche,Gcouche,X,Y,LEARNINGRATE,NBITER);
         DEBUG_S("   fin artificial neurone\n");
         /*DEBUG_S("   début prédiction\n");
             predict(Ypredict,X,W,b);
@@ -38,7 +39,7 @@ void genererDataset(dataSet_t D,_Bool*Y){
         }
         Y[i]=CRITERE(D[0][i],D[1][i]);
     }
-};
+}
 void normaliserDataset(X_t X,dataSet_t D){
     for(int j=0;j<NBPARAM;j++){
         /*DATATYPE bornMin=D[j][0];
@@ -60,5 +61,4 @@ void normaliserDataset(X_t X,dataSet_t D){
         }
         printf("max %f,min %f\n",bornMax,bornMin);*/
     }
-};
-
+}

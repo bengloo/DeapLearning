@@ -12,13 +12,13 @@ DATATYPE heavyside(DATATYPE x){
         return 0;
 }
 
-DATATYPE identité(DATATYPE x){
+DATATYPE identite(DATATYPE x){
     return x;
 }
 
-DATATYPE tanh(DATATYPE x){
+/*DATATYPE tanh(DATATYPE x){
     return tanh(x);
-}
+}*/
 
 DATATYPE arctan(DATATYPE x){
     return atan(x);
@@ -53,7 +53,7 @@ DATATYPE softplus(DATATYPE x){
     return log(1+exp(x));
 }
 
-DATATYPE identitéCourbée(DATATYPE x){
+DATATYPE identiteCourbee(DATATYPE x){
     return (sqrt(1+x*x)-1)/2+x;
 }
 

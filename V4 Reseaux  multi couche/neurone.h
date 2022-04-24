@@ -153,6 +153,14 @@ void libererCoucheW(layerW_T *ptrC);
  */
 void libererCoucheG(layerG_T *ptrC);
 
+/**
+ * @brief libération dynamique du modéle complet
+ * 
+ * @param Wcouche 
+ * @param Acouche 
+ * @param Gcouche 
+ */
+void libererModele(layerW_T *Wcouche,layerA_T*Acouche,layerG_T*Gcouche);
 
 /**
  * @brief initialise de manierre aleatoire les parametre du modéle W et b

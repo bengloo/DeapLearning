@@ -1,6 +1,5 @@
 #define DEBUG //à definir si on veux printf les message de debug attention à la saturation du shell
 
-
 #define NBPARAM 2 //nombre de parametre ici x et y
 #define NBDATA 3 //nombre de donné traité 
 #define LEARNINGRATE 2 //pas d'aprentissage
@@ -12,6 +11,6 @@
 #define EPSILLONE FLT_MIN //Borne min du type de donée traité
 #define FONCTION(x) (2*x+10) //équoition du modéle suposé inconus
 #define CRITERE(x,y) (y>FONCTION(x)) //critére de teste
-#define NBCOUCHE 2 //nombre de couche du reseaux
-#define NBENTREE {NBPARAM,3,1} //nombre de neurone par couche / nombre d'entré par neurone
-#define FCTACTIVATION {sigmoide,sigmoide}
+#define NBCOUCHE 3 //nombre de couche du reseaux
+#define NBENTREE {NBPARAM,3,3,1} //nombre de neurone par couche / nombre d'entré par neurone
+#define FCTACTIVATION {sigmoide,sigmoide,sigmoide} //fonction d'activation par couche

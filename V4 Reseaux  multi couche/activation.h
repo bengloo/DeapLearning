@@ -7,10 +7,10 @@ DATATYPE sigmoide(DATATYPE x);
 DATATYPE heavyside(DATATYPE x);
 
 //calcule la fonction d'activation identitée 
-DATATYPE identitée(DATATYPE x);
+DATATYPE identitee(DATATYPE x);
 
 //calcule la fonction d'activation tanh
-DATATYPE tanh(DATATYPE x);
+//DATATYPE tanh(DATATYPE x); //existe dejas dans math.h
 
 //calcule la fonction d'activation arctan
 DATATYPE arctan(DATATYPE x);
@@ -31,7 +31,7 @@ DATATYPE ELU(DATATYPE x, DATATYPE param);
 DATATYPE softplus(DATATYPE x);
 
 //calcule la fonction d'activation identitée courbée
-DATATYPE identitéeCourbée(DATATYPE x);
+DATATYPE identiteeCourbee(DATATYPE x);
 
 //calcule la fonction d'activation Exponentielle douce paramétrique
 DATATYPE softExp(DATATYPE x, DATATYPE param);

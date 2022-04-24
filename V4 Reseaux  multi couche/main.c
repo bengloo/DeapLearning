@@ -27,7 +27,7 @@ int main(/*int argc, char const *argv[]*/)
         printf("score:%f %% des predition valide \n",acurencyScore(Y,Ypredict)*100);
         */
         DEBUG_S("\tDebut liberation memoire\n");
-            libererModele(Wcouche,Acouche);
+            libererModele(Wcouche,Acouche,Gcouche);
         DEBUG_S("\tfin liberation memoire\n");
     DEBUG_S("fin du programme\n");
     return 1;

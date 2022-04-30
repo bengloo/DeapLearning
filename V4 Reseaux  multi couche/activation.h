@@ -1,4 +1,5 @@
 #include "setting.h"
+#include <math.h>
 
 //calcule la fonction d'activation sigmoide
 DATATYPE sigmoide(DATATYPE x);
@@ -16,7 +17,7 @@ DATATYPE identitee(DATATYPE x);
 DATATYPE arctan(DATATYPE x);
 
 //calcule la fonction d'activation signe doux
-DATATYPE signeDoux(DATATYPE x);
+//DATATYPE signeDoux(DATATYPE x);
 
 //calcule la fonction d'activation Unité de rectification linéaire
 DATATYPE RELu(DATATYPE x);

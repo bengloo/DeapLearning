@@ -170,7 +170,27 @@ void libererModele(layerW_T *Wcouche,layerA_T*Acouche,layerG_T*Gcouche);
  */
 void initialisation(layerW_T*Wcouche,layerA_T*Acouche,layerG_T*Gcouche);
 
+/**
+ * @brief 
+ * 
+ * @param couche 
+ */
+void printParam(layerW_T *couche);
 
+/**
+ * @brief 
+ * 
+ * @param couche 
+ */
+void printGradiant(layerG_T *couche);
+
+/**
+ * @brief 
+ * 
+ * @param X 
+ * @param couche 
+ * @param Acouche 
+ */
 void forward_propagation(const X_t X,layerW_T*couche,layerA_T *Acouche);
 
 /**
@@ -181,6 +201,7 @@ void forward_propagation(const X_t X,layerW_T*couche,layerA_T *Acouche);
  * @return DATATYPE 
  */
 DATATYPE log_loss(const DATATYPE* A,const _Bool* Y);
+
 /**
  * @brief calcule des gradiant celons les ecart entre A et Y
  * 

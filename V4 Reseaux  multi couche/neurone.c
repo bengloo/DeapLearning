@@ -12,6 +12,8 @@ void alouerNeuroneW(W_T *ptrN,int nbE){
 void alouerNeuroneG(G_T *ptrN,int nbE){
     ptrN->dW = (DATATYPE *)malloc(sizeof(DATATYPE)*(nbE+1));
     if(ptrN->dW==NULL)exit(0);
+    for(d=0;d<NBDATA;d++)ptrN->dz[d]=0;
+    for(p=0;p<nbE+1;p++)ptrN->dW[p]=0;
 }
 
 void alouerCoucheW(layerW_T *ptrC,int couche){
@@ -40,17 +42,40 @@ void initialisation(layerW_T *Wcouche,layerA_T*Acouche,layerG_T*Gcouche){
     }
 }
 void printParam(layerW_T *couche){
+    printf("%s",ANSI_GREEN);
     for (c = 0; c < NBCOUCHE; c++)//on parcour les couches du modéle
     {
-        printf("couche:%ld avec %d neurones\n",c+1,nbEntree[c+1]);
+        printf("couche:%ld avec %d neurones\n",c,nbEntree[c+1]);
         for (n = 0; n < nbEntree[c+1]; n++)//on parcour les neurone de chaque couche
         {
-            printf("\tneurone:%ld avec %d entrees \n",n+1,nbEntree[c]);
+            printf("\tneurone:%ld avec %d entrees \n",n,nbEntree[c]);
             printf("\t\tb:%f w:{",couche[c].NW[n].W[nbEntree[c]]);
             for (p = 0; p < nbEntree[c]; p++)//on parcour les parametre d'entrée de chaque neurone
                 printf("%f,",couche[c].NW[n].W[p]);
             printf("}\n");
-}   }   }  
+    }   }   
+    printf("%s",ANSI_RESET);
+}  
+
+void printGradiant(layerG_T *couche){
+    printf("%s",ANSI_RED);
+    for (c = 0; c < NBCOUCHE; c++)//on parcour les couches du modéle
+    {
+        printf("couche:%ld avec %d neurones\n",c,nbEntree[c+1]);
+        for (n = 0; n < nbEntree[c+1]; n++)//on parcour les neurone de chaque couche
+        {
+            printf("\tneurone:%ld avec %d entrees \n",n,nbEntree[c]);
+            printf("\t\tdz:{");
+            for (d = 0; d < NBDATA; d++)//on parcour les parametre d'entrée de chaque neurone
+                printf("%f,",couche[c].NG[n].dz[d]);
+            printf("}\n");
+            printf("\t\tdb:%f dw:{",couche[c].NG[n].dW[nbEntree[c]]);
+            for (p = 0; p < nbEntree[c]; p++)//on parcour les parametre d'entrée de chaque neurone
+                printf("%f,",couche[c].NG[n].dW[p]);
+            printf("}\n");
+    }   }
+    printf("%s",ANSI_RESET); 
+}  
 
 void libererNeuroneW(W_T *ptrN){
         //printf("neurone %p liberer\n",ptrN);
@@ -96,21 +121,19 @@ void forward_propagation(const X_t X,layerW_T *Wcouche,layerA_T *Acouche){
     
     //pour la couche 0 on prend le dataset en entrée
     //A(0)=sigmoid(X*W(0)+b(0);
+    //printf("couche 0\n");
     for (n = 0; n < nbEntree[1]; n++)//pour chque neurone
     {    
-        //printf("test2\n");
+        //printf("\tneurone:%ld avec %d entrees \n",n,nbEntree[0]);
         for(d = 0; d < NBDATA; d++)//pour chaque donée
         {
-            //printf("test3 %f;%ld;%ld\n",Wcouche[0].NW[l].b,l,j);
-            Acouche[0].NA[n].A[d]=Wcouche[0].NW[n].W[NBPARAM];//bias=W[nbentree[0]]=W[nbentree]
-            //printf("test4\n");
+            //printf("\t\tdata:%ld\n",d);
+            Acouche[0].NA[n].A[d]=Wcouche[0].NW[n].W[NBPARAM];//bias=W[nbentree[0]]=W[nbparam]
             for(p = 0; p < NBPARAM; p++){
-                //printf("test4\n");
+                //printf("\t\t\tparam:%ld\n",p);
                 Acouche[0].NA[n].A[d] += X[p][d] * Wcouche[0].NW[n].W[p];
-                //printf("test5\n");
             }
             Acouche[0].NA[n].A[d]=Acouche[0].pfActivation(Acouche[0].NA[n].A[d]);
-            //printf("test6\n");
         }
     }
     //DEBUG_S("test1");
@@ -118,12 +141,18 @@ void forward_propagation(const X_t X,layerW_T *Wcouche,layerA_T *Acouche){
      //A(i)=sigmoid(A(i-1)*W(i)+b(i);   
     for (c = 1; c < NBCOUCHE; c++)//on vas de la cauche la plus basse vers la couche la plus haute
     {    
+        //printf("couche %ld\n",c);
         for (n = 0; n < nbEntree[c+1]; n++)
-        {    
+        {   
+            //printf("\tneurone:%ld avec %d entrees \n",n,nbEntree[c]);
             for(d = 0; d < NBDATA; d++)
             {
-                Acouche[c].NA[n].A[d]=Wcouche[c].NW[n].W[nbEntree[d]];//biase
-                for(p = 0; p < nbEntree[c]; p++) Acouche[c].NA[n].A[d] += Acouche[c-1].NA[p].A[d] * Wcouche[c].NW[n].W[p];
+                //printf("\t\tdata:%ld\n",d);
+                Acouche[c].NA[n].A[d]=Wcouche[c].NW[n].W[nbEntree[c]];//biase
+                for(p = 0; p < nbEntree[c]; p++){
+                    //printf("\t\t\tparam:%ld\n",p);
+                     Acouche[c].NA[n].A[d] += Acouche[c-1].NA[p].A[d] * Wcouche[c].NW[n].W[p];
+                }
                 Acouche[c].NA[n].A[d]=1/(1+exp(-Acouche[c].NA[n].A[d]));
             }
         }
@@ -161,66 +190,73 @@ void back_propagation(layerW_T* Wcouche,layerA_T* Acouche,layerG_T*Gcouche,const
         Gcouche[NBCOUCHE-1].NG[n].dW[nbEntree[NBCOUCHE-1]]/=(DATATYPE)nbEntree[NBCOUCHE-1];
     }
     
-    DEBUG_S("fin derniere couche");
+    //DEBUG_S("fin derniere couche");
     //de l'avant dernierre couche à la deuxiemme    // C=NBCOUCHE-2-->>1
         //dZ(i)=W(i+1)^T*dZ(i+1)*A(i)*(1-A(i))      //dz[C][N]=W[C+1][N]^T*dz[C+1][N]*A[C][N]*(1-A[C][N])
         //dW(i)=1/nbdata*dZ(i)*A(i-1)^T             //dw[C][N]=1/((Nbentree[C])*dz[C][N]*A[C-1][N]^T)
         //db(i)=1/nbdata*somme(dZ(i))               //db[C][N]=1/((Nbentree[C])*somme(dz[C][N])
     for (c = NBCOUCHE-2; c > 0; c--){
-        printf("couche %d\n",c);
+        //printf("couche %ld\n",c);
         for (n = 0; n < nbEntree[c+1]; n++){ 
-            printf("    neurone %d\n",n);
+            //printf("    neurone %ld\n",n);
             for(d = 0; d < NBDATA; d++){
-                printf("        data %d\n",d);
+                //printf("        data %ld\n",d);
                 Gcouche[c].NG[n].dz[d]=0;
-                for(p = 0; p < nbEntree[c+1]; p++){ 
-                    printf("            parametre %d\n",p);
-                    Gcouche[c].NG[n].dz[d] += Wcouche[c+1].NW[n].W[p]*Gcouche[c+1].NG[n].dz[d];
+                for(p = 0; p < nbEntree[c+2]; p++){ 
+                    //printf("            parametre %ld\n",p);
+                    Gcouche[c].NG[n].dz[d] += Wcouche[c+1].NW[p].W[n]*Gcouche[c+1].NG[p].dz[d];
                 }
-                printf("test\n");
                 Gcouche[c].NG[n].dz[d]*=Acouche[c].NA[n].A[d]*(1-Acouche[c].NA[n].A[d]);
             }
             for(p = 0; p < nbEntree[c]; p++){
-                printf("    parametre %d\n",p);
+                //printf("    parametre %ld\n",p);
                 Gcouche[c].NG[n].dW[p]=0;
                 for(d = 0; d < NBDATA; d++){ 
-                    printf("        data %d\n",d);
+                    //printf("        data %ld\n",d);
                     Gcouche[c].NG[n].dW[p] += Acouche[c-1].NA[p].A[d]*Gcouche[c].NG[n].dz[d];
                 }
                 Gcouche[c].NG[n].dW[p]/=(DATATYPE)nbEntree[c];
             }
             Gcouche[c].NG[n].dW[nbEntree[c]]=0;
             for(d = 0; d < NBDATA; d++){ 
-                printf("    data %d\n",d);
+                //printf("    data %ld\n",d);
                 Gcouche[c].NG[n].dW[nbEntree[c]]+=Gcouche[c].NG[n].dz[d];
             }
             Gcouche[c].NG[n].dW[nbEntree[c]]=Gcouche[c].NG[n].dW[nbEntree[c]]/(DATATYPE)nbEntree[c];
         }
     }
-    DEBUG_S("debut premiere couche");
+    //DEBUG_S("debut premiere couche");
+    //printf("couche 0\n");
     //pour la premierre                                 // C=0    
         //dZ(i)=W(i+1)^T*dZ(i+1)*A(i)*(1-A(i))          //dz[C][N]=W[C+1][N]^T*dz[C+1][N]*A[C][N]*(1-A[C][N])
         //dW(i)=1/nbdata*dZ(i)*X^T                      //dw[C][N]=1/((Nbentree[C])*dz[C][N]*X^T)
         //db(i)=1/nbdata*somme(dZ(i))                   //db[C][N]=1/((Nbentree[C])*somme(dz[C][N])
-    for (n = 0; n < nbEntree[1]; n++){
+    for (n = 0; n < nbEntree[1]; n++){ 
+        //printf("    neurone %ld\n",n);
         for(d = 0; d < NBDATA; d++){
+            //printf("        data %ld\n",d);
             Gcouche[0].NG[n].dz[d]=0;
-            for(p = 0; p < nbEntree[1]; p++){ 
-                Gcouche[0].NG[n].dz[d] += Wcouche[1].NW[n].W[p]*Gcouche[1].NG[n].dz[d];
+            for(p = 0; p < nbEntree[2]; p++){ 
+                //printf("            parametre %ld\n",p);
+                Gcouche[0].NG[n].dz[d] += Wcouche[1].NW[p].W[n]*Gcouche[1].NG[p].dz[d];
             }
             Gcouche[0].NG[n].dz[d]*=Acouche[0].NA[n].A[d]*(1-Acouche[0].NA[n].A[d]);
-        } 
-        for(p = 0; p < nbEntree[0]; p++){
-            Gcouche[0].NG[n].dW[p]=0;//dw=0
-            for(d = 0; d < NBDATA; d++){
+        }
+        for(p = 0; p < NBPARAM; p++){
+            //printf("    parametre %ld\n",p);
+            Gcouche[0].NG[n].dW[p]=0;
+            for(d = 0; d < NBDATA; d++){ 
+                //printf("        data %ld\n",d);
                 Gcouche[0].NG[n].dW[p] += X[p][d]*Gcouche[0].NG[n].dz[d];
             }
-            Gcouche[0].NG[n].dW[p]=Gcouche[0].NG[n].dW[p]/(DATATYPE)nbEntree[0];
+            Gcouche[0].NG[n].dW[p]/=(DATATYPE)NBPARAM;
         }
         Gcouche[0].NG[n].dW[NBPARAM]=0;
-        for(d = 0; d < NBDATA; d++) 
+        for(d = 0; d < NBDATA; d++){ 
+            //printf("    data %ld\n",d);
             Gcouche[0].NG[n].dW[NBPARAM]+=Gcouche[0].NG[n].dz[d];
-        Gcouche[0].NG[n].dW[NBPARAM]=Gcouche[0].NG[n].dW[NBPARAM]/(DATATYPE)nbEntree[0];
+        }
+        Gcouche[0].NG[n].dW[NBPARAM]=Gcouche[0].NG[n].dW[NBPARAM]/(DATATYPE)NBPARAM;
     }
 }
 
@@ -240,6 +276,7 @@ void artificial_neurone(DATATYPE *LossList,layerW_T*Wcouche,layerA_T*Acouche,lay
     initialisation(Wcouche,Acouche,Gcouche);
     DEBUG_S("       fin initialisation");
     printParam(Wcouche);
+    printGradiant(Gcouche);
     for(int i=0;i<n_iter;i++){
         DEBUG_S1("début forward_propagation iteration:%d\n",i+1);
         forward_propagation(X,Wcouche,Acouche);

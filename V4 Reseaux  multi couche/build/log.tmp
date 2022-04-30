@@ -1,0 +1,3489 @@
+début du programme
+
+   début artificial neurone
+
+       début initialisation
+       fin initialisation
+[32mcouche:0 avec 3 neurones
+	neurone:0 avec 2 entrees 
+		b:47.739708 w:{27.777473,55.396999,}
+	neurone:1 avec 2 entrees 
+		b:51.340092 w:{62.887093,36.478447,}
+	neurone:2 avec 2 entrees 
+		b:63.571175 w:{95.222977,91.619514,}
+couche:1 avec 2 neurones
+	neurone:0 avec 3 entrees 
+		b:1.630057 w:{71.729698,14.160256,60.696888,}
+	neurone:1 avec 3 entrees 
+		b:15.667910 w:{24.288677,13.723158,80.417679,}
+couche:2 avec 3 neurones
+	neurone:0 avec 2 entrees 
+		b:10.880880 w:{40.094440,12.979044,}
+	neurone:1 avec 2 entrees 
+		b:51.293243 w:{99.892448,21.825691,}
+	neurone:2 avec 2 entrees 
+		b:29.603163 w:{83.911224,61.263985,}
+couche:3 avec 1 neurones
+	neurone:0 avec 3 entrees 
+		b:97.277504 w:{63.755226,52.428719,49.358299,}
+[0m[31mcouche:0 avec 3 neurones
+	neurone:0 avec 2 entrees 
+		dz:{0.000000,0.000000,0.000000,0.000000,}
+		db:0.000000 dw:{0.000000,0.000000,}
+	neurone:1 avec 2 entrees 
+		dz:{0.000000,0.000000,0.000000,0.000000,}
+		db:0.000000 dw:{0.000000,0.000000,}
+	neurone:2 avec 2 entrees 
+		dz:{0.000000,0.000000,0.000000,0.000000,}
+		db:0.000000 dw:{0.000000,0.000000,}
+couche:1 avec 2 neurones
+	neurone:0 avec 3 entrees 
+		dz:{0.000000,0.000000,0.000000,0.000000,}
+		db:0.000000 dw:{0.000000,0.000000,0.000000,}
+	neurone:1 avec 3 entrees 
+		dz:{0.000000,0.000000,0.000000,0.000000,}
+		db:0.000000 dw:{0.000000,0.000000,0.000000,}
+couche:2 avec 3 neurones
+	neurone:0 avec 2 entrees 
+		dz:{0.000000,0.000000,0.000000,0.000000,}
+		db:0.000000 dw:{0.000000,0.000000,}
+	neurone:1 avec 2 entrees 
+		dz:{0.000000,0.000000,0.000000,0.000000,}
+		db:0.000000 dw:{0.000000,0.000000,}
+	neurone:2 avec 2 entrees 
+		dz:{0.000000,0.000000,0.000000,0.000000,}
+		db:0.000000 dw:{0.000000,0.000000,}
+couche:3 avec 1 neurones
+	neurone:0 avec 3 entrees 
+		dz:{0.000000,0.000000,0.000000,0.000000,}
+		db:0.000000 dw:{0.000000,0.000000,0.000000,}
+[0mdébut forward_propagation iteration:1
+couche 0
+	neurone:0 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:1 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:2 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+couche 1
+	neurone:0 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+	neurone:1 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+couche 2
+	neurone:0 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:1 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:2 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+couche 3
+	neurone:0 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+fin forward_propagation iteration:1
+début gradiant iteration:1
+fin derniere couche
+couche 2
+    neurone 0
+        data 0
+            parametre 0
+        data 1
+            parametre 0
+        data 2
+            parametre 0
+        data 3
+            parametre 0
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 1
+        data 0
+            parametre 0
+        data 1
+            parametre 0
+        data 2
+            parametre 0
+        data 3
+            parametre 0
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 2
+        data 0
+            parametre 0
+        data 1
+            parametre 0
+        data 2
+            parametre 0
+        data 3
+            parametre 0
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+couche 1
+    neurone 0
+        data 0
+            parametre 0
+            parametre 1
+            parametre 2
+        data 1
+            parametre 0
+            parametre 1
+            parametre 2
+        data 2
+            parametre 0
+            parametre 1
+            parametre 2
+        data 3
+            parametre 0
+            parametre 1
+            parametre 2
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 2
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 1
+        data 0
+            parametre 0
+            parametre 1
+            parametre 2
+        data 1
+            parametre 0
+            parametre 1
+            parametre 2
+        data 2
+            parametre 0
+            parametre 1
+            parametre 2
+        data 3
+            parametre 0
+            parametre 1
+            parametre 2
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 2
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+debut premiere couche
+couche 0
+    neurone 0
+        data 0
+            parametre 0
+            parametre 1
+        data 1
+            parametre 0
+            parametre 1
+        data 2
+            parametre 0
+            parametre 1
+        data 3
+            parametre 0
+            parametre 1
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 1
+        data 0
+            parametre 0
+            parametre 1
+        data 1
+            parametre 0
+            parametre 1
+        data 2
+            parametre 0
+            parametre 1
+        data 3
+            parametre 0
+            parametre 1
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 2
+        data 0
+            parametre 0
+            parametre 1
+        data 1
+            parametre 0
+            parametre 1
+        data 2
+            parametre 0
+            parametre 1
+        data 3
+            parametre 0
+            parametre 1
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+fin gradiant iteration:1
+début update iteration:1
+début forward_propagation iteration:2
+couche 0
+	neurone:0 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:1 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:2 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+couche 1
+	neurone:0 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+	neurone:1 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+couche 2
+	neurone:0 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:1 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:2 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+couche 3
+	neurone:0 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+fin forward_propagation iteration:2
+début gradiant iteration:2
+fin derniere couche
+couche 2
+    neurone 0
+        data 0
+            parametre 0
+        data 1
+            parametre 0
+        data 2
+            parametre 0
+        data 3
+            parametre 0
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 1
+        data 0
+            parametre 0
+        data 1
+            parametre 0
+        data 2
+            parametre 0
+        data 3
+            parametre 0
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 2
+        data 0
+            parametre 0
+        data 1
+            parametre 0
+        data 2
+            parametre 0
+        data 3
+            parametre 0
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+couche 1
+    neurone 0
+        data 0
+            parametre 0
+            parametre 1
+            parametre 2
+        data 1
+            parametre 0
+            parametre 1
+            parametre 2
+        data 2
+            parametre 0
+            parametre 1
+            parametre 2
+        data 3
+            parametre 0
+            parametre 1
+            parametre 2
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 2
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 1
+        data 0
+            parametre 0
+            parametre 1
+            parametre 2
+        data 1
+            parametre 0
+            parametre 1
+            parametre 2
+        data 2
+            parametre 0
+            parametre 1
+            parametre 2
+        data 3
+            parametre 0
+            parametre 1
+            parametre 2
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 2
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+debut premiere couche
+couche 0
+    neurone 0
+        data 0
+            parametre 0
+            parametre 1
+        data 1
+            parametre 0
+            parametre 1
+        data 2
+            parametre 0
+            parametre 1
+        data 3
+            parametre 0
+            parametre 1
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 1
+        data 0
+            parametre 0
+            parametre 1
+        data 1
+            parametre 0
+            parametre 1
+        data 2
+            parametre 0
+            parametre 1
+        data 3
+            parametre 0
+            parametre 1
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 2
+        data 0
+            parametre 0
+            parametre 1
+        data 1
+            parametre 0
+            parametre 1
+        data 2
+            parametre 0
+            parametre 1
+        data 3
+            parametre 0
+            parametre 1
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+fin gradiant iteration:2
+début update iteration:2
+début forward_propagation iteration:3
+couche 0
+	neurone:0 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:1 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:2 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+couche 1
+	neurone:0 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+	neurone:1 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+couche 2
+	neurone:0 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:1 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:2 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+couche 3
+	neurone:0 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+fin forward_propagation iteration:3
+début gradiant iteration:3
+fin derniere couche
+couche 2
+    neurone 0
+        data 0
+            parametre 0
+        data 1
+            parametre 0
+        data 2
+            parametre 0
+        data 3
+            parametre 0
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 1
+        data 0
+            parametre 0
+        data 1
+            parametre 0
+        data 2
+            parametre 0
+        data 3
+            parametre 0
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 2
+        data 0
+            parametre 0
+        data 1
+            parametre 0
+        data 2
+            parametre 0
+        data 3
+            parametre 0
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+couche 1
+    neurone 0
+        data 0
+            parametre 0
+            parametre 1
+            parametre 2
+        data 1
+            parametre 0
+            parametre 1
+            parametre 2
+        data 2
+            parametre 0
+            parametre 1
+            parametre 2
+        data 3
+            parametre 0
+            parametre 1
+            parametre 2
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 2
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 1
+        data 0
+            parametre 0
+            parametre 1
+            parametre 2
+        data 1
+            parametre 0
+            parametre 1
+            parametre 2
+        data 2
+            parametre 0
+            parametre 1
+            parametre 2
+        data 3
+            parametre 0
+            parametre 1
+            parametre 2
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 2
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+debut premiere couche
+couche 0
+    neurone 0
+        data 0
+            parametre 0
+            parametre 1
+        data 1
+            parametre 0
+            parametre 1
+        data 2
+            parametre 0
+            parametre 1
+        data 3
+            parametre 0
+            parametre 1
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 1
+        data 0
+            parametre 0
+            parametre 1
+        data 1
+            parametre 0
+            parametre 1
+        data 2
+            parametre 0
+            parametre 1
+        data 3
+            parametre 0
+            parametre 1
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 2
+        data 0
+            parametre 0
+            parametre 1
+        data 1
+            parametre 0
+            parametre 1
+        data 2
+            parametre 0
+            parametre 1
+        data 3
+            parametre 0
+            parametre 1
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+fin gradiant iteration:3
+début update iteration:3
+début forward_propagation iteration:4
+couche 0
+	neurone:0 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:1 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:2 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+couche 1
+	neurone:0 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+	neurone:1 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+couche 2
+	neurone:0 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:1 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:2 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+couche 3
+	neurone:0 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+fin forward_propagation iteration:4
+début gradiant iteration:4
+fin derniere couche
+couche 2
+    neurone 0
+        data 0
+            parametre 0
+        data 1
+            parametre 0
+        data 2
+            parametre 0
+        data 3
+            parametre 0
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 1
+        data 0
+            parametre 0
+        data 1
+            parametre 0
+        data 2
+            parametre 0
+        data 3
+            parametre 0
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 2
+        data 0
+            parametre 0
+        data 1
+            parametre 0
+        data 2
+            parametre 0
+        data 3
+            parametre 0
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+couche 1
+    neurone 0
+        data 0
+            parametre 0
+            parametre 1
+            parametre 2
+        data 1
+            parametre 0
+            parametre 1
+            parametre 2
+        data 2
+            parametre 0
+            parametre 1
+            parametre 2
+        data 3
+            parametre 0
+            parametre 1
+            parametre 2
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 2
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 1
+        data 0
+            parametre 0
+            parametre 1
+            parametre 2
+        data 1
+            parametre 0
+            parametre 1
+            parametre 2
+        data 2
+            parametre 0
+            parametre 1
+            parametre 2
+        data 3
+            parametre 0
+            parametre 1
+            parametre 2
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 2
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+debut premiere couche
+couche 0
+    neurone 0
+        data 0
+            parametre 0
+            parametre 1
+        data 1
+            parametre 0
+            parametre 1
+        data 2
+            parametre 0
+            parametre 1
+        data 3
+            parametre 0
+            parametre 1
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 1
+        data 0
+            parametre 0
+            parametre 1
+        data 1
+            parametre 0
+            parametre 1
+        data 2
+            parametre 0
+            parametre 1
+        data 3
+            parametre 0
+            parametre 1
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 2
+        data 0
+            parametre 0
+            parametre 1
+        data 1
+            parametre 0
+            parametre 1
+        data 2
+            parametre 0
+            parametre 1
+        data 3
+            parametre 0
+            parametre 1
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+fin gradiant iteration:4
+début update iteration:4
+début forward_propagation iteration:5
+couche 0
+	neurone:0 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:1 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:2 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+couche 1
+	neurone:0 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+	neurone:1 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+couche 2
+	neurone:0 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:1 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:2 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+couche 3
+	neurone:0 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+fin forward_propagation iteration:5
+début gradiant iteration:5
+fin derniere couche
+couche 2
+    neurone 0
+        data 0
+            parametre 0
+        data 1
+            parametre 0
+        data 2
+            parametre 0
+        data 3
+            parametre 0
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 1
+        data 0
+            parametre 0
+        data 1
+            parametre 0
+        data 2
+            parametre 0
+        data 3
+            parametre 0
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 2
+        data 0
+            parametre 0
+        data 1
+            parametre 0
+        data 2
+            parametre 0
+        data 3
+            parametre 0
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+couche 1
+    neurone 0
+        data 0
+            parametre 0
+            parametre 1
+            parametre 2
+        data 1
+            parametre 0
+            parametre 1
+            parametre 2
+        data 2
+            parametre 0
+            parametre 1
+            parametre 2
+        data 3
+            parametre 0
+            parametre 1
+            parametre 2
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 2
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 1
+        data 0
+            parametre 0
+            parametre 1
+            parametre 2
+        data 1
+            parametre 0
+            parametre 1
+            parametre 2
+        data 2
+            parametre 0
+            parametre 1
+            parametre 2
+        data 3
+            parametre 0
+            parametre 1
+            parametre 2
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 2
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+debut premiere couche
+couche 0
+    neurone 0
+        data 0
+            parametre 0
+            parametre 1
+        data 1
+            parametre 0
+            parametre 1
+        data 2
+            parametre 0
+            parametre 1
+        data 3
+            parametre 0
+            parametre 1
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 1
+        data 0
+            parametre 0
+            parametre 1
+        data 1
+            parametre 0
+            parametre 1
+        data 2
+            parametre 0
+            parametre 1
+        data 3
+            parametre 0
+            parametre 1
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 2
+        data 0
+            parametre 0
+            parametre 1
+        data 1
+            parametre 0
+            parametre 1
+        data 2
+            parametre 0
+            parametre 1
+        data 3
+            parametre 0
+            parametre 1
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+fin gradiant iteration:5
+début update iteration:5
+début forward_propagation iteration:6
+couche 0
+	neurone:0 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:1 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:2 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+couche 1
+	neurone:0 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+	neurone:1 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+couche 2
+	neurone:0 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:1 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:2 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+couche 3
+	neurone:0 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+fin forward_propagation iteration:6
+début gradiant iteration:6
+fin derniere couche
+couche 2
+    neurone 0
+        data 0
+            parametre 0
+        data 1
+            parametre 0
+        data 2
+            parametre 0
+        data 3
+            parametre 0
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 1
+        data 0
+            parametre 0
+        data 1
+            parametre 0
+        data 2
+            parametre 0
+        data 3
+            parametre 0
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 2
+        data 0
+            parametre 0
+        data 1
+            parametre 0
+        data 2
+            parametre 0
+        data 3
+            parametre 0
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+couche 1
+    neurone 0
+        data 0
+            parametre 0
+            parametre 1
+            parametre 2
+        data 1
+            parametre 0
+            parametre 1
+            parametre 2
+        data 2
+            parametre 0
+            parametre 1
+            parametre 2
+        data 3
+            parametre 0
+            parametre 1
+            parametre 2
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 2
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 1
+        data 0
+            parametre 0
+            parametre 1
+            parametre 2
+        data 1
+            parametre 0
+            parametre 1
+            parametre 2
+        data 2
+            parametre 0
+            parametre 1
+            parametre 2
+        data 3
+            parametre 0
+            parametre 1
+            parametre 2
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 2
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+debut premiere couche
+couche 0
+    neurone 0
+        data 0
+            parametre 0
+            parametre 1
+        data 1
+            parametre 0
+            parametre 1
+        data 2
+            parametre 0
+            parametre 1
+        data 3
+            parametre 0
+            parametre 1
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 1
+        data 0
+            parametre 0
+            parametre 1
+        data 1
+            parametre 0
+            parametre 1
+        data 2
+            parametre 0
+            parametre 1
+        data 3
+            parametre 0
+            parametre 1
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 2
+        data 0
+            parametre 0
+            parametre 1
+        data 1
+            parametre 0
+            parametre 1
+        data 2
+            parametre 0
+            parametre 1
+        data 3
+            parametre 0
+            parametre 1
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+fin gradiant iteration:6
+début update iteration:6
+début forward_propagation iteration:7
+couche 0
+	neurone:0 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:1 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:2 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+couche 1
+	neurone:0 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+	neurone:1 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+couche 2
+	neurone:0 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:1 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:2 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+couche 3
+	neurone:0 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+fin forward_propagation iteration:7
+début gradiant iteration:7
+fin derniere couche
+couche 2
+    neurone 0
+        data 0
+            parametre 0
+        data 1
+            parametre 0
+        data 2
+            parametre 0
+        data 3
+            parametre 0
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 1
+        data 0
+            parametre 0
+        data 1
+            parametre 0
+        data 2
+            parametre 0
+        data 3
+            parametre 0
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 2
+        data 0
+            parametre 0
+        data 1
+            parametre 0
+        data 2
+            parametre 0
+        data 3
+            parametre 0
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+couche 1
+    neurone 0
+        data 0
+            parametre 0
+            parametre 1
+            parametre 2
+        data 1
+            parametre 0
+            parametre 1
+            parametre 2
+        data 2
+            parametre 0
+            parametre 1
+            parametre 2
+        data 3
+            parametre 0
+            parametre 1
+            parametre 2
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 2
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 1
+        data 0
+            parametre 0
+            parametre 1
+            parametre 2
+        data 1
+            parametre 0
+            parametre 1
+            parametre 2
+        data 2
+            parametre 0
+            parametre 1
+            parametre 2
+        data 3
+            parametre 0
+            parametre 1
+            parametre 2
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 2
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+debut premiere couche
+couche 0
+    neurone 0
+        data 0
+            parametre 0
+            parametre 1
+        data 1
+            parametre 0
+            parametre 1
+        data 2
+            parametre 0
+            parametre 1
+        data 3
+            parametre 0
+            parametre 1
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 1
+        data 0
+            parametre 0
+            parametre 1
+        data 1
+            parametre 0
+            parametre 1
+        data 2
+            parametre 0
+            parametre 1
+        data 3
+            parametre 0
+            parametre 1
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 2
+        data 0
+            parametre 0
+            parametre 1
+        data 1
+            parametre 0
+            parametre 1
+        data 2
+            parametre 0
+            parametre 1
+        data 3
+            parametre 0
+            parametre 1
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+fin gradiant iteration:7
+début update iteration:7
+début forward_propagation iteration:8
+couche 0
+	neurone:0 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:1 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:2 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+couche 1
+	neurone:0 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+	neurone:1 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+couche 2
+	neurone:0 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:1 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:2 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+couche 3
+	neurone:0 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+fin forward_propagation iteration:8
+début gradiant iteration:8
+fin derniere couche
+couche 2
+    neurone 0
+        data 0
+            parametre 0
+        data 1
+            parametre 0
+        data 2
+            parametre 0
+        data 3
+            parametre 0
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 1
+        data 0
+            parametre 0
+        data 1
+            parametre 0
+        data 2
+            parametre 0
+        data 3
+            parametre 0
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 2
+        data 0
+            parametre 0
+        data 1
+            parametre 0
+        data 2
+            parametre 0
+        data 3
+            parametre 0
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+couche 1
+    neurone 0
+        data 0
+            parametre 0
+            parametre 1
+            parametre 2
+        data 1
+            parametre 0
+            parametre 1
+            parametre 2
+        data 2
+            parametre 0
+            parametre 1
+            parametre 2
+        data 3
+            parametre 0
+            parametre 1
+            parametre 2
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 2
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 1
+        data 0
+            parametre 0
+            parametre 1
+            parametre 2
+        data 1
+            parametre 0
+            parametre 1
+            parametre 2
+        data 2
+            parametre 0
+            parametre 1
+            parametre 2
+        data 3
+            parametre 0
+            parametre 1
+            parametre 2
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 2
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+debut premiere couche
+couche 0
+    neurone 0
+        data 0
+            parametre 0
+            parametre 1
+        data 1
+            parametre 0
+            parametre 1
+        data 2
+            parametre 0
+            parametre 1
+        data 3
+            parametre 0
+            parametre 1
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 1
+        data 0
+            parametre 0
+            parametre 1
+        data 1
+            parametre 0
+            parametre 1
+        data 2
+            parametre 0
+            parametre 1
+        data 3
+            parametre 0
+            parametre 1
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 2
+        data 0
+            parametre 0
+            parametre 1
+        data 1
+            parametre 0
+            parametre 1
+        data 2
+            parametre 0
+            parametre 1
+        data 3
+            parametre 0
+            parametre 1
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+fin gradiant iteration:8
+début update iteration:8
+début forward_propagation iteration:9
+couche 0
+	neurone:0 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:1 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:2 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+couche 1
+	neurone:0 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+	neurone:1 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+couche 2
+	neurone:0 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:1 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:2 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+couche 3
+	neurone:0 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+fin forward_propagation iteration:9
+début gradiant iteration:9
+fin derniere couche
+couche 2
+    neurone 0
+        data 0
+            parametre 0
+        data 1
+            parametre 0
+        data 2
+            parametre 0
+        data 3
+            parametre 0
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 1
+        data 0
+            parametre 0
+        data 1
+            parametre 0
+        data 2
+            parametre 0
+        data 3
+            parametre 0
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 2
+        data 0
+            parametre 0
+        data 1
+            parametre 0
+        data 2
+            parametre 0
+        data 3
+            parametre 0
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+couche 1
+    neurone 0
+        data 0
+            parametre 0
+            parametre 1
+            parametre 2
+        data 1
+            parametre 0
+            parametre 1
+            parametre 2
+        data 2
+            parametre 0
+            parametre 1
+            parametre 2
+        data 3
+            parametre 0
+            parametre 1
+            parametre 2
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 2
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 1
+        data 0
+            parametre 0
+            parametre 1
+            parametre 2
+        data 1
+            parametre 0
+            parametre 1
+            parametre 2
+        data 2
+            parametre 0
+            parametre 1
+            parametre 2
+        data 3
+            parametre 0
+            parametre 1
+            parametre 2
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 2
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+debut premiere couche
+couche 0
+    neurone 0
+        data 0
+            parametre 0
+            parametre 1
+        data 1
+            parametre 0
+            parametre 1
+        data 2
+            parametre 0
+            parametre 1
+        data 3
+            parametre 0
+            parametre 1
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 1
+        data 0
+            parametre 0
+            parametre 1
+        data 1
+            parametre 0
+            parametre 1
+        data 2
+            parametre 0
+            parametre 1
+        data 3
+            parametre 0
+            parametre 1
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+    neurone 2
+        data 0
+            parametre 0
+            parametre 1
+        data 1
+            parametre 0
+            parametre 1
+        data 2
+            parametre 0
+            parametre 1
+        data 3
+            parametre 0
+            parametre 1
+    parametre 0
+        data 0
+        data 1
+        data 2
+        data 3
+    parametre 1
+        data 0
+        data 1
+        data 2
+        data 3
+    data 0
+    data 1
+    data 2
+    data 3
+fin gradiant iteration:9
+début update iteration:9
+début forward_propagation iteration:10
+couche 0
+	neurone:0 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:1 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:2 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+couche 1
+	neurone:0 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+	neurone:1 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+couche 2
+	neurone:0 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:1 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+	neurone:2 avec 2 entrees 
+		data:0
+			param:0
+			param:1
+		data:1
+			param:0
+			param:1
+		data:2
+			param:0
+			param:1
+		data:3
+			param:0
+			param:1
+couche 3
+	neurone:0 avec 3 entrees 
+		data:0
+			param:0
+			param:1
+			param:2
+		data:1
+			param:0
+			param:1
+			param:2
+		data:2
+			param:0
+			param:1
+			param:2
+		data:3
+			param:0
+			param:1
+			param:2
+fin forward_propagation iteration:10
+début gradiant iteration:10
+fin derniere couche
+couche 2
+    neurone 0
+        data 0
+            parametre 0
+        data 1
+            parametre 0
+        data 2
+      

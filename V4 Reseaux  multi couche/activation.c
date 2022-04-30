@@ -1,5 +1,4 @@
 #include "activation.h"
-#include <math.h>
 
 DATATYPE sigmoide(DATATYPE x){
     return 1/(1+exp(-x));
@@ -24,9 +23,9 @@ DATATYPE arctan(DATATYPE x){
     return atan(x);
 }
 
-DATATYPE signeDoux(DATATYPE x){
+/*DATATYPE signeDoux(DATATYPE x){
     return x/(1+abs(x));
-}
+}*/
 
 DATATYPE RELu(DATATYPE x){
     if(x>0)

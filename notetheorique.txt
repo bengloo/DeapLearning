@@ -1,0 +1,64 @@
+///////Produit Matriciel///////////////////////////////////////////////////////////////
+                   kmax
+                |       |
+            jmax|   B   |
+                |       |
+       jmax
+    |       |   |       |
+imax|   A   |   |   R   |
+    |       |   |       |
+
+A[imax][jmax].B[jmax][kmax]=R[imax][kmax]
+
+pour    i=0->imax
+    pour    k=0->kmax
+        R[i][k]=0
+        pour    j=0->jmax
+            R[i][k]+=A[i][j]*B[j][k]
+        fin pour
+    fin pour
+fin pour
+
+//////////////////////////////////////////////
+
+                   kmax
+                |       |
+            jmax|  B^T  |
+                |       |
+       jmax
+    |       |   |       |
+imax|   A   |   |   R   |
+    |       |   |       |
+
+A[imax][jmax].B[kmax][jmax]^T=R[imax][kmax]
+
+pour    i=0->imax
+    pour    k=0->kmax
+        R[i][k]=0
+        pour    j=0->jmax
+            R[i][k]+=A[i][j]*B[k][j]
+        fin pour
+    fin pour
+fin pour
+
+//////////////////////////////////////////////
+
+                   kmax
+                |       |
+            jmax|   B   |
+                |       |
+       jmax
+    |       |   |       |
+imax|  A^T  |   |   R   |
+    |       |   |       |
+
+A[jmax][imax]^T.B[jmax][kmax]^T=R[imax][kmax]
+
+pour    i=0->imax
+    pour    k=0->kmax
+        R[i][k]=0
+        pour    j=0->jmax
+            R[i][k]+=A[j][i]*B[j][k]
+        fin pour
+    fin pour
+fin pour

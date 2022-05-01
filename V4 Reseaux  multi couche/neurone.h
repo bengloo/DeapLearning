@@ -163,6 +163,19 @@ void libererCoucheG(layerG_T *ptrC);
 void libererModele(layerW_T *Wcouche,layerA_T*Acouche,layerG_T*Gcouche);
 
 /**
+ * @brief calule recursivment la réponse du modéle à un data
+ * 
+ * @param nA 
+ * @param cA 
+ * @param Acouche 
+ * @param Wcouche 
+ * @param X 
+ * @param dA 
+ * @return DATATYPE 
+ */
+DATATYPE activation(size_t nA,size_t cA,const layerA_T *Acouche,const layerW_T *Wcouche,const X_t X,size_t dA);
+
+/**
  * @brief initialise de manierre aleatoire les parametre du modéle W et b
  * 
  * @param W 
@@ -171,14 +184,14 @@ void libererModele(layerW_T *Wcouche,layerA_T*Acouche,layerG_T*Gcouche);
 void initialisation(layerW_T*Wcouche,layerA_T*Acouche,layerG_T*Gcouche);
 
 /**
- * @brief 
+ * @brief affiche les parametre du modéle 
  * 
  * @param couche 
  */
 void printParam(layerW_T *couche);
 
 /**
- * @brief 
+ * @brief affiche les gradiant du modéle
  * 
  * @param couche 
  */
@@ -194,13 +207,13 @@ void printGradiant(layerG_T *couche);
 void forward_propagation(const X_t X,layerW_T*couche,layerA_T *Acouche);
 
 /**
- * @brief calcule le cout du modéle en comparent A et Y telque: somme(A>0.5==Y)/NBDATA
+ * @brief calcule le cout du modéle en comparent l'activation de la dernierre couche et Y telque: somme(A>0.5==Y)/NBDATA
  * 
- * @param A 
+ * @param coucheA 
  * @param Y 
  * @return DATATYPE 
  */
-DATATYPE log_loss(const DATATYPE* A,const _Bool* Y);
+DATATYPE log_loss(const layerA_T* coucheA,const _Bool* Y);
 
 /**
  * @brief calcule des gradiant celons les ecart entre A et Y
@@ -245,7 +258,7 @@ void artificial_neurone(DATATYPE *LossList,layerW_T*Wcouche,layerA_T*Acouche,lay
  * @param W 
  * @param b 
  */
-void predict(_Bool *Y,const X_t X,const DATATYPE* W,const DATATYPE b);
+void predict(_Bool *Y,const X_t X,layerA_T *coucheA,layerW_T *coucheW);
 
 /**
  * @brief retourne le ratio de similitude entre les etat predit et reel d'un dataset

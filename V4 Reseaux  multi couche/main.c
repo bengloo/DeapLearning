@@ -9,23 +9,17 @@ int main(/*int argc, char const *argv[]*/)
     layerW_T Wcouche[NBCOUCHE];
     layerA_T Acouche[NBCOUCHE];
     layerG_T Gcouche[NBCOUCHE];
+    printf("%s",ANSI_CLEAR);
     DEBUG_S("début du programme\n");
         genererDataset(dataSet,Y);
         normaliserDataset(X,dataSet);
-        DEBUG_S("   début artificial neurone\n");
+        DEBUG_S("début artificial neurone\n");
             artificial_neurone(loss,Wcouche,Acouche,Gcouche,X,Y,LEARNINGRATE,NBITER);
-        DEBUG_S("   fin artificial neurone\n");
-        /*DEBUG_S("   début prédiction\n");
-            predict(Ypredict,X,W,b);
-        DEBUG_S("   fin prédiction\n");
-        printf("W:[");
-        for(int i=0;i<NBPARAM;i++){
-            printf("%f  ",W[i]);
-        }
-        printf("]\nb=%f\n",b);
-        if(NBPARAM==2)printf("Modéle aproché:\ny=%fx+%f\n",-W[0]/W[1],-(b/W[1])*(BORNEMAX+BORNEMIN)-BORNEMIN*(1+W[0]/W[1]));
+        DEBUG_S("fin artificial neurone\n");
+        DEBUG_S("début prédiction\n");
+            predict(Ypredict,X,Acouche,Wcouche);
+        DEBUG_S("fin prédiction\n");
         printf("score:%f %% des predition valide \n",acurencyScore(Y,Ypredict)*100);
-        */
         DEBUG_S("\tDebut liberation memoire\n");
             libererModele(Wcouche,Acouche,Gcouche);
         DEBUG_S("\tfin liberation memoire\n");

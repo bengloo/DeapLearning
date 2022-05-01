@@ -1,5 +1,6 @@
 # DeapLearning
 Projet autodidacte etudiant sur le machine-learning et le deap-learning
+fais sous linux 
 
 V3: regression lineaire modéle un couche lineaire
 
@@ -25,3 +26,8 @@ V4: regression polynomiale mulicouche multineurones
     cmake
     make
     ./Deeplearning
+
+# fichier de log et encodage ANSI
+si vous redirigé le procesus vert un fichier :.\Deaplearning>res.ansi
+Vous n'aurais pas l'interpretation de l'encodage ansi faite naturelement par le terminal
+Personellement j'utilise le mode Priview de l'extension ANSI colore de Visual studio Code

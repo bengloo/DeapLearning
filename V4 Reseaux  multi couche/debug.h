@@ -17,7 +17,26 @@
 #define DEBUG_S4(s, p1, p2, p3, p4) (void)0;
 #endif
 
+#define ANSI_CLEAR "\033[0;0H\033[2J"
 #define ANSI_RESET "\033[0m"
+#define ANSI_BOLD "\033[1m"
+#define ANSI_FAINT "\033[2m"
+#define ANSI_ITALIC "\033[3m"
+#define ANSI_UNDERLINE "\033[4m"
+#define ANSI_S_BLINK "\033[5m"
+#define ANSI_R_BLINK "\033[6m"
+#define ANSI_REVERSE "\033[7m"
+#define ANSI_CONCEAL "\033[8m"
+#define ANSI_CROSSED "\033[9m"
+#define ANSI_DEFAULT "\033[10m"
+#define ANSI_FRAKTUR "\033[20m"
+#define ANSI_D_UNDERLINE "\033[21m"
+#define ANSI_NORMAL "\033[22m"
+#define ANSI_NOT_ITALIC "\033[23m"
+#define ANSI_NOT_UNDERLINE "\033[24m"
+#define ANSI_NOT_BLINK "\033[25m"
+#define ANSI_NOT_INVERSE "\033[27m"
+
 #define ANSI_BLACK "\033[30m"
 #define ANSI_RED "\033[31m"
 #define ANSI_GREEN "\033[32m"

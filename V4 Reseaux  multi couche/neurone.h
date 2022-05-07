@@ -184,18 +184,16 @@ DATATYPE activation(size_t nA,size_t cA,const layerA_T *Acouche,const layerW_T *
 void initialisation(layerW_T*Wcouche,layerA_T*Acouche,layerG_T*Gcouche);
 
 /**
- * @brief affiche les parametre du modéle 
+ * @brief affiche les données du modéle souaité 
  * 
- * @param couche 
+ * @param Wcouche 
+ * @param Wflag 
+ * @param Acouche 
+ * @param Aflag 
+ * @param Gcouche 
+ * @param Gflag 
  */
-void printParam(layerW_T *couche);
-
-/**
- * @brief affiche les gradiant du modéle
- * 
- * @param couche 
- */
-void printGradiant(layerG_T *couche);
+void printAll(layerW_T *Wcouche,_Bool Wflag,layerA_T*Acouche,_Bool Aflag,layerG_T*Gcouche,_Bool Gflag);
 
 /**
  * @brief 

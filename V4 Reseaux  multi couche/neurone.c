@@ -1,7 +1,8 @@
 #include "neurone.h"
 size_t c,n,p,d;//variable globale d'iteration couche c,neurone n,parametre p,d data
-int nbEntree[NBCOUCHE+1]=NBENTREE;//nombre d'entré par couche et donc nombre de neurone de la couche précedente
+size_t nbEntree[NBCOUCHE+1]=NBENTREE;//nombre d'entré par couche et donc nombre de neurone de la couche précedente
 DATATYPE (*fctActivation[NBCOUCHE])(DATATYPE)=FCTACTIVATION;//fonction d'activation utilisé a chaque couche
+size_t nbentreeMax=0;//nombre d'entré max d'une couche
 
 void alouerNeuroneW(W_T *ptrN,int nbE){
     ptrN->W = (DATATYPE *)malloc(sizeof(DATATYPE)*(nbE+1));
@@ -38,60 +39,14 @@ void alouerCoucheA(layerA_T *ptrC,int couche){
 }
 
 void initialisation(layerW_T *Wcouche,layerA_T*Acouche,layerG_T*Gcouche){
+    for(c=0;c<NBCOUCHE;c++){
+        nbentreeMax=(nbentreeMax>nbEntree[c])?nbentreeMax:nbEntree[c];  
+    }
     for (c = 0; c < NBCOUCHE; c++){
         alouerCoucheW(&(Wcouche[c]),c);
         alouerCoucheA(&(Acouche[c]),c);
         alouerCoucheG(&(Gcouche[c]),c);
     }
-}
-void printParam(layerW_T *couche){
-    printf("%s",ANSI_BLUE);
-    for (c = 0; c < NBCOUCHE; c++)//on parcour les couches du modéle
-    {
-        printf("couche:%ld avec %d neurones\n",c,nbEntree[c+1]);
-        for (n = 0; n < nbEntree[c+1]; n++)//on parcour les neurone de chaque couche
-        {
-            printf("\tneurone:%ld avec %d entrees \n",n,nbEntree[c]);
-            printf("\t\tb:%f w:{",couche[c].NW[n].W[nbEntree[c]]);
-            for (p = 0; p < nbEntree[c]; p++)//on parcour les parametre d'entrée de chaque neurone
-                printf("%f,",couche[c].NW[n].W[p]);
-            printf("}\n");
-    }   }   
-    printf("%s",ANSI_RESET);
-}  
-
-void printGradiant(layerG_T *couche){
-    printf("%s",ANSI_PURPLE);
-    for (c = 0; c < NBCOUCHE; c++)//on parcour les couches du modéle
-    {
-        printf("couche:%ld avec %d neurones\n",c,nbEntree[c+1]);
-        for (n = 0; n < nbEntree[c+1]; n++)//on parcour les neurone de chaque couche
-        {
-            printf("\tneurone:%ld avec %d entrees \n",n,nbEntree[c]);
-            printf("\t\tdz:{");
-            for (d = 0; d < NBDATA; d++)//on parcour les parametre d'entrée de chaque neurone
-                printf("%f,",couche[c].NG[n].dz[d]);
-            printf("}\n");
-            printf("\t\tdb:%f dw:{",couche[c].NG[n].dW[nbEntree[c]]);
-            for (p = 0; p < nbEntree[c]; p++)//on parcour les parametre d'entrée de chaque neurone
-                printf("%f,",couche[c].NG[n].dW[p]);
-            printf("}\n");
-    }   }
-    printf("%s",ANSI_RESET); 
-}  
-
-void printActivation(layerA_T *couche){
-    printf("%s",ANSI_CYAN);
-    for (c = 0; c < NBCOUCHE; c++)//on parcour les couches du modéle
-    {
-        printf("couche:%ld avec %d neurones\n",c,nbEntree[c+1]);
-        for (n = 0; n < nbEntree[c+1]; n++)//on parcour les neurone de chaque couche
-        {
-            printf("\tneurone:%ld ; A:{",n);
-            for(d=0;d<NBDATA;d++)printf("%f,",couche[c].NA[n].A[d]);
-            printf("}\n");
-    }   }
-    printf("%s",ANSI_RESET); 
 }
 
 void printAll(layerW_T *Wcouche,_Bool Wflag,layerA_T*Acouche,_Bool Aflag,layerG_T*Gcouche,_Bool Gflag){
@@ -99,38 +54,46 @@ void printAll(layerW_T *Wcouche,_Bool Wflag,layerA_T*Acouche,_Bool Aflag,layerG_
         //printf("couche:%ld\n",c);
         for(n=0;n<nbEntree[c+1];n++){
             //printf("\tneurone:%ld\n",n);
-            printf("\033[%ldm C:%ld \033[%ldm N:%ld   ",30+c%8,c,30+n%8,n);
-            if(Wflag){
-                printf("%s",ANSI_BLUE);
-                printf("b=%6.3f  W:{",Wcouche[c].NW[n].W[nbEntree[c]]);
-                for(p=0;p<nbEntree[c];p++){
-                    printf("%6.3f,",Wcouche[c].NW[n].W[p]);
+            printf("\033[%ldm C:%ld \033[%ldm N:%ld",30+c%8,c,30+n%8,n);
+            if(Aflag){
+                printf("%s",ANSI_CYAN);
+                printf(" A={");
+                printf("%*.*f",PRINT_LENGTH,PRINT_PRECISION,Acouche[c].NA[n].A[0]);
+                for(d=1;d<NBDATA;d++){
+                    printf(",%*.*f",PRINT_LENGTH,PRINT_PRECISION,Acouche[c].NA[n].A[d]);
                 }
                 printf("}");
             }
-            if(Aflag){
-                printf("%s",ANSI_CYAN);
-                printf("\tA={");
-                for(d=0;d<NBDATA;d++){
-                    printf("%6.3f,",Acouche[c].NA[n].A[d]);
+            if(Wflag){
+                printf("%s",ANSI_BLUE);
+                printf(" b=%*.*f W:{",PRINT_LENGTH,PRINT_PRECISION,Wcouche[c].NW[n].W[nbEntree[c]]);
+                printf("%*.*f",PRINT_LENGTH,PRINT_PRECISION,Wcouche[c].NW[n].W[0]);
+                for(p=1;p<nbentreeMax;p++){
+                    if(p<nbEntree[c])
+                        printf(",%*.*f",PRINT_LENGTH,PRINT_PRECISION,Wcouche[c].NW[n].W[p]);
+                    else
+                        printf("%*s",PRINT_LENGTH+1,"");
                 }
                 printf("}");
             }
             if(Gflag){
                 printf("%s",ANSI_PURPLE);
-                printf("  dz={");
-                for(d=0;d<NBDATA;d++){
-                    printf("%6.3f,",Gcouche[c].NG[n].dz[d]);
+                printf(" dz={");
+                printf("%*.*f",PRINT_LENGTH,PRINT_PRECISION,Gcouche[c].NG[n].dz[0]);
+                for(d=1;d<NBDATA;d++){
+                    printf(",%*.*f",PRINT_LENGTH,PRINT_PRECISION,Gcouche[c].NG[n].dz[d]);
                 }
                 printf("}"); 
-                printf("\tdb=%6.3f  dW:{",Gcouche[c].NG[n].dW[nbEntree[c]]);
-                for(p=0;p<nbEntree[c];p++){
-                    printf("%2.3f,",Gcouche[c].NG[n].dW[p]);
+                printf(" db=%*.*f dW:{",PRINT_LENGTH,PRINT_PRECISION,Gcouche[c].NG[n].dW[nbEntree[c]]);
+                printf("%*.*f",PRINT_LENGTH,PRINT_PRECISION,Gcouche[c].NG[n].dW[0]);
+                for(p=1;p<nbentreeMax;p++){
+                    if(p<nbEntree[c])
+                        printf(",%*.*f",PRINT_LENGTH,PRINT_PRECISION,Gcouche[c].NG[n].dW[p]);
+                    else
+                        printf("%*s",PRINT_LENGTH+1,"");
                 }
                 printf("}");
-                 
             }
-
             printf("\n%s",ANSI_RESET);
         }
     }
@@ -359,13 +322,13 @@ void artificial_neurone(DATATYPE *LossList,layerW_T*Wcouche,layerA_T*Acouche,lay
         DEBUG_S1("début forward_propagation iteration:%ld\n",i+1);
         forward_propagation(X,Wcouche,Acouche);
         DEBUG_S1("fin forward_propagation iteration:%ld\n",i+1);
-        DEBUG_S1("           début logloss iteration:%ld\n",i+1);
+        DEBUG_S1("début logloss iteration:%ld\n",i+1);
         //LossList[i]=log_loss(A,Y);
-        if(i%(n_iter/10)==0){
+        if(i%((n_iter/100>0)?n_iter/100:1)==0){
             printf("logloss[%ld]=%f\n",i,log_loss(Acouche,Y));
             printAll(Wcouche,1,Acouche,1,Gcouche,1);
         }
-        DEBUG_S1("           fin logloss iteration:%ld\n",i+1);
+        DEBUG_S1("fin logloss iteration:%ld\n",i+1);
         DEBUG_S1("début gradiant iteration:%ld\n",i+1);
         back_propagation(Wcouche,Acouche,Gcouche,X,Y);
         DEBUG_S1("fin gradiant iteration:%ld\n",i+1);
@@ -376,10 +339,9 @@ void artificial_neurone(DATATYPE *LossList,layerW_T*Wcouche,layerA_T*Acouche,lay
     printAll(Wcouche,1,Acouche,1,Gcouche,1);
 }
 void predict(_Bool *Y,const X_t X,layerA_T *coucheA,layerW_T *coucheW){
-    DATATYPE A[NBDATA];//resulat fonction d'activation
+    forward_propagation(X,coucheW,coucheA);
     for( d=0;d<NBDATA;d++){
-        //printf("test3");
-        Y[d]=(activation(0,NBCOUCHE-1,coucheA,coucheW,X,d)>0.5)?1:0;
+        Y[d]=(coucheA[NBCOUCHE-1].NA[0].A[d]>0.5)?1:0;
     }
 };
 

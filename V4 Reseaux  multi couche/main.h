@@ -1,6 +1,5 @@
-#include "setting.h"
 #include "neurone.h"
-
+#include "setting.h"
 /**
  * @brief genere un data set celons une lois Y=1/(1+e^-(W1.X1+W2.X2....+b))>0.5 présumé inconue pour 2 parametre soit la forme x1=a.x2+c
  * 

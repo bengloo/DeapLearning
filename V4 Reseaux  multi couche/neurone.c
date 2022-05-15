@@ -5,12 +5,14 @@ DATATYPE (*fctActivation[NBCOUCHE])(DATATYPE)=FCTACTIVATION;//fonction d'activat
 size_t nbentreeMax=0;//nombre d'entré max d'une couche
 
 void integriteeSettings(){
-    if(sizeof(nbEntree)/sizeof(nbEntree[0])<NBCOUCHE+2){
+    DEBUG_S1("size(nbentree):%ld\n",sizeof(nbEntree)/sizeof(nbEntree[0]));
+    DEBUG_S1("size(fctActivation):%ld\n",sizeof(fctActivation)/sizeof(fctActivation[0]));
+    if(sizeof(nbEntree)/sizeof(nbEntree[0])<NBCOUCHE+1){
         printf("%s",ANSI_RED);
         printf("la definition du nombre entrees/neurones par couche est invalide dans les settings\n");
         exit(1);
     }
-    if(sizeof(fctActivation)/sizeof(fctActivation[0])<NBCOUCHE+1){
+    if(sizeof(fctActivation)/sizeof(fctActivation[0])<NBCOUCHE){
         printf("%s",ANSI_RED);
         printf("la definition des fonction d'activation par couche est invalide dans les settings\n");
         exit(1);
@@ -374,7 +376,7 @@ void artificial_neurone(DATATYPE *LossList,layerW_T*Wcouche,layerA_T*Acouche,lay
     DEBUG_S("début initialisation");
     initialisation(Wcouche,Acouche,Gcouche);
     DEBUG_S("fin initialisation");
-    printAll(Wcouche,1,Acouche,0,Gcouche,0);
+    printAll(Wcouche,1,Acouche,PrintGradParam,Gcouche,PrintGradParam);
     for(size_t i=0;i<n_iter;i++){
         DEBUG_S1("début forward_propagation iteration:%ld\n",i);
         forward_propagation(X,Wcouche,Acouche);
@@ -383,7 +385,7 @@ void artificial_neurone(DATATYPE *LossList,layerW_T*Wcouche,layerA_T*Acouche,lay
         //LossList[i]=log_loss(A,Y);
         if(i%((n_iter/100>0)?n_iter/100:1)==0){
             printf("logloss[%ld]=%f\n",i,log_loss(Acouche,Y));
-            printAll(Wcouche,1,Acouche,0,Gcouche,0);
+            printAll(Wcouche,1,Acouche,PrintGradParam,Gcouche,PrintGradParam);
         }
         DEBUG_S1("fin logloss iteration:%ld\n",i);
         DEBUG_S1("début gradiant iteration:%ld\n",i);
@@ -395,7 +397,7 @@ void artificial_neurone(DATATYPE *LossList,layerW_T*Wcouche,layerA_T*Acouche,lay
         //printAll(Wcouche,1,Acouche,1,Gcouche,1);
         DEBUG_S1("fin update iteration:%ld\n",i);
     }
-    printAll(Wcouche,1,Acouche,0,Gcouche,0);
+    printAll(Wcouche,1,Acouche,PrintGradParam,Gcouche,PrintGradParam);
 }
 void predict(_Bool *Y,const X_t X,layerA_T *coucheA,layerW_T *coucheW){
     forward_propagation(X,coucheW,coucheA);

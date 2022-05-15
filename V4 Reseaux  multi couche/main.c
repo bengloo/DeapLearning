@@ -1,5 +1,4 @@
 #include "main.h"
-
 int main(/*int argc, char const *argv[]*/)
 {
     dataSet_t dataSet;//data set originel
@@ -17,7 +16,9 @@ int main(/*int argc, char const *argv[]*/)
     DEBUG_S("début du programme\n");
         genererDataset(dataSet,Y);
         normaliserDataset(X,dataSet);
-        afficherDataset(X,dataSet,Y);
+        #if NBDATA <10
+            afficherDataset(X,dataSet,Y);
+        #endif
         DEBUG_S("début artificial neurone\n");
             artificial_neurone(loss,Wcouche,Acouche,Gcouche,X,Y,LEARNINGRATE,NBITER);
         DEBUG_S("fin artificial neurone\n");
@@ -32,11 +33,12 @@ int main(/*int argc, char const *argv[]*/)
     return 1;
 }
 void genererDataset(dataSet_t D,_Bool*Y){
-    #ifdef INITRDM
-        for(int i=0;i<NBDATA;i++){
+    #ifdef INITRDM 
+        for(int d=0;d<NBDATA;d++){
             for(int j=0;j<NBPARAM;j++){
-                D[j][i]=(DATASETTYPE)rand()/((DATASETTYPE)RAND_MAX/((DATASETTYPE)BORNEMAX+(DATASETTYPE)BORNEMIN))-(DATASETTYPE)BORNEMIN;
+                D[j][d]=(DATASETTYPE)rand()/((DATASETTYPE)RAND_MAX/((DATASETTYPE)BORNEMAX+(DATASETTYPE)BORNEMIN))-(DATASETTYPE)BORNEMIN;
             }
+            Y[d]=CRITERE(D[0][d],D[1][d]);
         }
     #else
         int rac =(int)sqrt(NBDATA);//il est preferable de prendre un NBDATA à racine entierre

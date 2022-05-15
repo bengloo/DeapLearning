@@ -15,3 +15,12 @@ void genererDataset(dataSet_t D,_Bool*Y);
  * @param X 
  */
 void normaliserDataset(X_t X,dataSet_t D);
+
+/**
+ * @brief affiche le data set brute, normalisé et sa réponse binaire
+ * 
+ * @param X 
+ * @param dataSet 
+ * @param Y 
+ */
+void afficherDataset(const X_t X, const dataSet_t dataSet,const _Bool* Y);

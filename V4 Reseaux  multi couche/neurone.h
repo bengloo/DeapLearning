@@ -77,6 +77,12 @@ typedef struct
 } layerG_T;
 
 /**
+ * @brief verifie que le setting parametre son intégres
+ * 
+ */
+void integriteeSettings();
+
+/**
  * @brief  alocation dynamique des parametres  d'une neurone
  * 
  * @param ptrN 
@@ -196,13 +202,13 @@ void initialisation(layerW_T*Wcouche,layerA_T*Acouche,layerG_T*Gcouche);
 void printAll(layerW_T *Wcouche,_Bool Wflag,layerA_T*Acouche,_Bool Aflag,layerG_T*Gcouche,_Bool Gflag);
 
 /**
- * @brief 
+ * @brief calcule les activavtion du modéle pour les parametre et dataset donné 
  * 
  * @param X 
- * @param couche 
+ * @param Wcouche 
  * @param Acouche 
  */
-void forward_propagation(const X_t X,layerW_T*couche,layerA_T *Acouche);
+void forward_propagation(const X_t X,layerW_T*Wcouche,layerA_T *Acouche);
 
 /**
  * @brief calcule le cout du modéle en comparent l'activation de la dernierre couche et Y telque: somme(A>0.5==Y)/NBDATA
@@ -216,9 +222,9 @@ DATATYPE log_loss(const layerA_T* coucheA,const _Bool* Y);
 /**
  * @brief calcule des gradiant celons les ecart entre A et Y
  * 
- * @param dW 
- * @param db 
- * @param A 
+ * @param Wcouche 
+ * @param Acouche 
+ * @param Gcouche 
  * @param X 
  * @param Y 
  */
@@ -227,10 +233,8 @@ void back_propagation(layerW_T* Wcouche,layerA_T* Acouche,layerG_T* Gcouche,cons
 /**
  * @brief mets à jour les parametre en les incrementant par leur gardiant*pas d'aprentissage
  * 
- * @param W 
- * @param b 
- * @param dW 
- * @param db 
+ * @param Wcouche 
+ * @param Gcouche 
  * @param learning_rate 
  */
 void update(layerW_T*Wcouche,layerG_T*Gcouche,const DATATYPE learning_rate);
@@ -239,8 +243,9 @@ void update(layerW_T*Wcouche,layerG_T*Gcouche,const DATATYPE learning_rate);
  * @brief détermine le modéle d'une neuone(W b) via les data X et etat y retourne  l'evolution du cout dans LoosList
  * 
  * @param LossList 
- * @param W 
- * @param b 
+ * @param Wcouche 
+ * @param Acouche 
+ * @param Gcouche 
  * @param X 
  * @param Y 
  * @param learning_rate 
@@ -253,8 +258,8 @@ void artificial_neurone(DATATYPE *LossList,layerW_T*Wcouche,layerA_T*Acouche,lay
  * 
  * @param Y 
  * @param X 
- * @param W 
- * @param b 
+ * @param coucheA 
+ * @param coucheW 
  */
 void predict(_Bool *Y,const X_t X,layerA_T *coucheA,layerW_T *coucheW);
 

@@ -1,4 +1,5 @@
 #include "main.h"
+
 int main(/*int argc, char const *argv[]*/)
 {
     dataSet_t dataSet;//data set originel
@@ -9,10 +10,14 @@ int main(/*int argc, char const *argv[]*/)
     layerW_T Wcouche[NBCOUCHE];
     layerA_T Acouche[NBCOUCHE];
     layerG_T Gcouche[NBCOUCHE];
-    printf("%s",ANSI_CLEAR);
+    #ifdef INITRDM
+        srand( time( NULL ) );
+    #endif
+    integriteeSettings();
     DEBUG_S("début du programme\n");
         genererDataset(dataSet,Y);
         normaliserDataset(X,dataSet);
+        afficherDataset(X,dataSet,Y);
         DEBUG_S("début artificial neurone\n");
             artificial_neurone(loss,Wcouche,Acouche,Gcouche,X,Y,LEARNINGRATE,NBITER);
         DEBUG_S("fin artificial neurone\n");
@@ -27,12 +32,21 @@ int main(/*int argc, char const *argv[]*/)
     return 1;
 }
 void genererDataset(dataSet_t D,_Bool*Y){
-    for(int i=0;i<NBDATA;i++){
-        for(int j=0;j<NBPARAM;j++){
-            D[j][i]=(DATASETTYPE)rand()/((DATASETTYPE)RAND_MAX/((DATASETTYPE)BORNEMAX+(DATASETTYPE)BORNEMIN))-(DATASETTYPE)BORNEMIN;
+    #ifdef INITRDM
+        for(int i=0;i<NBDATA;i++){
+            for(int j=0;j<NBPARAM;j++){
+                D[j][i]=(DATASETTYPE)rand()/((DATASETTYPE)RAND_MAX/((DATASETTYPE)BORNEMAX+(DATASETTYPE)BORNEMIN))-(DATASETTYPE)BORNEMIN;
+            }
         }
-        Y[i]=CRITERE(D[0][i],D[1][i]);
-    }
+    #else
+        int rac =(int)sqrt(NBDATA);//il est preferable de prendre un NBDATA à racine entierre
+        printf("rac:%d\n",rac);
+        for(int d=0;d<NBDATA;d++){
+            D[0][d]=(((DATASETTYPE)(d%rac))/(DATASETTYPE)rac)*(BORNEMAX+BORNEMIN)-BORNEMIN;
+            D[1][d]=((DATASETTYPE)(((d/rac))%rac)/(DATASETTYPE)rac)*(BORNEMAX+BORNEMIN)-BORNEMIN;
+            Y[d]=CRITERE(D[0][d],D[1][d]);
+        }
+    #endif 
 }
 void normaliserDataset(X_t X,dataSet_t D){
     for(int j=0;j<NBPARAM;j++){
@@ -44,7 +58,6 @@ void normaliserDataset(X_t X,dataSet_t D){
         }
         printf("max %f,min %f\n",bornMax,bornMin);*/
         for(int i=0;i<NBDATA;i++){
-            //X[j][i]=(DATATYPE)(D[j][i]-bornMin)/(DATATYPE)(bornMax+bornMin);
             X[j][i]=(DATATYPE)(D[j][i]+BORNEMIN)/(DATATYPE)( BORNEMAX+BORNEMIN);
         }
         /*DATATYPE bornMin=X[j][0];
@@ -55,4 +68,29 @@ void normaliserDataset(X_t X,dataSet_t D){
         }
         printf("max %f,min %f\n",bornMax,bornMin);*/
     }
+}
+
+void afficherDataset(const X_t X, const dataSet_t dataSet,const _Bool* Y){
+    //aficher dataset
+        printf("dataset:\n");
+        for(int i=0;i<NBPARAM;i++){
+            for(int j=0;j<NBDATA;j++){
+                printf("%.6f,",dataSet[i][j]);
+            }
+            printf("\n");
+        }
+        //aficher X
+        printf("X:\n");
+        for(int i=0;i<NBPARAM;i++){
+            for(int j=0;j<NBDATA;j++){
+                printf("%.6f,",X[i][j]);
+            }
+            printf("\n");
+        }
+        //aficher Y
+        printf("Y:\n");
+        for(int i=0;i<NBDATA;i++){
+            printf("%d,",Y[i]);
+        }
+        printf("\n");
 }

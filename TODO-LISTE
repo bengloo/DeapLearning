@@ -1,0 +1,14 @@
+// debuguer la régression linaire en deux couche de 1 neurone (déjas fonctionele en 1 couche)
+// rendre fonctionel pour n'importe quel regression polynomial (soit 3 couche minimum avant generalisation).
+// BORNEMI est mal definit (pour interval [-10;100] actuelement BORNEMINE=10 ) se qui n'est pas intuitif bien que se soit fonctionel
+// les bornes min et max sont actuelement les mêmes pour tout les parametres, définir des bornes distinct pour chaque parametres
+// pouvoir importer un dataset externe , actuelement le datatset peux etres soit normalisé soit alétoire et sa réponse Y est definit celons une fonction.
+// ajouté un dataset de test (témoins)
+// tracer les courbes dévolution du cout (logloss)... (GNUPLOT)
+// Créer un critaire d'arret autre que le nombre d'iterations par exemple le logloss des dataset (test et témoins) 
+// ajouter un parametre pour le calcule ou nom du logloss
+// pouvoir uploder et loader les modéle calculers.
+// ajouter un menu pour piloter les diferente fonctionalitées
+// passé sur des modéle et datset plus évoluer 
+
+

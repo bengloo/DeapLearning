@@ -52,7 +52,7 @@ fin pour
 imax|  A^T  |   |   R   |
     |       |   |       |
 
-A[jmax][imax]^T.B[jmax][kmax]^T=R[imax][kmax]
+A[jmax][imax]^T.B[jmax][kmax]=R[imax][kmax]
 
 pour    i=0->imax
     pour    k=0->kmax

@@ -7,6 +7,12 @@
 #include "setting.h"
 #include "activation.h"
 
+#if DATA_TYPE == DOUBLE
+    #define EPSILLONE DBL_MIN
+#elif DATA_TYPE == FLOAT
+    #define EPSILLONE FLT_MIN
+#endif
+
 /**
  * @brief matrice contenant le data  normalisé  
  * 
@@ -199,7 +205,7 @@ void initialisation(layerW_T*Wcouche,layerA_T*Acouche,layerG_T*Gcouche);
  * @param Gcouche 
  * @param Gflag 
  */
-void printAll(layerW_T *Wcouche,_Bool Wflag,layerA_T*Acouche,_Bool Aflag,layerG_T*Gcouche,_Bool Gflag);
+void printAll(layerW_T *Wcouche,_Bool Wflag,layerA_T*Acouche,_Bool Aflag,layerG_T*Gcouche,_Bool Gflag,_Bool Gflag2);
 
 /**
  * @brief calcule les activavtion du modéle pour les parametre et dataset donné 

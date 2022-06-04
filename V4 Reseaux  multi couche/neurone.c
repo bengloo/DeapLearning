@@ -19,7 +19,7 @@ void integriteeSettings(){
         exit(1);
     }
     printf("%s",ANSI_RESET);
-}
+};
 
 void alouerNeuroneW(W_T *ptrN,int nbE){
     ptrN->W = (DATATYPE *)malloc(sizeof(DATATYPE)*(nbE+1));
@@ -29,26 +29,26 @@ void alouerNeuroneW(W_T *ptrN,int nbE){
     #else
         for(p = 0; p < nbE+1; p++)ptrN->W[p]=p/(DATATYPE)nbE;
     #endif
-}
+};
 
 void alouerNeuroneG(G_T *ptrN,int nbE){
     ptrN->dW = (DATATYPE *)malloc(sizeof(DATATYPE)*(nbE+1));
     if(ptrN->dW==NULL)exit(0);
     for(d=0;d<NBDATA;d++)ptrN->dz[d]=0;
     for(p=0;p<nbE+1;p++)ptrN->dW[p]=0;
-}
+};
 
 void alouerCoucheW(layerW_T *ptrC,int couche){
     ptrC->NW= (W_T *) malloc(sizeof(W_T)*nbNeurone[couche]);
     if(ptrC->NW==NULL)exit(0);
     for (n = 0; n < nbNeurone[couche]; n++)alouerNeuroneW(&(ptrC->NW[n]),nbEntree[couche]); 
-}
+};
 
 void alouerCoucheG(layerG_T *ptrC,int couche){
     ptrC->NG= (G_T *) malloc(sizeof(G_T)*nbNeurone[couche]);
     if(ptrC->NG==NULL)exit(0);
     for (n = 0; n < nbNeurone[couche]; n++)alouerNeuroneG(&(ptrC->NG[n]),nbEntree[couche]); 
-}
+};
 
 void alouerCoucheA(layerA_T *ptrC,int couche){
     ptrC->NA= (A_T *) malloc(sizeof(A_T)*nbNeurone[couche]);
@@ -57,7 +57,7 @@ void alouerCoucheA(layerA_T *ptrC,int couche){
     for (n = 0; n < nbNeurone[couche]; n++){
         for(d=0;d<NBDATA;d++)ptrC->NA[n].A[d]=0;
     }
-}
+};
 
 void initialisation(layerW_T *Wcouche,layerA_T*Acouche,layerG_T*Gcouche){
     for(c=0;c<NBCOUCHE;c++){
@@ -68,9 +68,9 @@ void initialisation(layerW_T *Wcouche,layerA_T*Acouche,layerG_T*Gcouche){
         alouerCoucheA(&(Acouche[c]),c);
         alouerCoucheG(&(Gcouche[c]),c);
     }
-}
+};
 
-void printAll(layerW_T *Wcouche,_Bool Wflag,layerA_T*Acouche,_Bool Aflag,layerG_T*Gcouche,_Bool Gflag){
+void printAll(layerW_T *Wcouche,_Bool Wflag,layerA_T*Acouche,_Bool Aflag,layerG_T*Gcouche,_Bool Gflag,_Bool Gflag2){
     for(c=0;c<NBCOUCHE;c++){
         //printf("couche:%ld\n",c);
         for(n=0;n<nbNeurone[c];n++){
@@ -99,12 +99,14 @@ void printAll(layerW_T *Wcouche,_Bool Wflag,layerA_T*Acouche,_Bool Aflag,layerG_
             }
             if(Gflag){
                 printf("%s",ANSI_PURPLE);
-                printf("\n\tdz={");
+                printf(" dz={");
                 printf("%*.*f",PRINT_LENGTH,PRINT_PRECISION,Gcouche[c].NG[n].dz[0]);
                 for(d=1;d<NBDATA;d++){
                     printf(",%*.*f",PRINT_LENGTH,PRINT_PRECISION,Gcouche[c].NG[n].dz[d]);
                 }
-                printf("}"); 
+                printf("}");
+            }
+            if(Gflag2){ 
                 printf(" db=%*.*f dW:{",PRINT_LENGTH,PRINT_PRECISION,Gcouche[c].NG[n].dW[nbEntree[c]]);
                 printf("%*.*f",PRINT_LENGTH,PRINT_PRECISION,Gcouche[c].NG[n].dW[0]);
                 for(p=1;p<nbentreeMax;p++){
@@ -119,14 +121,15 @@ void printAll(layerW_T *Wcouche,_Bool Wflag,layerA_T*Acouche,_Bool Aflag,layerG_
         }
     }
     printf("\n");
-}
+};
+
 void libererNeuroneW(W_T *ptrN){
         free(ptrN->W);
-}
+};
 
 void libererNeuroneG(G_T *ptrN){
         free(ptrN->dW);
-}
+};
 
 void libererCoucheW(layerW_T *ptrC){
     for (c = 0; c < NBCOUCHE; c++){
@@ -137,7 +140,7 @@ void libererCoucheW(layerW_T *ptrC){
         free(ptrC[c].NW);
         //printf("Wcouche %ld liberer\n",c);
     }
-}
+};
 
 void libererCoucheG(layerG_T *ptrC){
     for (c = 0; c < NBCOUCHE; c++){
@@ -148,21 +151,20 @@ void libererCoucheG(layerG_T *ptrC){
         free(ptrC[c].NG);
         //printf("Gcouche %ld liberer\n",c);
     }
-}
+};
 
 void libererCoucheA(layerA_T *ptrC){
     for (c = 0; c < NBCOUCHE; c++){
         free(ptrC[c].NA);
         //printf("Acouche %ld liberer\n",c);
     }
-}
+};
 
 void libererModele(layerW_T *Wcouche,layerA_T*Acouche,layerG_T*Gcouche){
     libererCoucheW(Wcouche);
     libererCoucheA(Acouche);
-    libererCoucheG(Gcouche);
-    
-}
+    libererCoucheG(Gcouche); 
+};
 
 
 
@@ -185,7 +187,7 @@ void forward_propagation(const X_t X,layerW_T *Wcouche,layerA_T *Acouche){
         //pour la couche 0 on prend le dataset en entrée
         //A(0)=sigmoid(X*W(0)+b(0);
         //printf("couche 0\n");
-        for (n = 0; n < nbEntree[1]; n++)//pour chque neurone
+        for (n = 0; n < nbNeurone[0]; n++)//pour chque neurone
         {    
             //printf("\tneurone:%ld avec %ld entrees \n",n,nbEntree[0]);
             for(d = 0; d < NBDATA; d++)//pour chaque donée
@@ -217,6 +219,7 @@ void forward_propagation(const X_t X,layerW_T *Wcouche,layerA_T *Acouche){
                         //printf("\t\t\tparam:%ld\n",p);
                         Acouche[c].NA[n].A[d] += Wcouche[c].NW[n].W[p]*Acouche[c-1].NA[p].A[d] ;
                     }
+                    //printf("c:%ld n:%ld d:%ld %f\n",c,n,d,Acouche[c].NA[n].A[d]);
                     Acouche[c].NA[n].A[d]=Acouche[c].pfActivation(Acouche[c].NA[n].A[d]);
                 }
             }
@@ -234,7 +237,7 @@ void forward_propagation(const X_t X,layerW_T *Wcouche,layerA_T *Acouche){
             }
         }
     #endif
-}
+};
 
 DATATYPE log_loss(const layerA_T* coucheA,const _Bool* Y){
     DATATYPE res=0;
@@ -242,7 +245,7 @@ DATATYPE log_loss(const layerA_T* coucheA,const _Bool* Y){
         res+= -Y[d]*log(coucheA[NBCOUCHE-1].NA[0].A[d] +EPSILLONE)-(1-Y[d])*log(1-coucheA[NBCOUCHE-1].NA[0].A[d]+EPSILLONE);
     }
     return res/(DATATYPE)NBDATA;
-}
+};
 
 void back_propagation(layerW_T* Wcouche,layerA_T* Acouche,layerG_T*Gcouche,const X_t X,const _Bool* Y){
     
@@ -261,14 +264,14 @@ void back_propagation(layerW_T* Wcouche,layerA_T* Acouche,layerG_T*Gcouche,const
             for(p = 0; p < nbEntree[c]; p++){
                 Gcouche[c].NG[n].dW[p]=0;//dw=0
                 for(d = 0; d < NBDATA; d++){ 
-                    Gcouche[c].NG[n].dW[p] += Acouche[c-1].NA[p].A[d]*Gcouche[c].NG[n].dz[d];
+                    Gcouche[c].NG[n].dW[p] +=Gcouche[c].NG[n].dz[d]*Acouche[c-1].NA[p].A[d];
                 }
-                Gcouche[c].NG[n].dW[p]=Gcouche[c].NG[n].dW[p]/(DATATYPE)nbEntree[c];
+                Gcouche[c].NG[n].dW[p]=Gcouche[c].NG[n].dW[p]/(DATATYPE)NBDATA;
             }
             Gcouche[c].NG[n].dW[nbEntree[c]]=0;//db est stoqué à la fin de dw ...
             for(d = 0; d < NBDATA; d++) 
                 Gcouche[c].NG[n].dW[nbEntree[c]]+=Gcouche[c].NG[n].dz[d];
-            Gcouche[c].NG[n].dW[nbEntree[c]]=Gcouche[c].NG[n].dW[nbEntree[c]]/(DATATYPE)nbEntree[c];
+            Gcouche[c].NG[n].dW[nbEntree[c]]=Gcouche[c].NG[n].dW[nbEntree[c]]/(DATATYPE)NBDATA;
         }
         
         //DEBUG_S("fin derniere couche");
@@ -298,14 +301,14 @@ void back_propagation(layerW_T* Wcouche,layerA_T* Acouche,layerG_T*Gcouche,const
                         //printf("        data %ld\n",d);
                         Gcouche[c].NG[n].dW[p] += Acouche[c-1].NA[p].A[d]*Gcouche[c].NG[n].dz[d];
                     }
-                    Gcouche[c].NG[n].dW[p]/=(DATATYPE)nbEntree[c];
+                    Gcouche[c].NG[n].dW[p]/=(DATATYPE)NBDATA;
                 }
                 Gcouche[c].NG[n].dW[nbEntree[c]]=0;
                 for(d = 0; d < NBDATA; d++){ 
                     //printf("    data %ld\n",d);
                     Gcouche[c].NG[n].dW[nbEntree[c]]+=Gcouche[c].NG[n].dz[d];
                 }
-                Gcouche[c].NG[n].dW[nbEntree[c]]=Gcouche[c].NG[n].dW[nbEntree[c]]/(DATATYPE)nbEntree[c];
+                Gcouche[c].NG[n].dW[nbEntree[c]]=Gcouche[c].NG[n].dW[nbEntree[c]]/(DATATYPE)NBDATA;
             }
         }
         //DEBUG_S("debut premiere couche");
@@ -333,14 +336,14 @@ void back_propagation(layerW_T* Wcouche,layerA_T* Acouche,layerG_T*Gcouche,const
                     //printf("        data %ld\n",d);
                     Gcouche[c].NG[n].dW[p] += X[p][d]*Gcouche[c].NG[n].dz[d];
                 }
-                Gcouche[c].NG[n].dW[p]=Gcouche[c].NG[n].dW[p]/(DATATYPE)NBPARAM;
+                Gcouche[c].NG[n].dW[p]=Gcouche[c].NG[n].dW[p]/(DATATYPE)NBDATA;
             }
             Gcouche[0].NG[n].dW[NBPARAM]=0;
             for(d = 0; d < NBDATA; d++){ 
                 //printf("    data %ld\n",d);
                 Gcouche[0].NG[n].dW[NBPARAM]+=Gcouche[0].NG[n].dz[d];
             }
-            Gcouche[0].NG[n].dW[NBPARAM]=Gcouche[0].NG[n].dW[NBPARAM]/(DATATYPE)NBPARAM;
+            Gcouche[0].NG[n].dW[NBPARAM]=Gcouche[0].NG[n].dW[NBPARAM]/(DATATYPE)NBDATA;
         }
     #else
         //pour la seule et unique couche
@@ -358,15 +361,15 @@ void back_propagation(layerW_T* Wcouche,layerA_T* Acouche,layerG_T*Gcouche,const
                     //printf("        data %ld\n",d);
                     Gcouche[0].NG[n].dW[p] += X[p][d]*Gcouche[0].NG[n].dz[d];
                 }
-                Gcouche[0].NG[n].dW[p]/=(DATATYPE)NBPARAM;
+                Gcouche[0].NG[n].dW[p]/=(DATATYPE)NBDATA;
             }
             Gcouche[0].NG[n].dW[NBPARAM]=0;
             for(d = 0; d < NBDATA; d++) 
                 Gcouche[0].NG[n].dW[NBPARAM]+=Gcouche[0].NG[n].dz[d];
-            Gcouche[0].NG[n].dW[NBPARAM]/=(DATATYPE)NBPARAM;
+            Gcouche[0].NG[n].dW[NBPARAM]/=(DATATYPE)NBDATA;
         }
     #endif
-}
+};
 
 void update(layerW_T*Wcouche,layerG_T*Gcouche,const DATATYPE learning_rate){
     for (c = 0; c <NBCOUCHE; c++){
@@ -377,35 +380,39 @@ void update(layerW_T*Wcouche,layerG_T*Gcouche,const DATATYPE learning_rate){
             Wcouche[c].NW[n].W[nbEntree[c]]-=Gcouche[c].NG[n].dW[nbEntree[c]]*learning_rate;
         }
     }
-}
+};
 
 void artificial_neurone(DATATYPE *LossList,layerW_T*Wcouche,layerA_T*Acouche,layerG_T*Gcouche, const X_t X,const _Bool* Y,const DATATYPE learning_rate,const int n_iter){
     DEBUG_S("début initialisation");
     initialisation(Wcouche,Acouche,Gcouche);
     DEBUG_S("fin initialisation");
-    printAll(Wcouche,1,Acouche,PrintGradParam,Gcouche,PrintGradParam);
+    printAll(Wcouche,1,Acouche,PrintGradParam,Gcouche,PrintGradParam,1);
     for(size_t i=0;i<n_iter;i++){
         DEBUG_S1("début forward_propagation iteration:%ld\n",i);
-        forward_propagation(X,Wcouche,Acouche);
         DEBUG_S1("fin forward_propagation iteration:%ld\n",i);
+        forward_propagation(X,Wcouche,Acouche);
         DEBUG_S1("début logloss iteration:%ld\n",i);
         //LossList[i]=log_loss(A,Y);
         if(i%((n_iter/100>0)?n_iter/100:1)==0){
             printf("logloss[%ld]=%f\n",i,log_loss(Acouche,Y));
-            printAll(Wcouche,1,Acouche,PrintGradParam,Gcouche,PrintGradParam);
+            printAll(Wcouche,1,Acouche,PrintGradParam,Gcouche,PrintGradParam,1);
         }
         DEBUG_S1("fin logloss iteration:%ld\n",i);
         DEBUG_S1("début back_propagation iteration:%ld\n",i);
         back_propagation(Wcouche,Acouche,Gcouche,X,Y);
-        printAll(Wcouche,1,Acouche,1,Gcouche,1);
         DEBUG_S1("fin back_propagation iteration:%ld\n",i);
+        #ifdef DEBUG
+            printAll(Wcouche,1,Acouche,PrintGradParam,Gcouche,PrintGradParam,1);
+        #endif
         DEBUG_S1("début update iteration:%ld\n",i);
         update(Wcouche,Gcouche,learning_rate);
-        //printAll(Wcouche,1,Acouche,1,Gcouche,1);
         DEBUG_S1("fin update iteration:%ld\n",i);
+        #ifdef DEBUG
+            printAll(Wcouche,1,Acouche,PrintGradParam,Gcouche,PrintGradParam,1);
+        #endif
     }
-    //printAll(Wcouche,1,Acouche,PrintGradParam,Gcouche,PrintGradParam);
-}
+    printAll(Wcouche,1,Acouche,PrintGradParam,Gcouche,PrintGradParam,1);
+};
 void predict(_Bool *Y,const X_t X,layerA_T *coucheA,layerW_T *coucheW){
     forward_propagation(X,coucheW,coucheA);
     for( d=0;d<NBDATA;d++){

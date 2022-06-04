@@ -16,7 +16,7 @@ int main(/*int argc, char const *argv[]*/)
     DEBUG_S("début du programme\n");
         genererDataset(dataSet,Y);
         normaliserDataset(X,dataSet);
-        #if NBDATA <10
+        #if NBDATA <100000
             afficherDataset(X,dataSet,Y);
         #endif
         DEBUG_S("début artificial neurone\n");
@@ -77,7 +77,7 @@ void afficherDataset(const X_t X, const dataSet_t dataSet,const _Bool* Y){
         printf("dataset:\n");
         for(int i=0;i<NBPARAM;i++){
             for(int j=0;j<NBDATA;j++){
-                printf("%.6f,",dataSet[i][j]);
+                printf("%.6f ",dataSet[i][j]);
             }
             printf("\n");
         }
@@ -85,14 +85,14 @@ void afficherDataset(const X_t X, const dataSet_t dataSet,const _Bool* Y){
         printf("X:\n");
         for(int i=0;i<NBPARAM;i++){
             for(int j=0;j<NBDATA;j++){
-                printf("%.6f,",X[i][j]);
+                printf("%.6f ",X[i][j]);
             }
             printf("\n");
         }
         //aficher Y
         printf("Y:\n");
         for(int i=0;i<NBDATA;i++){
-            printf("%d,",Y[i]);
+            printf("%d ",Y[i]);
         }
         printf("\n");
 }
